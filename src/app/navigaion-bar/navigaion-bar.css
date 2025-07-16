@@ -1,0 +1,122 @@
+.MainNavigationBar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 225, 255);
+    gap: 2px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.leftPart, .centerPart, .rightPart{
+    width: 32%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.leftPart{
+    padding-left: 10px;
+}
+
+.leftPart img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.774);
+}
+
+.leftPart p{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.918);
+    font-weight: bolder;
+    margin-left: 5px;
+    font-size: 25px;
+    align-self: center;
+}
+
+.rightPart{
+    justify-content: end;
+    gap: 15px;
+    margin-right: 40px;
+}
+
+.rightPart img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.rightPart div {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.918);
+    font-weight: bolder;
+    margin-left: 5px;
+    align-self: center;
+}
+  
+  .RegisterButton {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 95%;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(0, 225, 255);
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 1;
+    outline: none; /* Oculta el borde del foco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: font-size 0.6s ease;
+  }
+
+  .RegisterButton:hover{
+    font-size: 25px;
+  }
+
+  .RegisterButton:focus{
+    font-size: 29px;
+  }
+  
+  .RegisterButton::before,
+  .RegisterButton::after {
+    content: '';
+    position: absolute;
+    bottom: -60%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 40%;
+    z-index: 0;
+    transform: rotate(0deg);
+    animation: wave 4s linear infinite;
+    transition: bottom 0.6s ease;
+    pointer-events: none;
+  }
+  
+  .RegisterButton::after {
+    opacity: 0.6;
+    animation-delay: 2s;
+  }
+  
+  .RegisterButton:hover::before,
+  .RegisterButton:hover::after {
+    bottom: 30%;
+  }
+  
+  .RegisterButton:focus::before,
+  .RegisterButton:focus::after {
+    bottom: 100%;
+    transition: bottom 1s ease;
+  }
