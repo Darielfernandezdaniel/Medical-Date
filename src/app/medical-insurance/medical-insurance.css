@@ -1,250 +1,303 @@
+.Medical-Insurance-Cover{
+  
+}
+
 .container {
-    background-color: #f3f4f6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
- 
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    color: #1f2937;
-    margin-bottom: 2rem;
-  }
- 
-  .carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.75rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 64rem;
-  }
- 
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 2rem;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 64rem;
+}
+
+.carousel {
+  position: relative;
+  height: 16rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
   .carousel {
-    position: relative;
-    height: 16rem;
-    width: 100%;
+    height: 24rem;
   }
- 
-  @media (min-width: 768px) {
-    .carousel {
-      height: 24rem;
-    }
- 
-    .title {
-      font-size: 2.25rem;
-    }
- 
-    .heading {
-      font-size: 1.875rem;
-    }
+
+  .title {
+    font-size: 2.25rem;
   }
- 
-  .slide {
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
+
+  .heading {
+    font-size: 1.875rem;
   }
- 
-  .slide.active {
-    transform: translateX(0);
+}
+
+.slide {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.slide.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide.next {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide.prev {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.bg-blue {
+  background-color: rgb(0, 126, 143);
+}
+
+.bg-green {
+  background-color: rgb(0, 177, 201);
+}
+
+.bg-purple {
+  background-color: rgb(0, 195, 221);
+}
+
+.bg-yellow {
+  background-color: rgb(0, 225, 255);
+  color: #1f2937;
+}
+
+.content .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.125rem;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #1f2937;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn.left {
+  left: 1rem;
+}
+
+.nav-btn.right {
+  right: 1rem;
+}
+
+.dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+.bottom {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.instruction {
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .thumbnails {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.thumbnail {
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.Coverage-Bar{
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.Progresion-Bar1, .Progresion-Bar2, .Progresion-Bar3, .Progresion-Bar4{
+  background-color: white;
+  height: 90%;
+  width: 30%;
+  border-radius: 10px;
+  margin-left: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Progresion-Bar1{
+  color: white;
+}
+
+.Progresion-Bar2{
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.Progresion-Bar3{
+  width: 75%;
+}
+
+.Progresion-Bar4{
+  width: 99.5%;
+}
+
+.Insurance-Porcentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #ffffff;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.item2{
+  color:rgb(0, 177, 201);
+}
+
+.item3{
+  color: rgb(0, 195, 221);
+}
+
+.item4{
+  color: rgb(0, 225, 255);
+}
+
+.slide-left {
+  animation: slideFromLeft 0.5s ease forwards;
+}
+
+/* Slide entrando desde la derecha */
+.slide-right {
+  animation: slideFromRight 0.5s ease forwards;
+}
+
+/* Animación desde la izquierda */
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+
+  }
+}
+
+/* Animación desde la derecha */
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
     opacity: 1;
   }
- 
-  .slide.next {
-    transform: translateX(100%);
-    opacity: 0;
+  to {
+    transform: translateX(0%);
+    opacity: 1;
   }
- 
-  .slide.prev {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
- 
-  .bg-blue {
-    background-color: rgb(0, 126, 143);
-  }
- 
-  .bg-green {
-    background-color: rgb(0, 177, 201);
-  }
- 
-  .bg-purple {
-    background-color: rgb(0, 195, 221);
-  }
- 
-  .bg-yellow {
-    background-color: rgb(0, 225, 255);
-    color: #1f2937;
-  }
- 
-  .content .icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
- 
-  .heading {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
- 
-  .description {
-    font-size: 1.125rem;
-  }
- 
-  .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ffffff;
-    padding: 0.5rem;
-    border-radius: 9999px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: none;
-  }
- 
-  .nav-btn.left {
-    left: 1rem;
-  }
- 
-  .nav-btn.right {
-    right: 1rem;
-  }
- 
-  .dots {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  }
- 
-  .dot {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 9999px;
-    background-color: rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease infinite;
-    border: none;
-  }
- 
-  .dot.active {
-    background-color: white;
-    transform: scale(1.2);
-  }
- 
-  .bottom {
-    margin-top: 2rem;
-    text-align: center;
-  }
- 
-  .instruction {
-    color: #4b5563;
-    margin-bottom: 1rem;
-  }
- 
-  .thumbnails {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
- 
-  @media (min-width: 768px) {
-    .thumbnails {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
- 
-  .thumbnail {
-    color: white;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border: none;
-    font-size: 1.25rem;
-  }
-
-  .Coverage-Bar{
-    width: 100%;
-    height: 30px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .Progresion-Bar1, .Progresion-Bar2, .Progresion-Bar3, .Progresion-Bar4{
-    background-color: white;
-    height: 90%;
-    width: 30%;
-    border-radius: 10px;
-    margin-left: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .Progresion-Bar1{
-    color: white;
-  }
-
-  .Progresion-Bar2{
-    width: 55%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .Progresion-Bar3{
-    width: 75%;
-  }
-
-  .Progresion-Bar4{
-    width: 99.5%;
-  }
-
-  .Insurance-Porcentage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: #ffffff;
-    z-index: 1; /* Asegura que esté por encima de la barra blanca */
-    pointer-events: none; /* Opcional: evita que interfiera con el mouse */
-  }
-
-  .item2{
-    color:rgb(0, 177, 201);
-  }
-
-  .item3{
-    color: rgb(0, 195, 221);
-  }
-
-  .item4{
-    color: rgb(0, 225, 255);
-  }
-
-  
+}

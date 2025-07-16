@@ -1,6 +1,5 @@
-// medical-insurance.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-medical-insurance',
@@ -9,80 +8,105 @@ import { Component, AfterViewInit} from '@angular/core';
   templateUrl: './medical-insurance.html',
   styleUrls: ['./medical-insurance.css']
 })
-export class MedicalInsurance implements AfterViewInit {
-   currentIndex = 0;
+export class MedicalInsuranceComponent implements OnInit, OnDestroy {
+  @ViewChild('carousel', { static: true }) carousel!: ElementRef;
+  animationDirection: 'left' | 'right' = 'right';
+  
+  currentSlide = 0;
+  totalSlides = 4;
   autoSlideInterval: any;
+  
+  slides = [
+    {
+      bgClass: 'bg-blue',
+      title: 'Basic Coverage for Medical and Labo Assistance',
+      description: 'Medical Insurance for Standard Issues',
+      percentage: '25%',
+      progressClass: 'Progresion-Bar1',
+      textClass: ''
+    },
+    {
+      bgClass: 'bg-green',
+      title: 'Radiological and Labo Testing Coverage',
+      description: 'Insurance to improve the analytic area and permanent healthy Issues',
+      percentage: '50%',
+      progressClass: 'Progresion-Bar2',
+      textClass: 'item2'
+    },
+    {
+      bgClass: 'bg-purple',
+      title: 'Operating room insurance for minor surgeries and high-cost tests.',
+      description: 'Minor and Middle complexity surgeries and high cost test',
+      percentage: '75%',
+      progressClass: 'Progresion-Bar3',
+      textClass: 'item3'
+    },
+    {
+      bgClass: 'bg-yellow',
+      title: 'Full Healthy Insurance',
+      description: 'Covering the most complex issues with all surgeries and test available',
+      percentage: '100%',
+      progressClass: 'Progresion-Bar4',
+      textClass: 'item4'
+    }
+  ];
 
-  ngAfterViewInit(): void {
-    const carousel = document.getElementById('carousel');
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+  thumbnailIcons = ['', '', '', ''];
 
-    const goToSlide = (index: number) => {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active', 'prev', 'next');
-        if (i === index) {
-          slide.classList.add('active');
-        } else if (i === (index + 1) % slides.length) {
-          slide.classList.add('next');
-        } else if (i === (index - 1 + slides.length) % slides.length) {
-          slide.classList.add('prev');
-        } else {
-          slide.classList.add('next');
-        }
-      });
+  ngOnInit() {
+    this.startAutoSlide();
+  }
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
 
-      this.currentIndex = index;
-    };
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 5000);
+  }
 
-    const startAutoSlide = () => {
-      this.autoSlideInterval = setInterval(() => {
-        goToSlide((this.currentIndex + 1) % slides.length);
-      }, 5000);
-    };
-
-    const stopAutoSlide = () => {
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
-    };
+    }
+  }
 
-    prevBtn?.addEventListener('click', () => {
-      stopAutoSlide();
-      goToSlide((this.currentIndex - 1 + slides.length) % slides.length);
-      startAutoSlide();
-    });
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+  }
 
-    nextBtn?.addEventListener('click', () => {
-      stopAutoSlide();
-      goToSlide((this.currentIndex + 1) % slides.length);
-      startAutoSlide();
-    });
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+  }
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        stopAutoSlide();
-        goToSlide(index);
-        startAutoSlide();
-      });
-    });
+  goToSlide(index: number) {
+    this.animationDirection = index > this.currentSlide ? 'right' : 'left';
+    this.currentSlide = index;
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
 
-    thumbnails.forEach((thumbnail, index) => {
-      thumbnail.addEventListener('click', () => {
-        stopAutoSlide();
-        goToSlide(index);
-        startAutoSlide();
-      });
-    });
+  onPrevClick() {
+    this.stopAutoSlide();
+    this.animationDirection = 'left';
+    this.prevSlide();
+    this.startAutoSlide();
+  }
 
-    carousel?.addEventListener('mouseenter', stopAutoSlide);
-    carousel?.addEventListener('mouseleave', startAutoSlide);
+  onNextClick() {
+    this.stopAutoSlide();
+    this.animationDirection = 'right';
+    this.nextSlide();
+    this.startAutoSlide();
+  }
 
-    startAutoSlide();
+  onThumbnailClick(index: number) {
+    this.goToSlide(index);
+  }
+
+  onDotClick(index: number) {
+    this.goToSlide(index);
   }
 }
