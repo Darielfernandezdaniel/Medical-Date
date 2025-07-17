@@ -60,6 +60,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.stopAutoSlide();
   }
+  
 
   startAutoSlide() {
     this.autoSlideInterval = setInterval(() => {

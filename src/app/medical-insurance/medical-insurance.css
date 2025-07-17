@@ -1,23 +1,29 @@
 .Medical-Insurance-Cover{
-  
+  width: 100%;
+  height: 100vh;
 }
 
+
 .container {
-  background-color: #f3f4f6;
-  min-height: 100vh;
+  background-image: url('/assets/Seguro-Medico.png');
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   color: #1f2937;
   margin-bottom: 2rem;
+  color: white;
 }
 
 .carousel-wrapper {
@@ -25,7 +31,7 @@
   overflow: hidden;
   border-radius: 0.75rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  background-color: #ffffff;
+
   width: 100%;
   max-width: 64rem;
 }
@@ -42,7 +48,7 @@
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 5rem;
   }
 
   .heading {
@@ -174,8 +180,10 @@
 }
 
 .instruction {
-  color: #4b5563;
+  color: #000000;
   margin-bottom: 1rem;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .thumbnails {
