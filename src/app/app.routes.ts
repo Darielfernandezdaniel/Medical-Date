@@ -4,5 +4,5 @@ import { RegisterForm } from './register-form/register-form';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent,},
-    {path: "register", component: RegisterForm}
+    {path: "register/:params", component: RegisterForm}
 ];

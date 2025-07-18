@@ -204,3 +204,48 @@
     border-left: 4px solid silver ;
   }
 
+  .form-container {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .form-content {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.3s;
+  }
+  
+  /* salida con rotación y caída */
+  .animate-out {
+    animation: fallOut 0.5s forwards;
+  }
+  
+  /* entrada con rotación inversa */
+  .animate-in {
+    animation: riseIn 0.5s forwards;
+  }
+  
+  @keyframes fallOut {
+    0% {
+      opacity: 1;
+      transform: rotate(0) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(15deg) translateY(100px);
+    }
+  }
+  
+  @keyframes riseIn {
+    0% {
+      opacity: 0;
+      transform: rotate(15deg) translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) translateY(0);
+    }
+  }
+

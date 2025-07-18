@@ -1,8 +1,13 @@
 <div class="pagina-login">
     <div class="wood">
         <div class="bar-container"></div>
-        <div class="contenedor-formulario">
-            <h1 class="titulo-formulario">Login</h1>
+        <div 
+        class="contenedor-formulario" 
+        [class.animate-out]="animating" 
+        [class.animate-in]="!animating"
+      >
+            <h1 *ngIf="params ==='login'" class="titulo-formulario">Login</h1>
+            <h1 *ngIf="params ==='join'" class="titulo-formulario">Bienvenido</h1>
             <form>
                 <div class="grupo-input">
                     <label for="email" class="etiqueta-input">Correo Electrónico</label>
@@ -22,7 +27,8 @@
                     <a href="#" class="enlace-opcion">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="submit" class="boton-enviar">Iniciar Sesión</button>
+                <button type="submit" *ngIf="params ==='login'" class="boton-enviar">Iniciar Sesión</button>
+                <button type="submit" *ngIf="params ==='join'" class="boton-enviar">Registrarse</button>
                 
                 <div class="separador">
                     <div class="linea-separador"></div>
@@ -47,8 +53,11 @@
                 </div>
             </form>
             
-            <div class="pie-formulario">
-                ¿No tienes una cuenta? <a href="#" class="enlace-registro">Regístrate</a>
+            <div class="pie-formulario" *ngIf="params ==='join'" (click) = "paramsChanger('login')">
+                ¿No tienes una cuenta? <span class="enlace-registro">Regístrate</span>
+            </div>
+            <div class="pie-formulario" *ngIf="params ==='login'" (click) = "paramsChanger('join')">
+                ¿Ya tienes una cuenta? <span class="enlace-registro">Login</span>
             </div>
         </div>
     </div>

@@ -10,11 +10,27 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register-form.css']
 })
 export class RegisterForm {
-  // param:string = "";
+  animating = false;
+  params:string = "";
 
-  // ngOnInit(){
-  //   this.param = this.route.snapshot.paramMap.get('param')!
-  // }
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const newParam = params.get('params');
+      if (newParam) {
+        this.params = newParam;
+      }
+    });
+  }
+  constructor(private route: ActivatedRoute){}
 
-  // constructor(private route: ActivatedRoute){}
+  paramsChanger(target: 'login' | 'join') {
+    if (this.params === target) return;
+  
+    this.animating = true;
+  
+    setTimeout(() => {
+      this.params = target;
+      this.animating = false;
+    }, 500); // debe coincidir con la animación CSS
+  }
 }
