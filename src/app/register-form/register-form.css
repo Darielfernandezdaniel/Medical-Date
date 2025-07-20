@@ -19,6 +19,7 @@
     height: 87vh;
     background: url(/assets/Madera.jpg);
     border-radius: 10px;
+    position: relative;
 }
 
 .contenedor-formulario {
@@ -27,7 +28,9 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 98%;
     height: 85vh;
-    padding: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     position: relative;
     overflow-y: auto;
 }
@@ -48,6 +51,7 @@
     margin-bottom: 25px;
     font-size: 24px;
     font-weight: 600;
+    padding-top: 35px;
 }
 
 /* Campos del formulario */
@@ -191,9 +195,9 @@
 }
 
 .bar-container {
-    position: fixed;
-    top: 6%;
+    position: absolute;
     left: 50%;
+    top: 0;
     transform: translateX(-50%);
     height: 30px;
     width: 100px;
@@ -248,4 +252,62 @@
       transform: rotate(0deg) translateY(0);
     }
   }
+
+  @media(max-height: 587px){
+    .wood{
+        height: 100vh;
+    }
+    
+    .contenedor-formulario{
+        height: 100vh;
+    }
+
+    .bar-container{
+        top: 0;
+    }
+  }
+
+  @media (max-height: 700px){
+    .wood{
+        height: 100vh;
+        width: 100%;
+    }
+
+    .contenedor-formulario{
+        height: 98vh;
+        width: 98%;
+    }
+  }
+
+  @media (max-height: 610px){
+    .bar-container{
+        opacity: 0;
+    }
+  }
+
+  @media (max-width: 400px){
+    .opciones-formulario{
+        font-size: 12px;
+        align-items: center;
+        justify-content: space-between;
+    }
+  }
+
+.input-error {
+    border-color: #e53935 !important;
+    box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.15);
+    background-color: #fff6f6;
+}
+
+.error-mensaje {
+    color: #e53935;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.mensaje-error {
+    color: #e53935;
+    font-size: 13px;
+    margin-top: 2px;
+}
 

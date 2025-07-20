@@ -5,14 +5,18 @@
     <div class="info-Area">
         <div class="contactData">
             <h3>Contact Us</h3>
-            <div>
-                <img class="imgShaker" src="assets/llamada-telefonica.png" alt="Telefono">
-                <span>Te Llamamos</span>
-            </div>
-            <div>
-                <img class="imgShaker" src="assets/correo-de-propaganda.png" alt="Email">
-                <span>Te escribimos</span>
-            </div>
+            <a [routerLink]="['/ticket', 'telephone']">
+                <div>
+                    <img class="imgShaker" src="assets/llamada-telefonica.png" alt="Telefono" >
+                    <span>Te Llamamos</span>
+                </div>
+            </a>
+            <a [routerLink]="['/ticket', 'email']">
+                <div>
+                    <img class="imgShaker" src="assets/correo-de-propaganda.png" alt="Email">
+                    <span>Te escribimos</span>
+                </div>
+            </a>
         </div>
         <div class="license"> 
             <h3>Our Achievements</h3>

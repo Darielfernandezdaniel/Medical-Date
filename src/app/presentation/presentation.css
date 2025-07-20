@@ -30,7 +30,9 @@
     align-items: center;
     animation: sideShift 4s ease-in-out infinite;
     cursor: pointer;
-    transition: font-size 1s;
+    transition: font-size 0.5s;
+    text-decoration: none;
+    color: inherit;
   }
 
   @keyframes sideShift {

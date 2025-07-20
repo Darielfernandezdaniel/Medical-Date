@@ -6,29 +6,76 @@
         [class.animate-out]="animating" 
         [class.animate-in]="!animating"
       >
+        
             <h1 *ngIf="params ==='login'" class="titulo-formulario">Login</h1>
             <h1 *ngIf="params ==='join'" class="titulo-formulario">Bienvenido</h1>
-            <form>
+            <form [formGroup]="RegisterForm">
                 <div class="grupo-input">
                     <label for="email" class="etiqueta-input">Correo Electrónico</label>
-                    <input type="email" id="email" class="campo-input" placeholder="usuario@clinica.com" required>
+                    <input type="email" id="email" class="campo-input" formControlName="email"
+                           [class.input-error]="RegisterForm.get('email')?.touched && RegisterForm.get('email')?.invalid"
+                           placeholder="usuario@clinica.com" required>
+                    <div *ngIf="RegisterForm.get('email')?.touched && RegisterForm.get('email')?.invalid" class="error-mensaje">
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('email')?.errors?.['required']">
+                            El correo electrónico es obligatorio.
+                        </div>
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('email')?.errors?.['email']">
+                            El formato del correo no es válido.
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="grupo-input">
                     <label for="password" class="etiqueta-input">Contraseña</label>
-                    <input type="password" id="password" class="campo-input" placeholder="Ingresa tu contraseña" required>
+                    <input type="password"  maxlength="15" id="password" class="campo-input" formControlName="password"
+                           [class.input-error]="RegisterForm.get('password')?.touched && RegisterForm.get('password')?.invalid"
+                           placeholder="Ingresa tu contraseña" required>
+                    <div *ngIf="RegisterForm.get('password')?.touched && RegisterForm.get('password')?.invalid" class="error-mensaje">
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['required']">
+                            La contraseña es obligatoria.
+                        </div>
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['minlength']">
+                            La contraseña debe tener al menos 6 caracteres.
+                        </div>
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['maxlength']">
+                            La contraseña no puede tener más de 15 caracteres.
+                        </div>
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['passwordStrength']">
+                            La contraseña debe tener mayúsculas, minúsculas, números y símbolos.
+                        </div>
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['whitespace']">
+                            La contraseña no puede tener espacios.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo-input" *ngIf="params ==='join'">
+                    <label for="repitPassword" class="etiqueta-input">Repetir Contraseña</label>
+                    <input type="password" id="repitPassword" class="campo-input" formControlName="repitPassword"  maxlength="15"
+                           [class.input-error]="RegisterForm.get('repitPassword')?.touched && RegisterForm.get('repitPassword')?.invalid || RegisterForm.errors?.['fieldsMismatch'] && RegisterForm.get('repitPassword')?.touched"
+                           placeholder="Ingresa tu contraseña" required>
+                    <div *ngIf="RegisterForm.get('repitPassword')?.touched && RegisterForm.get('repitPassword')?.invalid" class="error-mensaje">
+                        <div class="mensaje-error" *ngIf="RegisterForm.get('repitPassword')?.errors?.['required']">
+                            Debes repetir la contraseña.
+                        </div>
+                    </div>
+                    <div *ngIf="RegisterForm.errors?.['fieldsMismatch'] && RegisterForm.get('repitPassword')?.touched" class="error-mensaje">
+                        <div class="mensaje-error">
+                            Las contraseñas no coinciden.
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="opciones-formulario">
                     <div>
-                        <input type="checkbox" id="remember">
+                        <input type="checkbox" id="remember" formControlName="rememberMe">
                         <label for="remember">Recordar sesión</label>
                     </div>
                     <a href="#" class="enlace-opcion">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="submit" *ngIf="params ==='login'" class="boton-enviar">Iniciar Sesión</button>
-                <button type="submit" *ngIf="params ==='join'" class="boton-enviar">Registrarse</button>
+                <button type="submit" *ngIf="params ==='login'" class="boton-enviar" (click) = enviarDataLogin()>Iniciar Sesión</button>
+                <button type="submit" *ngIf="params ==='join'" class="boton-enviar" (click) = enviarDataJoin()>Registrarse</button>
                 
                 <div class="separador">
                     <div class="linea-separador"></div>

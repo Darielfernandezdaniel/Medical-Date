@@ -11,7 +11,7 @@ h2{
     top: 30%;
     left: 50.5%; 
     color: rgb(255, 255, 255);
-    font-size: 10vh;
+    font-size: 50px;
     width: 90%;
     text-align: center;
     background-color: rgb(0, 225, 255);
@@ -33,24 +33,7 @@ h2{
     width: 100%;
     height: 100%;
 }
-
-.info-Area {
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 35%;
-    background-color: rgb(0, 0, 0);
-    padding: 2rem;
-    z-index: 3;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: top;
-  }
-  
+ 
   .info-Area::before {
     content: "";
     position: absolute;
@@ -68,125 +51,269 @@ h2{
     z-index: 4;
   }
 
-  .contactData{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    gap: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    height: 70%;
-  }
+  .info-Area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    background-color: black;
+}
 
-  .contactData div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 155px;
-    height: 40px;
-    border: 2px solid rgb(255, 255, 255);
+/* Estilos comunes para las columnas */
+.contactData,
+.license,
+.socialData {
+    background: white;
+    padding: 1.5rem;
     border-radius: 10px;
-    transition: all 0.5s;
-    background-color:rgb(0, 225, 255); 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contactData:hover,
+.license:hover,
+.socialData:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Títulos */
+.contactData h3,
+.license h3,
+.socialData h3 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.contactData h3::after,
+.license h3::after,
+.socialData h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    border-radius: 2px;
+}
+
+/* Contact Data */
+.contactData a {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+   
+}
+
+.contactData a:last-child {
+    margin-bottom: 0;
+}
+
+.contactData a > div {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.contactData a:hover > div {
+    background-color: rgb(0, 225, 255);
     color: white;
-  }
+    transform: translateX(5px);
+    
+}
 
-  .contactData div:hover{
-    font-size: 17px;
-    height: 42px;
-    width: 157px;
-  }
+.contactData div:hover .imgShaker {
+  animation: shakeRotate 0.2s infinite alternate;
+}
 
-  .contactData div:active{
-    font-size: 17px;
-    height: 39px;
-    width: 145px;
-    font-size: 15px;
-  }
-
-  .contactData div:hover .imgShaker{
-    animation: shakeRotate 0.2s infinite alternate;
-  }
-
-  .contactData img{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+.contactData img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.75rem;
+    transition: transform 0.3s ease;
     background-color: white;
-    transition: transform 0.1s linear;
-  }
+    border-radius: 50%;
+}
 
+.contactData a:hover img {
+    transform: scale(1.1);
+}
+
+.contactData span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* License (Achievements) */
+.license > div {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.license > div:last-child {
+    margin-bottom: 0;
+}
+
+.license > div:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateX(3px);
+}
+
+.license img {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.75rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.license span {
+    font-weight: 500;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+/* Social Data */
+.socialData > div {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.socialData > div:last-child {
+    margin-bottom: 0;
+}
+
+.socialData .youtube {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+}
+
+.socialData .youtube:hover {
+    background: linear-gradient(135deg, #cc0000, #aa0000);
+    transform: translateY(-2px);
+}
+
+.socialData > div:nth-child(3) {
+    background: linear-gradient(135deg, #e1306c, #c13584);
+    color: white;
+}
+
+.socialData > div:nth-child(3):hover {
+    background: linear-gradient(135deg, #c13584, #a12574);
+    transform: translateY(-2px);
+}
+
+.socialData > div:nth-child(4) {
+    background: linear-gradient(135deg, #1877f2, #42a5f5);
+    color: white;
+}
+
+.socialData > div:nth-child(4):hover {
+    background: linear-gradient(135deg, #1565c0, #1877f2);
+    transform: translateY(-2px);
+}
+
+.socialData img {
+    width: 26px;
+    height: 26px;
+    margin-right: 0.75rem;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.socialData span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .info-Area {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .contactData,
+    .license,
+    .socialData {
+        padding: 1.25rem;
+    }
+    
+    .contactData h3,
+    .license h3,
+    .socialData h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .info-Area {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .contactData,
+    .license,
+    .socialData {
+        padding: 1rem;
+    }
+    
+    .contactData a > div,
+    .license > div,
+    .socialData > div {
+        padding: 0.75rem;
+    }
+    
+    .contactData h3,
+    .license h3,
+    .socialData h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+  
   @keyframes shakeRotate {
     0%   { transform: rotate(-10deg); }
     100% { transform: rotate(10deg); }
   }
 
-  .socialData{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    gap: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-  }
+  @media(max-width: 632px){
+    h2{
+      font-size: 35px;
+    }
 
-  .socialData img{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: white;
-    transition: transform 0.1s linear;
-  }
-
-  .socialData div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 20%;
-    height: 20px;
-  }
-
-  h3{
-    font-size: 5vh;
-  }
-
-  .youtube{
-    padding-right: 15px;
-  }
-
-  .license{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    gap: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-  }
-
-  .license div{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    height: 20px;
-    width: 150px;
-    gap: 5px;
-  }
-
-  .license img{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: white;
-    transition: transform 0.1s linear;
+    .bottomLogo{
+      width: 100px;
+    }
   }

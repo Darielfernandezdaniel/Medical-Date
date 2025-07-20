@@ -35,7 +35,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
     },
     {
       bgClass: 'bg-purple',
-      title: 'Operating room insurance for minor surgeries and high-cost tests.',
+      title: 'Minor surgeries and high-cost tests.',
       description: 'Minor and Middle complexity surgeries and high cost test',
       percentage: '75%',
       progressClass: 'Progresion-Bar3',

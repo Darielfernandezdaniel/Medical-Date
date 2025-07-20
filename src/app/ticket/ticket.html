@@ -1,0 +1,109 @@
+<div class="pagina-Ticket">
+    <div class="wood">
+      <div class="bar-container"></div>
+  
+      <div 
+        class="contenedor-formulario" 
+        [class.animate-out]="animating" 
+        [class.animate-in]="!animating"
+      >
+        <h1 *ngIf="params ==='telephone'" class="titulo-formulario">Recibir llamada</h1>
+        <h1 *ngIf="params ==='email'" class="titulo-formulario">Recibir Email</h1>
+  
+        <form [formGroup]="TicketForm" (ngSubmit)="onSubmit()">
+          
+          <!-- Campo Email -->
+          <div class="grupo-input" *ngIf="params ==='email'">
+            <label for="email" class="etiqueta-input">Correo Electrónico</label>
+            <input type="email" formControlName="email" id="email" class="campo-input"
+                   placeholder="usuario@clinica.com" required
+                   [class.input-error]="TicketForm.get('email')?.touched && TicketForm.get('email')?.invalid">
+            <div *ngIf="TicketForm.get('email')?.touched && TicketForm.get('email')?.invalid" class="error-mensaje">
+              <div class="mensaje-error" *ngIf="TicketForm.get('email')?.errors?.['required']">
+                El correo electrónico es obligatorio.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('email')?.errors?.['email']">
+                El formato del correo no es válido.
+              </div>
+            </div>
+          </div>
+  
+          <!-- Campo Teléfono -->
+          <div class="grupo-input" *ngIf="params ==='telephone'">
+            <label for="telephone" class="etiqueta-input">Teléfono</label>
+  
+            <div class="telephoneContainer">
+              <!-- Código País -->
+              <span class="campo-inputIden" 
+                    [class.input-error]="TicketForm.get('telephoneIden')?.touched && TicketForm.get('telephoneIden')?.invalid">
+                +
+                <input type="text" formControlName="telephoneIden" id="telephoneIden" inputmode="numeric"
+                       maxlength="3" required>
+              </span>
+  
+              <!-- Número -->
+              <input type="text" formControlName="telephone" id="telephone" class="campo-input"
+                     inputmode="numeric" placeholder="Ingresa tu Teléfono" required
+                     [class.input-error]="TicketForm.get('telephone')?.touched && TicketForm.get('telephone')?.invalid">
+            </div>
+  
+            <!-- Mensajes de error -->
+            <div class="error-mensaje" *ngIf="TicketForm.get('telephoneIden')?.touched && TicketForm.get('telephoneIden')?.invalid">
+              <div class="mensaje-error" *ngIf="TicketForm.get('telephoneIden')?.errors?.['required']">
+                El código de país es obligatorio.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('telephoneIden')?.errors?.['pattern']">
+                Solo se permiten números.
+              </div>
+            </div>
+  
+            <div class="error-mensaje" *ngIf="TicketForm.get('telephone')?.touched && TicketForm.get('telephone')?.invalid">
+              <div class="mensaje-error" *ngIf="TicketForm.get('telephone')?.errors?.['required']">
+                El número de teléfono es obligatorio.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('telephone')?.errors?.['pattern']">
+                Solo se permiten números.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('telephone')?.errors?.['maxlength']">
+                Máximo 15 dígitos permitidos.
+              </div>
+            </div>
+          </div>
+  
+          <!-- Campo Nombre -->
+          <div class="grupo-input">
+            <label for="name" class="etiqueta-input">Nombre</label>
+            <input type="name" formControlName="name" id="name" class="campo-input"
+                   placeholder="Dinos tu Nombre" required
+                   [class.input-error]="TicketForm.get('name')?.touched && TicketForm.get('name')?.invalid">
+            
+            <div *ngIf="TicketForm.get('name')?.touched && TicketForm.get('name')?.invalid" class="error-mensaje">
+              <div class="mensaje-error" *ngIf="TicketForm.get('name')?.errors?.['required']">
+                El nombre es obligatorio.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('name')?.errors?.['maxlength']">
+                El nombre no debe superar los 50 caracteres.
+              </div>
+              <div class="mensaje-error" *ngIf="TicketForm.get('name')?.errors?.['pattern']">
+                Solo se permiten letras y espacios.
+              </div>
+            </div>
+          </div>
+  
+          <div class="Note">Los Usuarios Registrados reciben atención prioritaria</div>
+  
+          <button type="submit" *ngIf="params ==='email'" class="boton-enviar">Solicitar Email</button>
+          <button type="submit" *ngIf="params ==='telephone'" class="boton-enviar">Solicitar Llamada</button>
+        </form>
+  
+        <div class="pie-formulario" *ngIf="params ==='telephone'" (click)="Changer('email')">
+          ¿Prefieres un email? <span class="enlace-registro">Recibir email</span>
+        </div>
+  
+        <div class="pie-formulario" *ngIf="params ==='email'" (click)="Changer('telephone')">
+          ¿Prefieres una llamada? <span class="enlace-registro">Recibir llamada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
