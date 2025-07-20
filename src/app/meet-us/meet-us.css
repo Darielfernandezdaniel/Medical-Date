@@ -2,7 +2,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     line-height: 1.6;
     background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
-    height: 90%;
+    height: 100%;
 }
 /* Título principal */
 h1 {
@@ -53,18 +53,19 @@ h1 {
 
 /* Contenedor general para secciones */
 .sectionContainer {
-    max-width: 1152px;
+    max-width: 1192px;
     margin: 0 auto 64px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 48px;
-    padding: 0 16px;
+    gap: 40px;
+    padding: 0 10px;
     margin-bottom: 50px;
     background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
-    height: 100vh;
+    height: 100%;
+    padding-bottom: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 994px) {
     .sectionContainer {
         grid-template-columns: repeat(3, 1fr);
         height: 770px;
@@ -80,7 +81,7 @@ h1 {
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
-    height: 90%;
+    height: 100%;
     position: relative;
 }
 
@@ -122,13 +123,14 @@ h1 {
 /* Botón Saber más */
 .knowMoreButton {
     position: absolute;
-    bottom: 16px;
+    bottom: 10px;
     left: 50%;
-    transform: translateX(-50%);
-    display: inline-flex;
+    transform: translateX(-50%); /* Cambio principal: -50% en lugar de 50% */
+    display: flex; /* Añadido para mejor control del layout */
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 10px;
     background: transparent;
     border: 1px solid hsl(195, 100%, 70%);
     color: hsl(195, 100%, 70%);
@@ -137,10 +139,10 @@ h1 {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    justify-content: center;
     user-select: none;
-    z-index: 10; /* que quede encima */
+    z-index: 10;
 }
+
 
 .sectionContainer section:hover .knowMoreButton {
     background: hsl(195, 100%, 70%);
@@ -159,16 +161,17 @@ h1 {
 
 /* Soluciones */
 .Solutions {
-    max-width: 1152px;
-    margin: 0 auto 64px;
+    width: 100%;
+    height: 90%;
     display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 0 16px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     text-align: center;
+    gap: 20px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .Solutions {
         flex-direction: row;
         justify-content: space-between;
@@ -179,8 +182,14 @@ h1 {
 .rightBlock, .leftBlock {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
-    padding: 32px;
+    box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.15);
+    width: 45%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
 }
 
 .rightBlock h3, .leftBlock h3 {
@@ -196,8 +205,7 @@ h1 {
 }
 
 .lastButton {
-    max-width: 896px;
-    margin: 0 auto 64px;
+    width: 100%;
     padding: 16px 32px;
     background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
     color: white;
@@ -208,6 +216,7 @@ h1 {
     text-align: center;
     user-select: none;
     transition: all 0.3s ease;
+    padding-top: 20px;
 }
 
 .lastButton:hover {
@@ -217,4 +226,10 @@ h1 {
 
 .secondBody{
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 40vh;
 }
