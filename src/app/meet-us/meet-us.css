@@ -1,0 +1,235 @@
+.body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    height: 100%;
+}
+/* Título principal */
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: hsl(203, 35%, 25%);
+    padding-top: 50px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.75rem;
+    }
+}
+
+/* Texto de info */
+.infoText {
+    font-size: 1.25rem;
+    color: hsl(203, 20%, 50%);
+    margin-bottom: 32px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .infoText {
+        font-size: 1.5rem;
+    }
+}
+
+/* Barra pequeña degradada */
+.smallGradientBarContainer {
+    width: 550px;
+    height: 4px;
+    margin: 0 auto 48px;
+}
+
+.smallGradientBar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, hsl(195, 100%, 55%), hsl(196, 100%, 96%));
+    border-radius: 9999px;
+}
+
+/* Contenedor general para secciones */
+.sectionContainer {
+    max-width: 1192px;
+    margin: 0 auto 64px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 10px;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+@media (min-width: 994px) {
+    .sectionContainer {
+        grid-template-columns: repeat(3, 1fr);
+        height: 770px;
+    }
+}
+
+.sectionContainer section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
+    overflow: hidden;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+}
+
+.sectionContainer section:hover {
+    box-shadow: 0 8px 30px hsla(195, 100%, 70%, 0.12);
+    transform: translateY(-8px);
+}
+
+/* Imágenes dentro de las secciones */
+.sectionContainer section img {
+    height: 70px;
+    width: 70px;
+    margin-bottom: 5px;
+}
+
+/* Títulos h2 en secciones */
+.sectionContainer section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(203, 35%, 25%);
+    margin-bottom: 16px;
+}
+
+/* Preguntas dentro de secciones */
+.SectionQuestion {
+    color: hsl(195, 100%, 70%);
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+/* Párrafos descriptivos */
+.sectionContainer section p:not(.SectionQuestion) {
+    color: hsl(203, 20%, 50%);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* Botón Saber más */
+.knowMoreButton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%); /* Cambio principal: -50% en lugar de 50% */
+    display: flex; /* Añadido para mejor control del layout */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid hsl(195, 100%, 70%);
+    color: hsl(195, 100%, 70%);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 10;
+}
+
+
+.sectionContainer section:hover .knowMoreButton {
+    background: hsl(195, 100%, 70%);
+    color: white;
+}
+
+.knowMoreButton::after {
+    content: '→';
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.sectionContainer section:hover .knowMoreButton::after {
+    transform: translateX(4px);
+}
+
+/* Soluciones */
+.Solutions {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .Solutions {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.rightBlock, .leftBlock {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.15);
+    width: 45%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.rightBlock h3, .leftBlock h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: hsl(203, 35%, 25%);
+    margin-bottom: 16px;
+}
+
+.rightBlock p, .leftBlock p {
+    color: hsl(203, 20%, 50%);
+    line-height: 1.6;
+}
+
+.lastButton {
+    width: 100%;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding-top: 20px;
+}
+
+.lastButton:hover {
+    box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
+    transform: scale(1.05);
+}
+
+.secondBody{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 40vh;
+}

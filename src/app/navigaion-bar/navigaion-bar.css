@@ -1,27 +1,24 @@
 .MainNavigationBar{
-    width: 100%;
+    width: 100vw;
     height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(0, 225, 255);
-    gap: 2px;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
-}
-
-.leftPart, .centerPart, .rightPart{
-    width: 32%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    gap: 20px;
 }
 
 .leftPart{
     padding-left: 10px;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .leftPart img{
@@ -41,9 +38,14 @@
 }
 
 .rightPart{
+    width: 60%;
     justify-content: end;
     gap: 15px;
-    margin-right: 40px;
+    margin-right: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .rightPart img{
@@ -63,8 +65,8 @@
   .RegisterButton {
     position: relative;
     display: inline-block;
-    width: 100px;
-    height: 95%;
+    width: 65px;
+    height: 90%;
     font-weight: bold;
     color: white;
     background-color: rgb(0, 225, 255);
@@ -119,4 +121,14 @@
   .RegisterButton:focus::after {
     bottom: 100%;
     transition: bottom 1s ease;
+  }
+
+  @media(max-width: 670px){
+    .leftPart p{
+      font-size: 18px;
+    }
+
+    .RegisterButton{
+      font-size: 15px;
+    }
   }

@@ -1,39 +1,48 @@
 .Medical-Insurance-Cover{
-  
+  width: 100%;
+  height: 100vh;
 }
 
 .container {
-  background-color: #f3f4f6;
-  min-height: 100vh;
+  background-image: url(/assets/Seguro-Medico-1.avif);
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   color: #1f2937;
   margin-bottom: 2rem;
+  color: white;
+  padding-top: 80px;
 }
 
 .carousel-wrapper {
   position: relative;
-  overflow: hidden;
-  border-radius: 0.75rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  background-color: #ffffff;
   width: 100%;
   max-width: 64rem;
+  border-radius: 16px;
 }
 
 .carousel {
   position: relative;
-  height: 16rem;
+  height: 250px;
   width: 100%;
+  border-radius: 16px;
+}
+
+.carousel div{
+  border-radius: 10px;
 }
 
 @media (min-width: 768px) {
@@ -42,7 +51,7 @@
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 5rem;
   }
 
   .heading {
@@ -112,8 +121,7 @@
 
 .nav-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 70%;
   background-color: rgba(255, 255, 255, 0.8);
   color: #1f2937;
   padding: 0.5rem;
@@ -128,11 +136,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
+  text-align: center;
 }
 
 .nav-btn:hover {
   background-color: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-2px);
 }
 
 .nav-btn.left {
@@ -169,18 +179,20 @@
 }
 
 .bottom {
-  margin-top: 2rem;
   text-align: center;
+  padding: 10px;
 }
 
 .instruction {
-  color: #4b5563;
+  color: #000000;
   margin-bottom: 1rem;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .thumbnails {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -299,5 +311,15 @@
   to {
     transform: translateX(0%);
     opacity: 1;
+  }
+}
+
+@media (max-height: 740px){
+  .carousel{
+    height:200px;
+  }
+
+  .title{
+    padding-top: 10px;
   }
 }
