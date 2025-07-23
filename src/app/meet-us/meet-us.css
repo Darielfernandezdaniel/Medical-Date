@@ -39,7 +39,7 @@ h1 {
 
 /* Barra pequeña degradada */
 .smallGradientBarContainer {
-    width: 550px;
+    width: 100%;
     height: 4px;
     margin: 0 auto 48px;
 }
@@ -103,6 +103,7 @@ h1 {
     font-weight: 700;
     color: hsl(203, 35%, 25%);
     margin-bottom: 16px;
+    position: relative;
 }
 
 /* Preguntas dentro de secciones */
@@ -210,18 +211,19 @@ h1 {
     background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
     color: white;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     cursor: pointer;
     text-align: center;
     user-select: none;
     transition: all 0.3s ease;
     padding-top: 20px;
+    font-weight: bold;
 }
 
 .lastButton:hover {
     box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
-    transform: scale(1.05);
+    font-size: 30px;
 }
 
 .secondBody{
@@ -232,4 +234,89 @@ h1 {
     align-items: center;
     gap: 20px;
     height: 40vh;
+}
+
+.sectionInfoVeil {
+    position: fixed;     /* Se fija a la ventana, no al contenedor */
+    top: 0;
+    left: 0;
+    width: 100vw;        /* 100% del ancho del viewport */
+    height: 100vh;       /* 100% del alto del viewport */
+    background-color: rgba(255, 255, 255, 0.95); /* Blanco con algo de transparencia */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;       /* Muy arriba para estar encima */
+  }
+
+.sectionInfoVeil.active {
+    opacity: 1;
+    width: 100vw;
+    height: 100%;
+    pointer-events: auto;
+  }
+
+  .rippleButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: hsl(203, 35%, 25%);
+    cursor: pointer;
+    overflow: visible; /* IMPORTANTE: para que las ondas puedan salir fuera */
+    user-select: none;
+    z-index: 1500;
+  }
+  
+  .rippleButton .ripple {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid hsl(195, 100%, 70%);
+    width: 56px;  /* igual al botón para que inicie en el borde */
+    height: 56px;
+    left: 50%;
+    top: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+    animation: rippleExpand 2s ease-out infinite;
+  }
+  
+  .rippleButton .ripple2 {
+    animation-delay: 1s; /* retrasa la segunda onda para efecto continuo */
+  }
+  
+  @keyframes rippleExpand {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .rippleButton:hover .ripple,
+.rippleButton:hover .ripple2 {
+  animation-play-state: running;
+  opacity: 0.7;          /* Opacidad visible solo en hover */
+}
+  
+  /* Para que al no estar en hover no se muestre la animación */
+  .rippleButton .ripple,
+.rippleButton .ripple2 {
+  animation-play-state: paused;
+  overflow: hidden;
+  opacity: 0;            /* Opacidad 0 para ocultarlas */
+  pointer-events: none;  /* Evitar que las ondas interfieran con el mouse */
+  transition: opacity 0.3s ease; /* Transición suave */
 }
