@@ -1,5 +1,6 @@
 <div class="sectionInfoVeil" [ngClass]="sectionInfo ? 'active' : ''">
-    <app-section-info></app-section-info>
+    <app-section-info *ngIf="sectionInfo === 'Insurance'"></app-section-info>
+    <app-charity-component *ngIf="sectionInfo === 'Charity'"></app-charity-component>
 </div>
 <div class="body">
     <div class="PresentationContainer">
@@ -13,7 +14,7 @@
         </div>
     </div>
     <div class="sectionContainer">
-        <section (click)="showSectionInfo(true)">
+        <section (click)="showSectionInfo('Insurance')">
             <img src="assets/objetivo-logrado.png" alt="">
             <h2>Nuestros Seguros</h2>
             <p class="SectionQuestion">¿Conoce como Protegeremos Tu Vida?</p>
@@ -21,7 +22,7 @@
                 
                 <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
-        <section (click)="showSectionInfo(true)">
+        <section (click)="showSectionInfo('Team')">
             <img src="assets/liderazgo.png" alt="">
             <h2>Nuestro Equipo</h2>
             <p class="SectionQuestion">Conoce los recursos de los que dispondrás</p>
@@ -30,7 +31,7 @@
                 
                 <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
-        <section (click)="showSectionInfo(true)">
+        <section (click)="showSectionInfo('Charity')">
             <img src="assets/enfocar.png" alt="">
             <h2>Nuestra Visión</h2>
             <p class="SectionQuestion">Sumáte a nuestros Proyectos Humanitarios</p>
@@ -49,15 +50,15 @@
         </div>
         <div class="leftBlock">
             <h3>Tecnología de Vanguardia</h3>
-            <p>Utilizamos las últimas tecnologías para garantizar resultados excepcionales</p>
-            <p>Vanguardistas en todas nuestras areas.</p>
+            <p>Utilizamos las últimas tecnologías para garantizar resultados excepcionales
+            Vanguardistas en todas nuestras areas.</p>
         </div>
     </div>
     <a routerLink="/register/join" class="lastButton">
         Join Us
     </a>    
     
-    <div *ngIf="sectionInfo" class="rippleButton" (click)="showSectionInfo(false)">
+    <div *ngIf="sectionInfo" class="rippleButton" (click)="showSectionInfo('')">
         -
         <span class="ripple"></span>
         <span class="ripple ripple2"></span> <!-- Segunda onda para efecto infinito -->
