@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SectionInfo } from "../section-info/section-info";
 import { CommonModule } from '@angular/common';
 import { CharityComponent } from "../charity-component/charity-component";
+import { ShowSectionInfo } from '../Services/show-section-info';
 
 @Component({
   selector: 'app-meet-us',
@@ -12,9 +13,7 @@ import { CharityComponent } from "../charity-component/charity-component";
 })
 export class MeetUs {
 
-  sectionInfo:string = "";
+  constructor(private showInfo: ShowSectionInfo){}
 
-  showSectionInfo(arg0:string){
-    this.sectionInfo = arg0;
-  }
+  
 }
