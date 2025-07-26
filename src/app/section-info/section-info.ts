@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CoverageService } from '../Services/coverage-service';
 import { CommonModule } from '@angular/common';
+import { ShowButton } from "../show-button/show-button";
 
 @Component({
   selector: 'app-section-info',
-  imports: [CommonModule],
+  imports: [CommonModule, ShowButton],
   templateUrl: './section-info.html',
   styleUrl: './section-info.css'
 })
@@ -18,14 +19,9 @@ export class SectionInfo {
     'Premium Ejecutivo'
   ];
 
-  constructor(private seguroService: CoverageService ) {}
-  sectionInfo:string = "";
+  constructor(private seguroService: CoverageService) {}
 
   ngOnInit(): void {
     this.Seguros = this.seguroService.getTodasLasCoberturasSeparadas();
-  }
-
-  showSectionInfo(arg0:string){
-    this.sectionInfo = arg0;
   }
 }

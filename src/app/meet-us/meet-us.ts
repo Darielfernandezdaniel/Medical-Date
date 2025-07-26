@@ -12,8 +12,17 @@ import { ShowSectionInfo } from '../Services/show-section-info';
   styleUrl: './meet-us.css'
 })
 export class MeetUs {
+  sectionInfo: string | null | undefined;
 
   constructor(private showInfo: ShowSectionInfo){}
 
-  
+  ngOnInit() {
+    this.showInfo.sectionInfo.subscribe(value => {
+      this.sectionInfo = value;
+    });
+  }
+
+  showSectionInfo(arg0:string){
+    this.showInfo.setSectionInfo(arg0)
+  }
 }
