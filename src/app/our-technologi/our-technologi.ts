@@ -24,12 +24,11 @@ export class OurTechnologi implements AfterViewInit {
   // CLAVE: Primero poner null y esperar un tick completo
   this.selectedInfo = null;
   
-  this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
-    // IMPORTANTE: Usar setTimeout para forzar un nuevo ciclo de detección
     setTimeout(() => {
+      this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
       this.selectedInfo = info ?? null;
-    }, 10); // 10ms es suficiente para que Angular detecte el cambio
-  });
+    }, ); // 10ms es suficiente para que Angular detecte el cambio
+  },5);
 }
 
   sendImageId(event: Event): void {

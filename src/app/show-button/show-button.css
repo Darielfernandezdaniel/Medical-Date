@@ -1,9 +1,9 @@
 .rippleButton {
     position: fixed;
-    top: 80px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
+    bottom: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
     background: white;
     border-radius: 50%;
     box-shadow: 0 3px 6px rgb(2, 219, 243);
@@ -47,18 +47,18 @@
     }
   }
   
-  .rippleButton:hover .ripple,
-  .rippleButton:hover .ripple2 {
-  animation-play-state: paused;
-  opacity: 0.7;          /* Opacidad visible solo en hover */
-}
+    .rippleButton:hover .ripple,
+    .rippleButton:hover .ripple2 {
+    animation-play-state: paused;
+    opacity: 0.7;          /* Opacidad visible solo en hover */
+  }
   
   /* Para que al no estar en hover no se muestre la animación */
   .rippleButton .ripple,
-.rippleButton .ripple2 {
-  animation-play-state: running;
-  overflow: hidden;
-  opacity: 0;            /* Opacidad 0 para ocultarlas */
-  pointer-events: none;  /* Evitar que las ondas interfieran con el mouse */
-  transition: opacity 0.3s ease; /* Transición suave */
+  .rippleButton .ripple2 {
+    animation-play-state: running;
+    overflow: hidden;
+    opacity: 0;            /* Opacidad 0 para ocultarlas */
+    pointer-events: none;  /* Evitar que las ondas interfieran con el mouse */
+    transition: opacity 0.3s ease; /* Transición suave */
 }
