@@ -1,7 +1,7 @@
 .rippleButton {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    top: 80px;
+    right: 20px;
     width: 56px;
     height: 56px;
     background: white;
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     font-size: 32px;
-    color: hsl(203, 71%, 45%);
+    color: hsl(203, 100%, 50%);
     cursor: pointer;
     overflow: visible; /* IMPORTANTE: para que las ondas puedan salir fuera */
     user-select: none;
@@ -21,7 +21,7 @@
   .rippleButton .ripple {
     position: absolute;
     border-radius: 50%;
-    border: 2px solid hsl(0, 0%, 100%);
+    border: 2px solid hsl(185, 100%, 50%);
     width: 56px;  /* igual al botón para que inicie en el borde */
     height: 56px;
     left: 50%;
@@ -48,7 +48,7 @@
   }
   
   .rippleButton:hover .ripple,
-.rippleButton:hover .ripple2 {
+  .rippleButton:hover .ripple2 {
   animation-play-state: paused;
   opacity: 0.7;          /* Opacidad visible solo en hover */
 }

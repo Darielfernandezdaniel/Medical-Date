@@ -1,6 +1,7 @@
 <div class="sectionInfoVeil" [ngClass]="sectionInfo ? 'active' : ''">
     <app-section-info *ngIf="sectionInfo === 'Insurance'"></app-section-info>
     <app-charity-component *ngIf="sectionInfo === 'Charity'"></app-charity-component>
+    <app-our-technologi *ngIf="sectionInfo === 'Technologi'"></app-our-technologi>
 </div>
 <div class="body">
     <div class="PresentationContainer">
@@ -15,24 +16,23 @@
     </div>
     <div class="sectionContainer">
         <section (click)="showSectionInfo('Insurance')">
-            <img src="assets/objetivo-logrado.png" alt="">
+            <img src="assets/objetivo-logrado.png" alt="Tiro Al Blanco">
             <h2>Nuestros Seguros</h2>
             <p class="SectionQuestion">¿Conoce como Protegeremos Tu Vida?</p>
             <p>En OverHealthy estamos aquí para cuidarte y proteger lo que más importa: tu vida y la de tu familia. Sabemos lo importante que es sentirte seguro y tranquilo, por eso trabajamos día a día para ofrecerte soluciones que realmente te ayuden. Queremos que sepas que siempre puedes contar con nosotros para apoyarte en cualquier momento, con el mejor equipo y tecnología para cuidar de ti. Descubre cómo nuestra misión es acompañarte y protegerte en cada paso del camino.</p>
                 
                 <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
-        <section (click)="showSectionInfo('Team')">
-            <img src="assets/liderazgo.png" alt="">
+        <section (click)="showSectionInfo('Technologi')">
+            <img src="assets/ciencia-y-tecnologia.avif" alt="Atomo ">
             <h2>Nuestro Equipo</h2>
             <p class="SectionQuestion">Conoce los recursos de los que dispondrás</p>
-            <p>Nuestro Equipo
-                Nuestro equipo está formado por profesionales dedicados y con experiencia, comprometidos a brindarte la mejor atención. Contamos con tecnología avanzada y pruebas especializadas para ofrecer diagnósticos precisos. Te acompañamos con calidez y soluciones adaptadas a tus necesidades. ¡Nuestra tecnología esta a tu disposición!.</p>
+            <p>Contamos con tecnología médica de vanguardia y equipos especializados que garantizan diagnósticos precisos y tratamientos efectivos. Nuestra infraestructura avanzada está diseñada para ofrecer resultados confiables y eficientes, adaptándose a las necesidades específicas de cada caso. Nos comprometemos a mantenernos a la altura de los estándares más altos, asegurando la máxima calidad en el servicio a través de la innovación tecnológica constante.</p>
                 
                 <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
         <section (click)="showSectionInfo('Charity')">
-            <img src="assets/enfocar.png" alt="">
+            <img src="assets/enfocar.png" alt="Ojo">
             <h2>Nuestra Visión</h2>
             <p class="SectionQuestion">Sumáte a nuestros Proyectos Humanitarios</p>
             <p>Nos impulsa el deseo de crear un impacto positivo en la vida de las personas. A través de nuestros proyectos humanitarios, buscamos llevar ayuda y esperanza donde más se necesita. Te invitamos a sumarte y ser parte de este compromiso que transforma comunidades y mejora el bienestar de muchas vidas.</p>

@@ -1,0 +1,360 @@
+/* CONTENEDOR PRINCIPAL */
+.allContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* INPUT DE BÚSQUEDA */
+  .searchingTest {
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-size: clamp(14px, 2.5vw, 18px); /* Texto adaptable */
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+    border: 4px solid aqua;
+    height: clamp(50px, 8vh, 70px); /* Altura adaptable */
+    padding-left: clamp(15px, 3vw, 25px); /* Padding adaptable */
+  }
+  
+  .searchingTest::placeholder {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  
+  /* NAVEGACIÓN LATERAL */
+  nav {
+    width: clamp(120px, 15vw, 180px); /* Ancho adaptable */
+    height: 100vh;
+    overflow-y: auto; /* SIEMPRE scroll vertical */
+    overflow-x: hidden; /* Sin scroll horizontal */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(0, 255, 255);
+    padding: clamp(15px, 3vh, 25px) 0; /* Padding arriba y abajo, no a los lados */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    box-sizing: border-box; /* Incluir padding en el cálculo de tamaño */
+  }
+  
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollOfTechArea {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: clamp(8px, 1.5vh, 15px); /* Gap adaptable */
+    padding-bottom: clamp(20px, 4vh, 40px); /* CLAVE: Padding inferior para evitar corte */
+    min-height: min-content; /* Permite crecer según contenido */
+  }
+  
+  .scrollOfTechArea img {
+    width: clamp(80px, 12vw, 140px); /* Tamaño adaptable */
+    height: clamp(80px, 12vw, 140px);
+    border-radius: 50%;
+    border: 2px solid rgb(0, 0, 0);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .scrollOfTechArea img:hover {
+    transform: scale(1.1); /* Mejor que cambiar width/height */
+  }
+  
+  .scrollOfTechArea img:active {
+    transform: scale(0.95);
+  }
+  
+  /* ÁREA DE CONTENIDO PRINCIPAL */
+  .cuadro {
+    flex: 1; /* Ocupa todo el espacio restante */
+    height: 100vh;
+    background-color: #fafafa;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(18px, 3vw, 28px); /* Texto adaptable */
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    border: 5px solid rgb(0, 255, 255);
+    padding: clamp(10px, 2vw, 20px);
+  }
+  
+  /* INFORMACIÓN DE LA PRUEBA */
+  .info {
+    width: clamp(300px, 85%, 900px); /* Ancho adaptable con mínimo y máximo */
+    height: clamp(400px, 75vh, 80vh);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: clamp(15px, 3vh, 35px);
+    overflow-y: auto;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.2s;
+    padding: clamp(10px, 2vw, 20px);
+  }
+  
+  .info:focus-within {
+    opacity: 1;
+  }
+  
+  .info p {
+    border: 4px solid black;
+    padding: clamp(15px, 3vw, 25px);
+    border-radius: 10px;
+    font-size: clamp(14px, 2.2vw, 18px); /* Texto adaptable */
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+  .info h3 {
+    font-size: clamp(24px, 6vw, 56px); /* Título muy adaptable */
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: clamp(15px, 3vw, 25px);
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1.2;
+    word-wrap: break-word; /* Para títulos largos */
+  }
+  
+  .buttonContainer {
+    width: 100%;
+    height: auto; /* Cambiar de fijo a auto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(15px, 3vw, 30px);
+    flex-wrap: wrap; /* Permite que los botones se apilen en pantallas pequeñas */
+  }
+  
+  .buttonContainer button {
+    flex: 1; /* Los botones se distribuyen equitativamente */
+    min-width: 200px; /* Ancho mínimo para legibilidad */
+    height: clamp(50px, 8vh, 80px);
+    color: black;
+    border: 2px solid black;
+    font-weight: bolder;
+    border-radius: 10px;
+    background-color: rgb(0, 255, 255);
+    font-size: clamp(12px, 2vw, 16px);
+    padding: clamp(8px, 1.5vw, 12px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .buttonContainer button:hover {
+    background-color: rgb(0, 200, 200);
+    transform: translateY(-2px);
+  }
+  
+  /* ANIMACIONES */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  /* MEDIA QUERIES ESPECÍFICAS */
+  
+  /* Tablets en orientación portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .allContainer {
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    nav {
+      width: 100%;
+      height: auto;
+      max-height: 30vh;
+      flex-direction: row;
+      overflow-x: auto; /* Scroll horizontal para tablets */
+      overflow-y: hidden;
+      padding: 10px 0;
+      align-items: center;
+      /* SOLUCIÓN: Añadir padding interno para evitar corte */
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    .scrollOfTechArea {
+      flex-direction: row;
+      width: auto;
+      gap: 15px;
+      padding-bottom: 0; /* Sin padding inferior en modo horizontal */
+      /* SOLUCIÓN CLAVE: Aumentar significativamente el padding derecho */
+      padding-left: 10px;
+      padding-right: 40px; /* Aumentado de 20px a 40px */
+      /* IMPORTANTE: Asegurar que el contenedor tenga el ancho suficiente */
+      min-width: fit-content;
+    }
+    
+    .cuadro {
+      height: 70vh;
+      border-top: none;
+    }
+    
+    .info h3 {
+      font-size: clamp(20px, 5vw, 32px);
+    }
+  }
+  
+  /* Móviles en orientación portrait */
+  @media (max-width: 480px) {
+    .searchingTest {
+      font-size: 14px;
+      height: 45px;
+      padding-left: 12px;
+    }
+    
+    nav {
+      height: auto;
+      max-height: 25vh;
+      overflow-x: auto; /* Scroll horizontal en móviles */
+      overflow-y: hidden;
+      flex-direction: row;
+      padding: 8px 0;
+      /* SOLUCIÓN: Añadir padding lateral */
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    .scrollOfTechArea {
+      flex-direction: row;
+      width: auto;
+      gap: 15px;
+      padding-bottom: 0;
+      /* SOLUCIÓN CLAVE: Aumentar aún más el padding para móviles */
+      padding-left: 10px;
+      padding-right: 50px; /* Aumentado significativamente */
+      /* IMPORTANTE: Asegurar ancho mínimo */
+      min-width: fit-content;
+    }
+    
+    .scrollOfTechArea img {
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0; /* IMPORTANTE: evitar que se compriman */
+    }
+    
+    .info {
+      width: 95%;
+      height: 60vh;
+      gap: 20px;
+    }
+    
+    .info h3 {
+      font-size: 20px;
+      padding: 12px;
+    }
+    
+    .info p {
+      font-size: 14px;
+      padding: 12px;
+    }
+    
+    .buttonContainer {
+      flex-direction: column;
+      width: 100%;
+      gap: 15px;
+    }
+    
+    .buttonContainer button {
+      width: 100%;
+      min-width: auto;
+      height: 45px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Móviles en orientación landscape */
+  @media (max-width: 896px) and (orientation: landscape) {
+    nav {
+      width: 140px;
+      height: 100vh;
+      overflow-y: auto; /* Volver a scroll vertical en landscape */
+      overflow-x: hidden;
+      flex-direction: column;
+      padding: 15px 0;
+    }
+    
+    .scrollOfTechArea {
+      flex-direction: column;
+      width: 90%;
+      gap: 10px;
+      padding-bottom: 25px; /* Restaurar padding inferior */
+      padding-right: 0;
+      padding-left: 0;
+    }
+    
+    .scrollOfTechArea img {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .info {
+      height: 85vh;
+    }
+    
+    .info h3 {
+      font-size: clamp(18px, 4vw, 28px);
+    }
+  }
+  
+  /* Pantallas muy grandes (4K, etc.) */
+  @media (min-width: 1920px) {
+    .cuadro {
+      font-size: 32px;
+    }
+    
+    .info {
+      max-width: 1200px;
+    }
+    
+    .info h3 {
+      max-font-size: 64px;
+    }
+    
+    .info p {
+      max-font-size: 20px;
+    }
+  }
+  
+  /* Modo oscuro (si el sistema lo prefiere) */
+  @media (prefers-color-scheme: dark) {
+    .cuadro {
+      background-color: #2a2a2a;
+      color: white;
+    }
+    
+    .info p {
+      border-color: white;
+      color: white;
+      background-color: #3a3a3a;
+    }
+    
+    .info h3 {
+      border-color: white;
+      color: white;
+      background-color: #3a3a3a;
+    }
+  }
