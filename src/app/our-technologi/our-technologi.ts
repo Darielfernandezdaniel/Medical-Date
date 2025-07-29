@@ -3,41 +3,78 @@ import { CommonModule } from '@angular/common';
 import { ShowButton } from '../show-button/show-button';
 import { TestInfo } from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-our-technologi',
-  imports: [CommonModule, ShowButton],
+  imports: [CommonModule, ShowButton, FormsModule],
   templateUrl: './our-technologi.html',
   styleUrls: ['./our-technologi.css']
 })
 export class OurTechnologi implements AfterViewInit {
   selectedInfo: TestInfo | null = null;
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+  opcionesTexto!: string;
+  NgModelVariable: string = '';
+  openModal: boolean = false;
+  private resolverSeleccion!: (valor: string) => void;
+  private rechazarSeleccion!: (razon?: any) => void;
+  unicVar: boolean = false;
 
   constructor(private mediTest: TestInfoService) {}
 
   ngAfterViewInit() {
   }
 
-  // Método común para procesar la información
- private procesarImagenInfo(altText: string): void {
-  // CLAVE: Primero poner null y esperar un tick completo
-  this.selectedInfo = null;
+  confirmarSeleccion() {
+    if (!this.NgModelVariable?.trim()) {
+      alert('Por favor selecciona una opción.');
+      return;
+    }
+    
+    if (this.resolverSeleccion) {
+      this.resolverSeleccion(this.NgModelVariable.trim());
+    }
+    this.openModal = false;
+    this.NgModelVariable = '';
+  }
   
+  esperarSeleccionUsuario(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.resolverSeleccion = resolve;
+      this.rechazarSeleccion = reject;
+    });
+  }
+    
+  cancelarSeleccion() {
+    this.openModal = false;
+    this.NgModelVariable = '';
+    if (this.rechazarSeleccion) {
+      this.rechazarSeleccion('cancelado');
+    }
+  }
+
+  // Método común para procesar la información
+  private procesarImagenInfo(altText: string): void {
+    // CLAVE: Primero poner null y esperar un tick completo
+    this.selectedInfo = null;
+    
     setTimeout(() => {
       this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
-      this.selectedInfo = info ?? null;
-    }, ); // 10ms es suficiente para que Angular detecte el cambio
-  },5);
-}
+        this.selectedInfo = info ?? null;
+      });
+    }, 5);
+  }
 
   sendImageId(event: Event): void {
+    this.openModal = false;
+    this.unicVar = true
     const target = event.target as HTMLImageElement;
     const altText = target.alt;
     this.procesarImagenInfo(altText);
   }
 
-  buscarPrueba(valor: string) {
+  async buscarPrueba(valor: string) {
     const busqueda = valor.toLowerCase().trim();
     
     if (!this.scrollContainer) {
@@ -104,44 +141,36 @@ export class OurTechnologi implements AfterViewInit {
       coincidencias.sort((a, b) => b.puntuacion - a.puntuacion);
       
       const mejor = coincidencias[0];      
-      // Si hay múltiples opciones similares, mostrar opciones
+      // Si hay múltiples opciones similares, mostrar modal
       if (coincidencias.length > 1 && mejor.puntuacion < 100) {
         const opcionesArray = coincidencias.slice(0, 3).map(c => c.img.alt);
-        const opcionesTexto = opcionesArray.join('\n- ');
-      
-        const seleccion = prompt(`Se encontraron varias opciones similares:\n\n- ${opcionesTexto}\n\nEscribe la opción exacta que deseas usar:`);
-      
-        if (!seleccion) {
+        this.opcionesTexto = opcionesArray.join('\n- ');
+        this.NgModelVariable = '';
+        this.openModal = true;
+
+        try {
+          const seleccion = await this.esperarSeleccionUsuario();
+          
+          // Permitir coincidencia flexible
+          const encontrada = opcionesArray.find(opt =>
+            opt.toLowerCase().trim() === seleccion.toLowerCase().trim()
+          );
+        
+          if (!encontrada) {
+            // Procesar de todas formas lo que el usuario escribió
+            this.procesarImagenInfo(seleccion.trim());
+          } else {
+            this.procesarImagenInfo(encontrada);
+          }
+        } catch (error) {
           alert('Búsqueda cancelada. Intenta con un término más específico.');
-          return;
         }
-      
-        const seleccionTrim = seleccion.trim().toLowerCase();
-        const encontrada = opcionesArray.find(opt => opt.toLowerCase() === seleccionTrim);
-      
-        if (!encontrada) {
-          alert('Opción no válida. Por favor, escribe exactamente una de las opciones mostradas.');
-          return;
-        }
-      
-        this.procesarImagenInfo(encontrada);
-        return;
-      }
+      }}}
 
-      // Procesar la mejor coincidencia
-      this.procesarImagenInfo(mejor.img.alt);
-
-    } else {
-      alert(`No se encontraron resultados similares a "${valor}". Intenta con otros términos.`);
-    }
-  }
-  
-  // Función auxiliar para calcular similitud entre strings
-  private calcularSimilitud(str1: string, str2: string): number {
-    const matriz: number[][] = [];
-    const len1 = str1.length;
-    const len2 = str2.length;
-    
+      private calcularSimilitud(str1: string, str2: string): number {
+        const matriz: number[][] = [];
+        const len1 = str1.length;
+        const len2 = str2.length;
     // Inicializar matriz
     for (let i = 0; i <= len1; i++) {
       matriz[i] = [i];
@@ -167,4 +196,5 @@ export class OurTechnologi implements AfterViewInit {
     
     // Convertir distancia a similitud (0-1)
     return 1 - (distancia / longitudMaxima);
-}}
+  }
+}

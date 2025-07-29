@@ -1,5 +1,7 @@
-<input type="text" #busquedaInput class="searchingTest" placeholder="Coloque el nombre exacto de la prueba Referida" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
-<div class="allContainer">
+<div class="inputSearchContainer">
+  <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
+</div>
+  <div class="allContainer">
     <nav>
         <div class="scrollOfTechArea" #scrollContainer>
             <img #imgRef src="assets/MGI.avif" id="" alt="Medicina General Integral" (click)="sendImageId($event)" loading="lazy">
@@ -16,13 +18,26 @@
             <img #imgRef src="assets/Psicologia.avif" id="" alt="Psicologia" (click)="sendImageId($event)" loading="lazy">
             <img #imgRef src="assets/Medicina-Preventiva.avif" id="" alt="Medicina Preventiva" (click)="sendImageId($event)" loading="lazy">
             <img #imgRef src="assets/Telemedicina.avif" id="" alt="Telemedicina" (click)="sendImageId($event)" loading="lazy">
-            <img #imgRef src="assets/Cobertura-Internacional.avif" id="" alt="Cobertura internacional" (click)="sendImageId($event)" loading="lazy">
+            <img #imgRef src="assets/Cobertura-Internacional.avif" id="" alt="Cobertura Internacional" (click)="sendImageId($event)" loading="lazy">
             <img #imgRef src="assets/Calendario.avif" id="" alt="Calendario" (click)="sendImageId($event)" loading="lazy">
         </div>
     </nav>
     <div class="cuadro">
-        <span *ngIf="!selectedInfo">Clicka o arrastra una imagen</span>
-      
+        <span *ngIf="!selectedInfo && !unicVar">Clicka una imagen</span>
+        <div *ngIf="openModal" class="openModal">
+          <h3>Seleccione alguna de las siguientes opciones</h3>
+          <div *ngFor="let opcion of opcionesTexto.split('\n- ')">
+            <span>- {{ opcion }}</span>
+
+          </div>
+          
+          <label for="Modal">Elija su respuesta</label>
+          <input type="text" name="Modal" id="Modal" [(ngModel)]="NgModelVariable">
+          <div class="buttonContainer">
+            <button (click)="confirmarSeleccion()">Aceptar</button>
+            <button (click)="cancelarSeleccion()">Cancelar</button>
+          </div>
+        </div>
         <!-- Info sobre la prueba -->
         <div *ngIf="selectedInfo" class="info">
           <h3>{{ selectedInfo.titulo }}</h3>
