@@ -1,7 +1,9 @@
 <div class="inputSearchContainer">
-  <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
+  <div>
+    <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
+  </div>
 </div>
-  <div class="allContainer">
+<div class="allContainer">
     <nav>
         <div class="scrollOfTechArea" #scrollContainer>
             <img #imgRef src="assets/MGI.avif" id="" alt="Medicina General Integral" (click)="sendImageId($event)" loading="lazy">

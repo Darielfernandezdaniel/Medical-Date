@@ -82,6 +82,7 @@ export class OurTechnologi implements AfterViewInit {
       if (alt === busqueda) {
         puntuacion = 100;
         tipo = 'exacta';
+        
       }
       // 2. Coincidencia parcial (contiene la búsqueda)
       else if (alt.includes(busqueda)) {
@@ -124,13 +125,15 @@ export class OurTechnologi implements AfterViewInit {
     }
     
     if (coincidencias.length > 0) {
-      // Ordenar por puntuación descendente
       coincidencias.sort((a, b) => b.puntuacion - a.puntuacion);
-      
-      const mejor = coincidencias[0];      
-      // Si hay múltiples opciones similares, mostrar modal
-      if (coincidencias.length > 1 && mejor.puntuacion < 100) {
-        const opcionesArray = coincidencias.slice(0, 3).map(c => c.img.alt);
+      const mejor = coincidencias[0];
+    
+      if (mejor.puntuacion === 100) {
+        // Caso 1: Coincidencia perfecta
+        this.procesarImagenInfo(mejor.img.alt);
+      } else {
+        // Caso 2 y 3: Una o varias coincidencias no perfectas → mostrar modal
+        const opcionesArray = coincidencias.slice(0, 4).map(c => c.img.alt);
         this.opcionesTexto = opcionesArray.join('\n- ');
         this.NgModelVariable = '';
         this.selectedInfo = null;

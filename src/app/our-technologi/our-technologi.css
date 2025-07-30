@@ -3,6 +3,14 @@
   height: 60px;
   background-color: aqua;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.inputSearchContainer div {
+  width: calc(100% - 180px);
+  height: 90%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -15,11 +23,14 @@
 
   .searchingTest{
     width: 70%;
-    height: 80%;
+    height: 100%;
     border-radius: 20px;
     background-color: rgba(5, 109, 109, 0.119);
     padding-left: 10px;
     padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .searchingTest::placeholder {
@@ -27,7 +38,7 @@
     color: black;
     text-align: center;
     font-size: 28px;
-    font-weight: bolder;
+    font-weight: 520;
     font-family: Arial, Helvetica, sans-serif;  
   }
 
@@ -43,8 +54,9 @@
   
   /* NAVEGACIÓN LATERAL */
   nav {
-    width: clamp(120px, 15vw, 180px); /* Ancho adaptable */
+    width: 180px; /* Ancho adaptable */
     height: 100vh;
+    padding-top: 50px;
     overflow-y: auto; /* SIEMPRE scroll vertical */
     overflow-x: hidden; /* Sin scroll horizontal */
     display: flex;
@@ -53,6 +65,9 @@
     align-items: center;
     background-color: rgb(0, 255, 255);
     box-sizing: border-box; /* Incluir padding en el cálculo de tamaño */
+    position: absolute;
+    z-index: 10;
+    top: 0;
   }
 
   .scrollOfTechArea {
@@ -61,7 +76,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: clamp(8px, 1.5vh, 15px); /* Gap adaptable */
+    gap: 30px;
     padding-bottom: clamp(20px, 4vh, 40px); /* CLAVE: Padding inferior para evitar corte */
     min-height: min-content; /* Permite crecer según contenido */
   }
@@ -85,7 +100,7 @@
   }
   
   .cuadro {
-    flex: 1; /* Ocupa todo el espacio restante */
+    width: calc(100% - 180px);
     height: 100vh;
     background-color: #fafafa;
     position: relative;
@@ -97,6 +112,7 @@
     font-weight: bolder;
     border: 5px solid rgb(0, 255, 255);
     border-radius: 10px;
+    margin-left: auto;
   }
   
   .info {
@@ -150,15 +166,16 @@
   .buttonContainer button {
     flex: 1; /* Los botones se distribuyen equitativamente */
     min-width: 200px; /* Ancho mínimo para legibilidad */
-    height: clamp(50px, 8vh, 80px);
-    color: black;
+    height: clamp(50px, 8vh, 90px);
+    color: rgb(0, 0, 0);
     border: 2px solid black;
-    font-weight: bolder;
     border-radius: 10px;
     background-color: rgb(0, 255, 255);
-    font-size: clamp(12px, 2vw, 16px);
+    font-size: 21px;
+    font-weight: bolder;
     padding: clamp(8px, 1.5vw, 12px);
     cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
     transition: all 0.3s ease;
   }
   
@@ -190,6 +207,11 @@
     .allContainer {
       flex-direction: column;
       height: 100vh;
+      width: 100%;
+    }
+
+    .inputSearchContainer div{
+      width: 100%;
     }
     
     nav {
@@ -199,24 +221,30 @@
       flex-direction: row;
       overflow-x: auto; /* Scroll horizontal para tablets */
       overflow-y: hidden;
-      padding: 10px 0;
+      padding-top: 20px;
       align-items: center;
       padding-left: 10px;
       padding-right: 1px;
+      position: static;
     }
     
     .scrollOfTechArea {
       flex-direction: row;
       width: auto;
-      gap: 15px;
       padding-left: 10px;
       padding-right: 40px;
+      padding-top: 10px;
       min-width: fit-content;
+    }
+
+    .buttonContainer button{
+      font-size: 16px;
     }
     
     .cuadro {
-      height: 70vh;
+      height: 100%;
       border-top: none;
+      width: 100%;
     }
     
     .info h3 {
@@ -226,7 +254,6 @@
 
   @media (max-width: 480px) {
     .searchingTest {
-      font-size: 14px;
       height: 55px;
       padding-left: 12px;
     }
@@ -236,18 +263,22 @@
       max-height: 65vh;
       overflow-x: auto; /* Scroll horizontal en móviles */
       flex-direction: row;
-      padding: 20px 0;
+      padding: 20px ;
       padding-left: 5px;
       padding-right: 15px;
+    }
+
+    .searchingTest::placeholder{
+      font-size: 20px;
     }
 
     .scrollOfTechArea {
       flex-direction: row;
       width: auto;
-      gap: 15px;
       padding-bottom: 0;
       padding-left: 15px;
-      padding-right: 40px; 
+      padding-right: 15px; 
+      gap: 20px;
     }
     
     .scrollOfTechArea img {
@@ -258,8 +289,8 @@
     
     .info {
       width: 90%;
-      height: 60vh;
-      gap: 20px;
+      height: 80%;
+      gap: 10px;
     }
     
     .info h3 {
@@ -290,22 +321,15 @@
 
     }
   }
-
-  @media(max-height: 590px){
-    .searchingTest{
-      height: 55px;
-    }
-  }
   
   /* Móviles en orientación landscape */
   @media (max-width: 896px) and (orientation: landscape) {
     nav {
-      width: 140px;
+      width: 180px;
       height: 100vh;
       overflow-y: auto; /* Volver a scroll vertical en landscape */
       overflow-x: hidden;
       flex-direction: column;
-      padding: 15px 0;
     }
 
     .searchingTest{
@@ -314,20 +338,19 @@
     
     .scrollOfTechArea {
       flex-direction: column;
-      width: 90%;
-      gap: 10px;
+      width: 100%;
       padding-bottom: 25px; /* Restaurar padding inferior */
       padding-right: 0;
       padding-left: 0;
     }
     
     .scrollOfTechArea img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
     }
     
     .info {
-      height: 85vh;
+      height: 80vh;
     }
     
     .info h3 {
@@ -337,7 +360,7 @@
     .buttonContainer button {
       width: 100%;
       min-width: auto;
-      height: 65px;
+      height: 75px;
       font-size: 14px;
     }
 
