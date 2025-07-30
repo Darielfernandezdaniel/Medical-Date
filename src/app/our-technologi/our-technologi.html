@@ -26,19 +26,13 @@
         <span *ngIf="!selectedInfo && !unicVar">Clicka una imagen</span>
         <div *ngIf="openModal" class="openModal">
           <h3>Seleccione alguna de las siguientes opciones</h3>
-          <div *ngFor="let opcion of opcionesTexto.split('\n- ')">
-            <span>- {{ opcion }}</span>
-
+          <div *ngFor="let opcion of opcionesTexto.split('\n- ')" class="optionsForDate">
+            <span (click)="selectedInfoFromModal(opcion)">- {{ opcion }}</span>
           </div>
-          
-          <label for="Modal">Elija su respuesta</label>
-          <input type="text" name="Modal" id="Modal" [(ngModel)]="NgModelVariable">
           <div class="buttonContainer">
-            <button (click)="confirmarSeleccion()">Aceptar</button>
             <button (click)="cancelarSeleccion()">Cancelar</button>
           </div>
         </div>
-        <!-- Info sobre la prueba -->
         <div *ngIf="selectedInfo" class="info">
           <h3>{{ selectedInfo.titulo }}</h3>
           <p>{{ selectedInfo.descripcion }}</p>
@@ -47,7 +41,6 @@
             <button>¿Lo Tienes Cubierto?</button>
           </div>
         </div>
-        
       </div>
 </div>
 

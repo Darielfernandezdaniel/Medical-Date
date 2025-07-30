@@ -25,27 +25,7 @@ export class OurTechnologi implements AfterViewInit {
 
   ngAfterViewInit() {
   }
-
-  confirmarSeleccion() {
-    if (!this.NgModelVariable?.trim()) {
-      alert('Por favor selecciona una opción.');
-      return;
-    }
-    
-    if (this.resolverSeleccion) {
-      this.resolverSeleccion(this.NgModelVariable.trim());
-    }
-    this.openModal = false;
-    this.NgModelVariable = '';
-  }
-  
-  esperarSeleccionUsuario(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.resolverSeleccion = resolve;
-      this.rechazarSeleccion = reject;
-    });
-  }
-    
+      
   cancelarSeleccion() {
     this.openModal = false;
     this.NgModelVariable = '';
@@ -66,6 +46,12 @@ export class OurTechnologi implements AfterViewInit {
     }, 5);
   }
 
+  selectedInfoFromModal(opcion:string){
+    this.openModal = false;
+    this.unicVar = true
+    this.procesarImagenInfo(opcion);
+  }
+
   sendImageId(event: Event): void {
     this.openModal = false;
     this.unicVar = true
@@ -76,6 +62,7 @@ export class OurTechnologi implements AfterViewInit {
 
   async buscarPrueba(valor: string) {
     const busqueda = valor.toLowerCase().trim();
+    
     
     if (!this.scrollContainer) {
       return;
@@ -146,27 +133,14 @@ export class OurTechnologi implements AfterViewInit {
         const opcionesArray = coincidencias.slice(0, 3).map(c => c.img.alt);
         this.opcionesTexto = opcionesArray.join('\n- ');
         this.NgModelVariable = '';
+        this.selectedInfo = null;
         this.openModal = true;
+      }
 
-        try {
-          const seleccion = await this.esperarSeleccionUsuario();
-          
-          // Permitir coincidencia flexible
-          const encontrada = opcionesArray.find(opt =>
-            opt.toLowerCase().trim() === seleccion.toLowerCase().trim()
-          );
-        
-          if (!encontrada) {
-            // Procesar de todas formas lo que el usuario escribió
-            this.procesarImagenInfo(seleccion.trim());
-          } else {
-            this.procesarImagenInfo(encontrada);
-          }
-        } catch (error) {
-          alert('Búsqueda cancelada. Intenta con un término más específico.');
-        }
-      }}}
-
+    }else{
+      alert("Intente con un término más especifico")
+    }
+  }
       private calcularSimilitud(str1: string, str2: string): number {
         const matriz: number[][] = [];
         const len1 = str1.length;
@@ -178,8 +152,7 @@ export class OurTechnologi implements AfterViewInit {
     for (let j = 0; j <= len2; j++) {
       matriz[0][j] = j;
     }
-    
-    // Calcular distancia de Levenshtein
+
     for (let i = 1; i <= len1; i++) {
       for (let j = 1; j <= len2; j++) {
         const costo = str1[i - 1] === str2[j - 1] ? 0 : 1;

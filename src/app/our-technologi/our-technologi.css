@@ -6,13 +6,15 @@
   justify-content: center;
   align-items: center;
 }
+
 .allContainer {
     display: flex;
     flex-direction: row;
+    background-color: aqua;
   }
 
   .searchingTest{
-    width: 90%;
+    width: 70%;
     height: 80%;
     border-radius: 20px;
     background-color: rgba(5, 109, 109, 0.119);
@@ -94,6 +96,7 @@
     color: rgb(0, 0, 0);
     font-weight: bolder;
     border: 5px solid rgb(0, 255, 255);
+    border-radius: 10px;
   }
   
   .info {
@@ -281,6 +284,11 @@
       height: 45px;
       font-size: 14px;
     }
+
+    .buttonContainer button:hover{
+      height: 55px;
+
+    }
   }
 
   @media(max-height: 590px){
@@ -332,6 +340,10 @@
       height: 65px;
       font-size: 14px;
     }
+
+    .openModal h3{
+      font-size: 12px;
+    }
   }
   
   /* Pantallas muy grandes (4K, etc.) */
@@ -345,7 +357,6 @@
     }
   }
   
-  /* Modo oscuro (si el sistema lo prefiere) */
   @media (prefers-color-scheme: dark) {
     .cuadro {
       background-color: #2a2a2a;
@@ -367,7 +378,8 @@
 
   .openModal{
     width: 90%;
-    height: 60vh;
+    max-width: 900px;
+    height: 50vh;
     background-color: white;
     border: 2px solid black;
     color: rgb(0, 0, 0);
@@ -382,22 +394,34 @@
     z-index: 10;
   }
 
-  .openModal div{
+  .optionsForDate{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 90%;
-    background-color: #2a2a2a25;
+    background-color: #dededef5;
     height: 12%;
     padding-left: 10px;
     border-left: 3px solid rgb(0, 255, 255);
     border-radius: 10px;
     font-size: 17px;
     font-family: 'Times New Roman', Times, serif;
+    transition: 0.3s all;
+    cursor: pointer;
+  }
+
+  .optionsForDate:hover{
+    height: 15%;
+    font-size: 19px;
+  }
+
+  .optionsForDate:active{
+    height: 15%;
+    font-size: 19px;
   }
 
   .openModal h3{
-    font-size: 20px;
+    font-size: 25px;
     width: 100%;
     height: 20%;
     text-align: center;
@@ -421,22 +445,13 @@
   }
 
   .openModal div span p{
-    color: rgb(0, 255, 255);
     font-size: 45px;
     border-radius: 50%;
   }
 
-  .openModal input{
-    width: 90%;
-    height: 10%;
-    border-radius: 10px;
-    border: 1px solid rgb(0, 255, 255);
-    padding-left: 10px;
-  }
-
   .openModal .buttonContainer{
     width: 90%;
-    height: 50%;
+    height: 30%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -447,7 +462,7 @@
 
   .openModal button{
     width: 30%;
-    height: 30%;
+    height: 50%;
   }
 
   
