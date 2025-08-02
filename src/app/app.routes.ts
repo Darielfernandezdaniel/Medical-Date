@@ -12,5 +12,13 @@ export const routes: Routes = [
       {path: 'MeetUs',
         loadComponent: () =>
           import('./meet-us/meet-us').then(m => m.MeetUs)
+      },
+      {path: 'ticket/:params',
+        loadComponent: () =>
+          import('./ticket/ticket').then(m => m.Ticket)
+      },
+      {path: 'patient',
+        loadComponent: () =>
+          import('./patient-area/patient-area').then(m => m.PatientArea)
       }
 ];
