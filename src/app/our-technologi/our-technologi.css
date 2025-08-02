@@ -1,7 +1,7 @@
 .inputSearchContainer{
   width: 100vw;
   height: 60px;
-  background-color: aqua;
+  background-color: rgb(0, 225, 255);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -18,7 +18,7 @@
 .allContainer {
     display: flex;
     flex-direction: row;
-    background-color: aqua;
+    background-color: rgb(0, 225, 255);
   }
 
   .searchingTest{
@@ -48,6 +48,11 @@
     outline: none;
   }
 
+  .cuadro img{
+    width: 100%;
+    height: 100%;
+  }
+
   input:focus {
     border: 2px solid black;
   }
@@ -55,19 +60,18 @@
   /* NAVEGACIÓN LATERAL */
   nav {
     width: 180px; /* Ancho adaptable */
-    height: 100vh;
+    height: 100%;
     padding-top: 50px;
     overflow-y: auto; /* SIEMPRE scroll vertical */
     overflow-x: hidden; /* Sin scroll horizontal */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    background-color: rgb(0, 255, 255);
+    background-color: rgb(0, 225, 255);
     box-sizing: border-box; /* Incluir padding en el cálculo de tamaño */
     position: absolute;
     z-index: 10;
-    top: 0;
+    
   }
 
   .scrollOfTechArea {
@@ -102,7 +106,6 @@
   .cuadro {
     width: calc(100% - 180px);
     height: 100vh;
-    background-color: #fafafa;
     position: relative;
     display: flex;
     justify-content: center;
@@ -110,7 +113,8 @@
     font-size: clamp(18px, 3vw, 28px); /* Texto adaptable */
     color: rgb(0, 0, 0);
     font-weight: bolder;
-    border: 5px solid rgb(0, 255, 255);
+    background: url(/assets/Patient-Area.avif) no-repeat center center;
+    background-size: cover;
     border-radius: 10px;
     margin-left: auto;
   }
@@ -141,6 +145,8 @@
     font-size: clamp(14px, 2.2vw, 18px); /* Texto adaptable */
     line-height: 1.5;
     text-align: justify;
+    background-color: rgba(0, 0, 0, 0.838);
+    color: rgb(255, 255, 255);
   }
   
   .info h3 {
@@ -150,7 +156,10 @@
     border-radius: 10px;
     text-align: center;
     line-height: 1.2;
-    word-wrap: break-word; /* Para títulos largos */
+    word-wrap: break-word; 
+    background-color: rgba(0, 0, 0, 0.838);
+    color: rgb(255, 255, 255);
+    border: 4px solid black;
   }
   
   .buttonContainer {
@@ -170,7 +179,7 @@
     color: rgb(0, 0, 0);
     border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(0, 255, 255);
+    background-color: rgb(0, 225, 255);
     font-size: 21px;
     font-weight: bolder;
     padding: clamp(8px, 1.5vw, 12px);
@@ -180,7 +189,7 @@
   }
   
   .buttonContainer button:hover {
-    background-color: rgb(0, 200, 200);
+    background-color: rgb(0, 185, 255);
     transform: translateY(-2px);
   }
   
@@ -380,24 +389,7 @@
     }
   }
   
-  @media (prefers-color-scheme: dark) {
-    .cuadro {
-      background-color: #2a2a2a;
-      color: white;
-    }
-    
-    .info p {
-      border-color: white;
-      color: white;
-      background-color: #3a3a3a;
-    }
-    
-    .info h3 {
-      border-color: white;
-      color: white;
-      background-color: #3a3a3a;
-    }
-  }
+  
 
   .openModal{
     width: 90%;

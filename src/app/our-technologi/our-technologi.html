@@ -1,7 +1,9 @@
 <div class="inputSearchContainer">
+  <app-navigation-bar-left></app-navigation-bar-left>
   <div>
     <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
   </div>
+  <app-navigation-bar-right></app-navigation-bar-right>
 </div>
 <div class="allContainer">
     <nav>
@@ -46,4 +48,4 @@
       </div>
 </div>
 
-<app-show-button></app-show-button>
+

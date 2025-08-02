@@ -8,3 +8,15 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-navigation-bar-left{
+    width: 50%;
+  }
+  
+  app-navigation-bar-right{
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: end;
+  }
+  

@@ -4,10 +4,12 @@ import { ShowButton } from '../show-button/show-button';
 import { TestInfo } from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
 import { FormsModule } from '@angular/forms';
+import { NavigationBarLeft } from "../navigation-bar-left/navigation-bar-left";
+import { NavigationBarRight } from "../navigation-bar-right/navigation-bar-right";
 
 @Component({
   selector: 'app-our-technologi',
-  imports: [CommonModule, ShowButton, FormsModule],
+  imports: [CommonModule, ShowButton, FormsModule, NavigationBarLeft, NavigationBarRight],
   templateUrl: './our-technologi.html',
   styleUrls: ['./our-technologi.css']
 })

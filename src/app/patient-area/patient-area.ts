@@ -5,7 +5,7 @@ import { OurTechnologi } from "../our-technologi/our-technologi";
 
 @Component({
   selector: 'app-patient-area',
-  imports: [NavigaionBar, Calendar, OurTechnologi],
+  imports: [NavigaionBar, OurTechnologi],
   templateUrl: './patient-area.html',
   styleUrl: './patient-area.css'
 })
