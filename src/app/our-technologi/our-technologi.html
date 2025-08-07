@@ -1,18 +1,15 @@
 <div class="inputSearchContainer">
   <app-navigation-bar-left></app-navigation-bar-left>
-  <div>
-    <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
-  </div>
   <app-navigation-bar-right></app-navigation-bar-right>
 </div>
 <div class="allContainer">
     <nav>
         <div class="scrollOfTechArea" #scrollContainer>
-            <img #imgRef src="assets/MGI.avif" id="" alt="Medicina General Integral" (click)="sendImageId($event)" loading="lazy">
-            <img #imgRef src="assets/Consulta-Externa.avif" id="Consulta Externa" alt="Consulta Externa" (click)="sendImageId($event)" loading="lazy">
-            <img #imgRef src="assets/Hemograma.avif" id="" alt="Analisis de Sangre" (click)="sendImageId($event)">
-            <img #imgRef src="assets/Orina.avif" id="" alt="Orina" (click)="sendImageId($event)" loading="lazy">
-            <img #imgRef src="assets/Rayos-x.avif" id="" alt="Rayos x" (click)="sendImageId($event)" loading="lazy">
+            <img #imgRef src="assets/MGI.avif" id="" alt="Medicina General Integral" (click)="sendImageId($event)" loading="eager">
+            <img #imgRef src="assets/Consulta-Externa.avif" id="Consulta Externa" alt="Consulta Externa" (click)="sendImageId($event)" loading="eager">
+            <img #imgRef src="assets/Hemograma.avif" id="" alt="Analisis de Sangre" (click)="sendImageId($event)" loading="eager">
+            <img #imgRef src="assets/Orina.avif" id="" alt="Orina" (click)="sendImageId($event)" loading="eager">
+            <img #imgRef src="assets/Rayos-x.avif" id="" alt="Rayos x" (click)="sendImageId($event)" loading="eager">
             <img #imgRef src="assets/Urgencias.avif" id="" alt="Urgencias" (click)="sendImageId($event)" loading="lazy">
             <img #imgRef src="assets/Muela.avif" id="" alt="Odontología" (click)="sendImageId($event)" loading="lazy">
             <img #imgRef src="assets/Atencion-Telefonica.avif" id="" alt="Atencion Telefonica" (click)="sendImageId($event)" loading="lazy">
@@ -27,7 +24,8 @@
         </div>
     </nav>
     <div class="cuadro">
-        <span *ngIf="!selectedInfo && !unicVar">Clicka una imagen</span>
+        <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
+        <span class="ClickImg" *ngIf="!selectedInfo && !unicVar">Clicka una imagen</span>
         <div *ngIf="openModal" class="openModal">
           <h3>Seleccione alguna de las siguientes opciones</h3>
           <div *ngFor="let opcion of opcionesTexto.split('\n- ')" class="optionsForDate">

@@ -1,6 +1,27 @@
 <div class="rightPart">
-    <a routerLink="/register/login" class="LoginButton RegisterButton" tabindex="0">Login</a>
-    <a routerLink="/register/join" class="JoinButton RegisterButton"  tabindex="0">Join</a>
-    <a routerLink="/" class="JoinButton RegisterButton"  tabindex="0">Logout</a>
-    <a routerLink="patient"><img src="assets/LogIcon.avif" alt="Profile-Image" ></a> 
+    <!-- Mostrar Login y Join SOLO cuando NO esté autenticado -->
+    <a routerLink="/register/login" 
+       class="LoginButton RegisterButton" 
+       tabindex="0" 
+       *ngIf="!(isAuthenticated$ | async)">
+       Login
+    </a>
+    
+    <a routerLink="/register/join" 
+       class="JoinButton RegisterButton" 
+       tabindex="0" 
+       *ngIf="!(isAuthenticated$ | async)">
+       Join
+    </a>
+    
+    <a class="JoinButton RegisterButton" 
+       tabindex="0" 
+       (click)="logOut()" 
+       *ngIf="(isAuthenticated$ | async)">
+       Logout
+    </a>
+    
+    <a routerLink="patient">
+       <img src="assets/LogIcon.avif" alt="Profile-Image">
+    </a>
 </div>

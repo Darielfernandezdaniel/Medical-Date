@@ -22,19 +22,23 @@
   }
 
   .searchingTest{
-    width: 70%;
     height: 100%;
     border-radius: 20px;
-    background-color: rgba(5, 109, 109, 0.119);
+    background-color: rgba(0, 0, 0, 0.322);
     padding-left: 10px;
     padding-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    width: 70%;
+    height: 60px;
+    top: 10px;
+    border: 3px solid black;
   }
 
   .searchingTest::placeholder {
-    background-color: rgba(5, 109, 109, 0.119);
+   
     color: black;
     text-align: center;
     font-size: 28px;
@@ -117,6 +121,18 @@
     background-size: cover;
     border-radius: 10px;
     margin-left: auto;
+  }
+
+  .ClickImg{
+    background-color: rgba(0, 0, 0, 0.763);
+    width: 45%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
   }
   
   .info {
@@ -389,8 +405,6 @@
     }
   }
   
-  
-
   .openModal{
     width: 90%;
     max-width: 900px;
@@ -478,6 +492,12 @@
   .openModal button{
     width: 30%;
     height: 50%;
+  }
+
+  @media(max-height: 465px){
+    .info{
+      margin-top: 50px;
+    }
   }
 
   

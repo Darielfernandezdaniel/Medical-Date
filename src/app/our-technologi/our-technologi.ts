@@ -9,7 +9,7 @@ import { NavigationBarRight } from "../navigation-bar-right/navigation-bar-right
 
 @Component({
   selector: 'app-our-technologi',
-  imports: [CommonModule, ShowButton, FormsModule, NavigationBarLeft, NavigationBarRight],
+  imports: [CommonModule, FormsModule, NavigationBarLeft, NavigationBarRight],
   templateUrl: './our-technologi.html',
   styleUrls: ['./our-technologi.css']
 })

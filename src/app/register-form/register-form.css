@@ -97,6 +97,7 @@
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 10px;
+    transition: all 0.3s;
 }
 
 .boton-enviar:hover {
@@ -309,5 +310,19 @@
     color: #e53935;
     font-size: 13px;
     margin-top: 2px;
+}
+
+.confirmationInput span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmationInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
 }
 
