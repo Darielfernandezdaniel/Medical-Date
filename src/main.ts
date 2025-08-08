@@ -1,4 +1,3 @@
-import 'zone.js'; 
 import { bootstrapApplication} from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
@@ -8,9 +7,8 @@ import { authConfig } from './app/auth/auth.config';
 import { amplifyConfig } from './app/auth/Amplify';
 import { Amplify } from 'aws-amplify';
 import { appConfig } from './app/app.config';
-Amplify.configure(amplifyConfig);
 
-console.log('Amplify config:', amplifyConfig.Auth.Cognito.userPoolId);
+Amplify.configure(amplifyConfig);
 
 bootstrapApplication(App, {
   ...appConfig,
@@ -20,4 +18,3 @@ bootstrapApplication(App, {
     ...(appConfig.providers || [])
   ]
 });
-

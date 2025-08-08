@@ -1,14 +1,20 @@
 <div class="sectionInfoVeil" [ngClass]="sectionInfo ? 'active' : ''">
-    <app-section-info *ngIf="sectionInfo === 'Insurance'"></app-section-info>
-    <app-charity-component *ngIf="sectionInfo === 'Charity'"></app-charity-component>
-    <app-our-technologi *ngIf="sectionInfo === 'Technologi'"></app-our-technologi>
+    @if (sectionInfo === 'Insurance') {
+        <app-section-info></app-section-info>
+    }
+    @if (sectionInfo === 'Charity') {
+        <app-charity-component></app-charity-component>
+    }
+    @if (sectionInfo === 'Technologi') {
+        <app-our-technologi></app-our-technologi>
+    }
 </div>
 <div class="body">
     <div class="PresentationContainer">
-    <h1>Welcome</h1>
-    <p class="infoText">Somos una empresa comprometida con la innovación y la excelencia, 
-        dedicada a transformar cada recurso y saber 
-        en oportunidad para aquellos que acuden a nosotros.</p>
+        <h1>Welcome</h1>
+        <p class="infoText">Somos una empresa comprometida con la innovación y la excelencia, 
+            dedicada a transformar cada recurso y saber 
+            en oportunidad para aquellos que acuden a nosotros.</p>
 
         <div class="smallGradientBarContainer">
             <div class="smallGradientBar"></div>
@@ -21,7 +27,7 @@
             <p class="SectionQuestion">¿Conoce como Protegeremos Tu Vida?</p>
             <p>En OverHealthy estamos aquí para cuidarte y proteger lo que más importa: tu vida y la de tu familia. Sabemos lo importante que es sentirte seguro y tranquilo, por eso trabajamos día a día para ofrecerte soluciones que realmente te ayuden. Queremos que sepas que siempre puedes contar con nosotros para apoyarte en cualquier momento, con el mejor equipo y tecnología para cuidar de ti. Descubre cómo nuestra misión es acompañarte y protegerte en cada paso del camino.</p>
                 
-                <div class="knowMoreButton">Saber más &#8594;</div>
+            <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
         <section (click)="showSectionInfo('Technologi')">
             <img src="assets/ciencia-y-tecnologia.avif" alt="Atomo ">
@@ -29,7 +35,7 @@
             <p class="SectionQuestion">Conoce los recursos de los que dispondrás</p>
             <p>Contamos con tecnología médica de vanguardia y equipos especializados que garantizan diagnósticos precisos y tratamientos efectivos. Nuestra infraestructura avanzada está diseñada para ofrecer resultados confiables y eficientes, adaptándose a las necesidades específicas de cada caso. Nos comprometemos a mantenernos a la altura de los estándares más altos, asegurando la máxima calidad en el servicio a través de la innovación tecnológica constante.</p>
                 
-                <div class="knowMoreButton">Saber más &#8594;</div>
+            <div class="knowMoreButton">Saber más &#8594;</div>
         </section>
         <section (click)="showSectionInfo('Charity')">
             <img src="assets/enfocar.png" alt="Ojo">
@@ -56,6 +62,5 @@
     </div>
     <a routerLink="/register/join" class="lastButton">
         Join Us
-    </a>    
+    </a>    
 </div>
-

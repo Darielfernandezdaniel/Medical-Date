@@ -304,12 +304,14 @@
     color: #e53935;
     font-size: 13px;
     margin-top: 4px;
+    animation: fadeIn 0.4s ;
 }
 
 .mensaje-error {
     color: #e53935;
     font-size: 13px;
     margin-top: 2px;
+    animation: fadeIn 0.4s ;
 }
 
 .confirmationInput span{
@@ -326,3 +328,48 @@
     gap: 7px;
 }
 
+/* Agrega esto a tu register-form.css */
+
+.mensaje-exito {
+    color: #28a745;
+    font-size: 13px;
+    margin-top: 4px;
+    padding: 8px 12px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.mensaje-error {
+    color: #e53935;
+    font-size: 15px;
+    margin-top: 4px;
+    padding: 8px 12px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.6s;
+}
+
+/* Estilos específicos para el botón de reenviar código */
+.boton-enviar.secondary {
+    background: #6c757d;
+    margin-top: 10px;
+}
+
+.boton-enviar.secondary:hover {
+    background: #5a6268;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

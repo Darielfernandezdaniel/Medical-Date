@@ -1,28 +1,34 @@
 <img class="Insurance-Cover" src="assets/Insurance-Coverage.avif" alt="">
 <div class="InsuranceContainer">
-  <section *ngFor="let seguroName of segurosOrdenados" class="InsuranceCover">
-    <div>
-      <img [src]="Seguros[seguroName].imagen" alt="Imagen de {{ seguroName }}" class="Insurance-Logo" />
-      <h1>{{ seguroName }}</h1>
+  @for (seguroName of segurosOrdenados; track seguroName) {
+    <section class="InsuranceCover">
+      <div>
+        <img [src]="Seguros[seguroName].imagen" alt="Imagen de {{ seguroName }}" class="Insurance-Logo" />
+        <h1>{{ seguroName }}</h1>
 
-      <!-- Coberturas principales (todo menos los últimos 3 elementos) -->
-      <ul>
-        <li *ngFor="let cobertura of (Seguros[seguroName]?.coberturas || []).slice(0, (Seguros[seguroName]?.coberturas?.length ?? 0) - 3)">
-          {{ cobertura }}
-        </li>
-      </ul>
+        <!-- Coberturas principales (todo menos los últimos 3 elementos) -->
+        <ul>
+          @for (cobertura of (Seguros[seguroName].coberturas || []).slice(0, Seguros[seguroName].coberturas.length - 3); track $index) {
+            <li>
+              {{ cobertura }}
+            </li>
+          }
+        </ul>
 
-      <!-- Extras opcionales (penúltimos 2 elementos) -->
-      <h3>Extras opcionales:</h3>
-      <p *ngFor="let extra of (Seguros[seguroName]?.coberturas || []).slice(-3, -1)">
-        - {{ extra }}
-      </p>
+        <!-- Extras opcionales (penúltimos 2 elementos) -->
+        <h3>Extras opcionales:</h3>
+        @for (extra of (Seguros[seguroName].coberturas || []).slice(-3, -1); track $index) {
+          <p>
+            - {{ extra }}
+          </p>
+        }
 
-      <!-- Precio (último elemento de la lista) -->
-      <span class="priceContainer">
-        {{ (Seguros[seguroName].coberturas || []).slice(-1)[0] }}
-      </span>
-    </div>
-  </section>
+        <!-- Precio (último elemento de la lista) -->
+        <span class="priceContainer">
+          {{ (Seguros[seguroName].coberturas || []).slice(-1)[0] }}
+        </span>
+      </div>
+    </section>
+  }
   <app-show-button></app-show-button>
 </div>

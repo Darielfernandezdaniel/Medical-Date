@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShowButton } from '../show-button/show-button';
 import { TestInfo } from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
 import { FormsModule } from '@angular/forms';

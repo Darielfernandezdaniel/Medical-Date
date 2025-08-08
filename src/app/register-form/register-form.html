@@ -1,173 +1,54 @@
 <div class="pagina-login">
     <div class="wood">
-        <div class="bar-container"></div>
-        <div 
-            class="contenedor-formulario" 
-            [class.animate-out]="animating" 
-            [class.animate-in]="!animating">
+      <div class="bar-container"></div>
+      <div 
+        class="contenedor-formulario" 
+        [class.animate-out]="animating" 
+        [class.animate-in]="!animating">
         
-            <!-- FORMULARIO DE LOGIN/REGISTRO -->
-            <div *ngIf="params === 'login' || params === 'join'">
-                <h1 *ngIf="params === 'login'" class="titulo-formulario">Login</h1>
-                <h1 *ngIf="params === 'join'" class="titulo-formulario">Bienvenido</h1>
-
-                <form [formGroup]="RegisterForm">
-                    <div class="grupo-input">
-                        <label for="email" class="etiqueta-input">Correo Electrónico</label>
-                        <input type="email" id="email" class="campo-input" formControlName="email"
-                               [class.input-error]="(RegisterForm.get('email')?.touched && RegisterForm.get('email')?.invalid) || errorMessage"
-                               placeholder="usuario@clinica.com" required >
-                        <div *ngIf="RegisterForm.get('email')?.touched && RegisterForm.get('email')?.invalid" class="error-mensaje">
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('email')?.errors?.['required']">
-                                El correo electrónico es obligatorio.
-                            </div>
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('email')?.errors?.['email']">
-                                El formato del correo no es válido.
-                            </div>
-                        </div>
-                        <div class="mensaje-error" *ngIf="errorMessage">
-                            {{ errorMessage }}
-                        </div>
-                    </div>
-                    
-                    <div class="grupo-input">
-                        <label for="password" class="etiqueta-input">Contraseña</label>
-                        <input type="password" maxlength="15" id="password" class="campo-input" formControlName="password"
-                               [class.input-error]="RegisterForm.get('password')?.touched && RegisterForm.get('password')?.invalid"
-                               placeholder="Ingresa tu contraseña" required>
-                        <div *ngIf="RegisterForm.get('password')?.touched && RegisterForm.get('password')?.invalid" class="error-mensaje">
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['required']">
-                                La contraseña es obligatoria.
-                            </div>
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['minlength']">
-                                La contraseña debe tener al menos 8 caracteres.
-                            </div>
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['maxlength']">
-                                La contraseña no puede tener más de 15 caracteres.
-                            </div>
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['passwordStrength']">
-                                La contraseña debe tener mayúsculas, minúsculas, números y símbolos.
-                            </div>
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('password')?.errors?.['whitespace']">
-                                La contraseña no puede tener espacios.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grupo-input" *ngIf="params === 'join'">
-                        <label for="repitPassword" class="etiqueta-input">Repetir Contraseña</label>
-                        <input type="password" id="repitPassword" class="campo-input" formControlName="repitPassword" maxlength="15"
-                               [class.input-error]="(RegisterForm.get('repitPassword')?.touched && RegisterForm.get('repitPassword')?.invalid) || (RegisterForm.errors?.['fieldsMatch'] && RegisterForm.get('repitPassword')?.touched)"
-                               placeholder="Repite tu contraseña" required>
-                        
-                        <div *ngIf="RegisterForm.get('repitPassword')?.touched && RegisterForm.get('repitPassword')?.invalid" class="error-mensaje">
-                            <div class="mensaje-error" *ngIf="RegisterForm.get('repitPassword')?.errors?.['required']">
-                                La confirmación de contraseña es obligatoria.
-                            </div>
-                        </div>
-                        
-                        <div *ngIf="RegisterForm.errors?.['fieldsMatch'] && RegisterForm.get('repitPassword')?.touched" class="error-mensaje">
-                            <div class="mensaje-error">
-                                Las contraseñas no coinciden.
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="opciones-formulario">
-                        <div>
-                            <input type="checkbox" id="remember" formControlName="rememberMe">
-                            <label for="remember">Recordar sesión</label>
-                        </div>
-                        <a href="#" class="enlace-opcion">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    
-                    <button type="submit" *ngIf="params === 'login'" class="boton-enviar" 
-                            [disabled]="RegisterForm.invalid || isLoading" (click)="enviarDataLogin()">
-                        {{ isLoading ? 'Iniciando...' : 'Iniciar Sesión' }}
-                    </button>
-                    <button type="submit" *ngIf="params === 'join'" class="boton-enviar" 
-                            [disabled]="RegisterForm.invalid || isLoading" (click)="enviarDataJoin()">
-                        {{ isLoading ? 'Registrando...' : 'Registrarse' }}
-                    </button>
-                    
-                    <div class="separador">
-                        <div class="linea-separador"></div>
-                        <span class="texto-separador">o accede con</span>
-                        <div class="linea-separador"></div>
-                    </div>
-                    
-                    <div class="contenedor-redes">
-                        <button type="button" class="boton-red-social">
-                            <svg class="icono-red-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                            
-                            </svg>
-                            Google
-                        </button>
-                        
-                        <button type="button" class="boton-red-social">
-                            <svg class="icono-red-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                                
-                            </svg>
-                            Facebook
-                        </button>
-                    </div>
-                </form>
-                
-                <div class="pie-formulario" *ngIf="params === 'login'" (click)="paramsChanger('join')">
-                    ¿No tienes una cuenta? <span class="enlace-registro">Regístrate</span>
-                </div>
-                <div class="pie-formulario" *ngIf="params === 'join'" (click)="paramsChanger('login')">
-                    ¿Ya tienes una cuenta? <span class="enlace-registro">Login</span>
-                </div>
-            </div>
-
-            <div *ngIf="params === 'confirmation'">
-                <h1 class="titulo-formulario">Confirmar Cuenta</h1>
-                
-                <form [formGroup]="ConfirmationForm" (ngSubmit)="confirmSignUpCode()">
-                    <div class="grupo-input confirmationInput">
-                        <p>Hemos enviado un código de confirmación a </p>
-                        <span><strong>{{ pendingUsername }}</strong></span>
-              
-                        <input formControlName="confirmationCode" 
-                               type="text" 
-                               placeholder="Ingresa el código de 6 dígitos" 
-                               class="campo-input"
-                               maxlength="6"
-                               [class.input-error]="ConfirmationForm.get('confirmationCode')?.invalid && ConfirmationForm.get('confirmationCode')?.touched"/>
-                        
-                        <div *ngIf="ConfirmationForm.get('confirmationCode')?.invalid && ConfirmationForm.get('confirmationCode')?.touched" class="error-mensaje">
-                            <div class="mensaje-error" *ngIf="ConfirmationForm.get('confirmationCode')?.errors?.['required']">
-                                El código de confirmación es obligatorio.
-                            </div>
-                            <div class="mensaje-error" *ngIf="ConfirmationForm.get('confirmationCode')?.errors?.['minlength'] || ConfirmationForm.get('confirmationCode')?.errors?.['maxlength']">
-                                El código debe tener exactamente 6 dígitos.
-                            </div>
-                        </div>
-                    
-                        <div *ngIf="errorMessage" class="mensaje-error">{{ errorMessage }}</div>
-                        <div *ngIf="successMessage" class="mensaje-exito">{{ successMessage }}</div>
-                    
-                        <button type="submit" 
-                                [disabled]="isLoading || ConfirmationForm.invalid" 
-                                class="boton-enviar">
-                            {{ isLoading ? 'Confirmando...' : 'Confirmar cuenta' }}
-                        </button>
-                    
-                        <button type="button" 
-                                class="boton-enviar" 
-                                (click)="resendConfirmationCode()" 
-                                [disabled]="isLoading">
-                            {{ isLoading ? 'Enviando...' : 'Reenviar código' }}
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <form *ngIf="params === 'new-password'" [formGroup]="resendPasswordForm" (ngSubmit)="enviarNuevaPassword()">
-                <input type="password"  formControlName="newPassword" placeholder="Nueva contraseña" />
-                <button type="submit" [disabled]="isLoading">Actualizar contraseña</button>
-              </form>
-        </div>      
+        @if (params === 'login') {
+          <app-login-form
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onLoginSubmit($event)"
+            (switchToJoin)="paramsChanger('join')"
+            (switchToPassword)="paramsChanger('new-password')">
+          </app-login-form>
+        }
+  
+        @if (params === 'join') {
+          <app-join-form
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onJoinSubmit($event)"
+            (switchToLogin)="paramsChanger('login')"
+            (switchToPassword)="paramsChanger('new-password')">
+          </app-join-form>
+        }
+  
+        @if (params === 'confirmation') {
+          <app-confirmation-form
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            [pendingUsername]="pendingUsername"
+            (submitForm)="onConfirmationSubmit($event)"
+            (resendCode)="onResendCode()">
+          </app-confirmation-form>
+        }
+        
+        @if (params === 'new-password') {
+          <app-reset-password
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onNewPasswordSubmit($event)"
+            (returnLogin)="paramsChanger('login')"
+            >
+          </app-reset-password>
+        }
+      </div>      
     </div>
-</div>
+  </div>

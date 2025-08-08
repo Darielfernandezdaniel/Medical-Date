@@ -14,18 +14,15 @@ export class AuthEffects {
     private router = inject(Router);
 
     logout$ = createEffect(() => {
-        console.log(this.actions$)
         return this.actions$.pipe(
             ofType(AuthActions.logout),
             tap(() => console.log('🔍 Logout action received')),
             mergeMap(() =>
                 from(this.authStatus.logOut()).pipe(
                     map(() => {
-                        console.log('🔍 Logout successful');
                         return AuthActions.logoutSuccess();
                     }),
                     catchError((error) => {
-                        console.error('🔍 Logout error:', error);
                         return of(AuthActions.logoutFailure({ error }));
                     })
                 )
@@ -37,7 +34,6 @@ export class AuthEffects {
         return this.actions$.pipe(
             ofType(AuthActions.logoutSuccess),
             tap(() => {
-                console.log('🔍 Redirecting to home');
                 this.router.navigate(['/']);
             })
         );
