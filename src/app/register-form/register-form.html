@@ -1,4 +1,4 @@
-<div class="pagina-login">
+<div class="pagina-login" [ngClass]="fadeClass">
     <div class="wood">
       <div class="bar-container"></div>
       <div 
@@ -7,7 +7,7 @@
         [class.animate-in]="!animating">
         
         @if (params === 'login') {
-          <app-login-form
+          <app-login-form 
             [isLoading]="isLoading"
             [errorMessage]="errorMessage"
             [successMessage]="successMessage"
@@ -48,6 +48,14 @@
             (returnLogin)="paramsChanger('login')"
             >
           </app-reset-password>
+        }
+
+        @if (params === 'dataProfile') {
+          <app-data-form>
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage">
+          </app-data-form>
         }
       </div>      
     </div>

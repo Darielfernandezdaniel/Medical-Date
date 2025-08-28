@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-medical-insurance',
@@ -17,41 +17,15 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
   autoSlideInterval: any;
   
   slides = [
-    {
-      bgClass: 'bg-blue',
-      title: 'Basic Coverage for Medical and Labo Assistance',
-      description: 'Medical Insurance for Standard Issues',
-      percentage: '25%',
-      progressClass: 'Progresion-Bar1',
-      textClass: ''
-    },
-    {
-      bgClass: 'bg-green',
-      title: 'Radiological and Labo Testing Coverage',
-      description: 'Insurance to improve the analytic area and permanent healthy Issues',
-      percentage: '50%',
-      progressClass: 'Progresion-Bar2',
-      textClass: 'item2'
-    },
-    {
-      bgClass: 'bg-purple',
-      title: 'Minor surgeries and high-cost tests.',
-      description: 'Minor and Middle complexity surgeries and high cost test',
-      percentage: '75%',
-      progressClass: 'Progresion-Bar3',
-      textClass: 'item3'
-    },
-    {
-      bgClass: 'bg-yellow',
-      title: 'Full Healthy Insurance',
-      description: 'Covering the most complex issues with all surgeries and test available',
-      percentage: '100%',
-      progressClass: 'Progresion-Bar4',
-      textClass: 'item4'
-    }
+    { bgClass: 'bg-blue', title: 'Basic Coverage for Medical and Labo Assistance', description: 'Medical Insurance for Standard Issues', percentage: '25%', progressClass: 'Progresion-Bar1', textClass: '' },
+    { bgClass: 'bg-green', title: 'Radiological and Labo Testing Coverage', description: 'Insurance to improve the analytic area and permanent healthy Issues', percentage: '50%', progressClass: 'Progresion-Bar2', textClass: 'item2' },
+    { bgClass: 'bg-purple', title: 'Minor surgeries and high-cost tests.', description: 'Minor and Middle complexity surgeries and high cost test', percentage: '75%', progressClass: 'Progresion-Bar3', textClass: 'item3' },
+    { bgClass: 'bg-yellow', title: 'Full Healthy Insurance', description: 'Covering the most complex issues with all surgeries and test available', percentage: '100%', progressClass: 'Progresion-Bar4', textClass: 'item4' }
   ];
 
   thumbnailIcons = ['', '', '', ''];
+
+  constructor(private cdr: ChangeDetectorRef) {}   // 👈 inyectas ChangeDetectorRef
 
   ngOnInit() {
     this.startAutoSlide();
@@ -61,7 +35,6 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
     this.stopAutoSlide();
   }
   
-
   startAutoSlide() {
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
@@ -76,10 +49,12 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
 
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+    this.cdr.detectChanges();   // 👈 fuerza actualización
   }
 
   prevSlide() {
     this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+    this.cdr.detectChanges();   // 👈 fuerza actualización
   }
 
   goToSlide(index: number) {
@@ -87,6 +62,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
     this.currentSlide = index;
     this.stopAutoSlide();
     this.startAutoSlide();
+    this.cdr.detectChanges();   // 👈 fuerza actualización
   }
 
   onPrevClick() {
@@ -94,6 +70,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
     this.animationDirection = 'left';
     this.prevSlide();
     this.startAutoSlide();
+    this.cdr.detectChanges();   // 👈 fuerza actualización
   }
 
   onNextClick() {
@@ -101,6 +78,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
     this.animationDirection = 'right';
     this.nextSlide();
     this.startAutoSlide();
+    this.cdr.detectChanges();   // 👈 fuerza actualización
   }
 
   onThumbnailClick(index: number) {

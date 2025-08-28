@@ -19,6 +19,15 @@ export class NavigationBarRight {
     this.isAuthenticated$ = this.store.select(selectIsAuthenticated);
   }
 
+  ngOnInit() {
+    this.store.dispatch(AuthActions.checkAuth());
+
+    this.isAuthenticated$.subscribe(value => {
+      console.log('¿Está autenticado?', value);
+    });
+
+  }
+
   logOut() {
     this.store.dispatch(AuthActions.logout());
   }

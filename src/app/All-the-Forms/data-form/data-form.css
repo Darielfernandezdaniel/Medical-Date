@@ -1,0 +1,91 @@
+.sexo-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  label{
+    color: black;
+    font-weight: bolder ;
+  }
+  
+  .sexo-options label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .sexo-options input[type="radio"] {
+    display: none; /* Ocultamos el radio real */
+  }
+  
+  .sexo-options input[type="radio"]:checked + span,
+  .sexo-options label:has(input[type="radio"]:checked) {
+    background-color: #008ab6;
+    color: white;
+    border-color: #008ab6;
+  }
+
+  .aclarativeText{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #008ab6;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tag-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+  }
+  
+  .tag {
+    background: #008ab6;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tag button {
+    background: none;
+    border: none;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: bolder;
+  }

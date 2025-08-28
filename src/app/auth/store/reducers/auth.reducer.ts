@@ -3,16 +3,36 @@ import * as AuthActions from '../actions/auth.actions';
 
 export interface AuthState {
   isAuthenticated: boolean;
-  error: any | null;
+  email?: string;
 }
 
 export const initialState: AuthState = {
-  isAuthenticated: true, // o false si estás deslogueado inicialmente
-  error: null
+  isAuthenticated: false, 
+  email: undefined
 };
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.logoutSuccess, state => ({ ...state, isAuthenticated: false })),
-  on(AuthActions.logoutFailure, (state, { error }) => ({ ...state, error }))
-);
+
+  // Login exitoso
+  on(AuthActions.loginSuccess, (state, { email }) => ({
+    ...state,
+    isAuthenticated: true,
+    email,
+    error: null
+  })),
+
+  on(AuthActions.setAuth, (state, { isAuthenticated, email }) => ({
+    ...state,
+    isAuthenticated,
+    email: email || undefined
+  })),
+
+  // Logout exitoso
+  on(AuthActions.logoutSuccess, state => ({
+    ...state,
+    isAuthenticated: false,
+    email: undefined,
+    error: null
+  })
+))

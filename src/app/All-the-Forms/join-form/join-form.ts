@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AuthData } from '../../register-form/register-form';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { passwordStrengthValidator } from '../../Custom-Validators/Password-Character-Validator';
 import { noWhitespaceValidator } from '../../Custom-Validators/no-whitespace.validator';
 import { fieldsMatchValidator } from '../../Custom-Validators/Match-Validator';
+import { AuthData } from '../../Interfaces/Insurances';
 
 
 @Component({

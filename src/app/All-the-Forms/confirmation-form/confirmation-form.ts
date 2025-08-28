@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { AuthData } from '../../register-form/register-form';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthData } from '../../Interfaces/Insurances';
 
 @Component({
   selector: 'app-confirmation-form',

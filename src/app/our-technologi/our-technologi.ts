@@ -1,14 +1,15 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TestInfo } from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
 import { FormsModule } from '@angular/forms';
 import { NavigationBarLeft } from "../navigation-bar-left/navigation-bar-left";
 import { NavigationBarRight } from "../navigation-bar-right/navigation-bar-right";
+import { RegisterForm } from "../register-form/register-form";
 
 @Component({
   selector: 'app-our-technologi',
-  imports: [CommonModule, FormsModule, NavigationBarLeft, NavigationBarRight],
+  imports: [CommonModule, FormsModule, NavigationBarLeft, NavigationBarRight, RegisterForm],
   templateUrl: './our-technologi.html',
   styleUrls: ['./our-technologi.css']
 })
@@ -21,8 +22,9 @@ export class OurTechnologi implements AfterViewInit {
   private resolverSeleccion!: (valor: string) => void;
   private rechazarSeleccion!: (razon?: any) => void;
   unicVar: boolean = false;
+  fadeClass = 'fade-in';
 
-  constructor(private mediTest: TestInfoService) {}
+  constructor(private mediTest: TestInfoService, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
   }
@@ -43,6 +45,7 @@ export class OurTechnologi implements AfterViewInit {
     setTimeout(() => {
       this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
         this.selectedInfo = info ?? null;
+        this.cdr.detectChanges()
       });
     }, 5);
   }

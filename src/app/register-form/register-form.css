@@ -1,6 +1,5 @@
 .pagina-login {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f9ff;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -33,6 +32,10 @@
     padding-right: 30px;
     position: relative;
     overflow-y: auto;
+}
+
+.resetPasswordForm{
+    animation: fadeIn 0.5s;
 }
 
 .contenedor-formulario::before {
@@ -153,6 +156,7 @@
 .boton-red-social {
     flex: 1;
     padding: 10px;
+    gap: 5px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -161,7 +165,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     background-color: white;
     color: #333;
 }
@@ -197,11 +201,11 @@
 
 .bar-container {
     position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
+    left: 3%;
+    top: 47%;
+    transform: translateX(-50%) rotate(-90deg);
     height: 30px;
-    width: 100px;
+    width: 130px;
     z-index: 999;
     background-color: transparent;
     border-right: 4px solid silver ;
@@ -262,10 +266,6 @@
     .contenedor-formulario{
         height: 100vh;
     }
-
-    .bar-container{
-        top: 0;
-    }
   }
 
   @media (max-height: 700px){
@@ -277,12 +277,6 @@
     .contenedor-formulario{
         height: 98vh;
         width: 98%;
-    }
-  }
-
-  @media (max-height: 610px){
-    .bar-container{
-        opacity: 0;
     }
   }
 
@@ -372,4 +366,9 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .OAuthProvider{
+    width: 20px;
+    height: 20px;
   }

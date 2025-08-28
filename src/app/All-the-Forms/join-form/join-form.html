@@ -104,14 +104,6 @@
       }
     </div>
     
-    <div class="opciones-formulario">
-      <div>
-        <input type="checkbox" id="remember" formControlName="rememberMe">
-        <label for="remember">Recordar sesión</label>
-      </div>
-      <div class="enlace-opcion" (click)="switchToPassword.emit()">¿Olvidaste tu contraseña?</div>
-    </div>
-
     <!-- Mensajes de estado -->
     @if (errorMessage) {
       <div class="mensaje-error">{{ errorMessage }}</div>
@@ -135,13 +127,7 @@
     
     <div class="contenedor-redes">
       <button type="button" class="boton-red-social">
-        <svg class="icono-red-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"></svg>
-        Google
-      </button>
-      
-      <button type="button" class="boton-red-social">
-        <svg class="icono-red-social" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"></svg>
-        Facebook
+        <img src="assets/google.png" alt="google" class="OAuthProvider">
       </button>
     </div>
   </form>

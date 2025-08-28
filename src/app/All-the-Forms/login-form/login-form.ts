@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { AuthData } from '../../register-form/register-form';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthData } from '../../Interfaces/Insurances';
 
 @Component({
   selector: 'app-login-form',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
-  encapsulation: ViewEncapsulation.None
 })
 export class LoginForm {
   @Input() isLoading = false;

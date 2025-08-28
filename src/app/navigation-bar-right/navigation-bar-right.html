@@ -14,7 +14,7 @@
      </a>
    }
    
-   <!-- Mostrar Logout y perfil SOLO cuando esté autenticado -->
+ 
    @if (isAuthenticated$ | async) {
      <a class="JoinButton RegisterButton"
         tabindex="0"
@@ -22,7 +22,7 @@
          Logout
      </a>
    } 
-     <!-- Este enlace ahora solo se muestra si el usuario está autenticado -->
+
      <a routerLink="patient">
          <img src="assets/LogIcon.avif" alt="Profile-Image">
      </a>

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home-component/home-component';
 import { RegisterForm } from './register-form/register-form';
+import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent,},
@@ -15,6 +16,6 @@ export const routes: Routes = [
       },
       {path: 'patient',
         loadComponent: () =>
-          import('./patient-area/patient-area').then(m => m.PatientArea)
+          import('./patient-area/patient-area').then(m => m.PatientArea), canActivate: [AuthGuard]
       }
 ];

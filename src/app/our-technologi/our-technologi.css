@@ -1,3 +1,13 @@
+.blackVeil {
+  position: fixed; /* Cambia a fixed para cubrir toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.47);
+  z-index: 1000;
+}
+
 .inputSearchContainer{
   width: 100vw;
   height: 60px;

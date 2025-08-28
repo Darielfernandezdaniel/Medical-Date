@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -16,7 +16,7 @@ export class Ticket {
 
   TicketForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder){}
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private cdr: ChangeDetectorRef){}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -29,14 +29,18 @@ export class Ticket {
   }
 
   Changer(target: "telephone" | "email") {
+    this.cdr.detectChanges()
     if (this.params === target) return;
     
     this.animating = true;      
     this.formInicializer(target)
     
+    
     setTimeout(() => {
+      
       this.params = target;
       this.animating = false;
+      this.cdr.detectChanges()
     }, 500); // debe coincidir con la animación CSS
   }
 

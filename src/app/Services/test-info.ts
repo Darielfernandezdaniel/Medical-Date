@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { PRUEBAS_DATA } from './Test-info-JSONS';
-import { TestInfo } from '../Interfaces/Insurances';
+import { Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { PersonalData } from '../Interfaces/Insurances';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestInfoService {
-  private data = PRUEBAS_DATA;
+  private apiUrl = "https://8imi4w4zu9.execute-api.eu-central-1.amazonaws.com";
+  constructor(private http: HttpClient) {}
 
-  getInfoByAlt(alt: string): Observable<TestInfo | undefined> {
-    return of(this.data[alt]);
+  sendPatientData(data: PersonalData ) {
+    return this.http.post('TU_API_GATEWAY_URL', JSON.stringify(data), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
+  
 }

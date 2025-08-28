@@ -19,4 +19,23 @@ app-navigation-bar-left{
     display: flex;
     justify-content: end;
   }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  
+  /* Clases reciclables */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
   

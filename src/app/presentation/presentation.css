@@ -9,9 +9,9 @@
   }
 
   .Meet-Us {
-    width: 25%;
+    width: 45%;
     height: 10%;
-    font-size: clamp(1rem, 3vw, 3rem);
+    font-size: clamp(1.5rem, 3vw, 3rem);
     font-weight: bolder;
     font-weight: bold;
     font-family: sans-serif;
@@ -30,7 +30,7 @@
     align-items: center;
     animation: sideShift 4s ease-in-out infinite;
     cursor: pointer;
-    transition: font-size 0.5s;
+    transition: font-size 0.8s;
     text-decoration: none;
     color: inherit;
   }
@@ -40,43 +40,17 @@
       transform: translate(-50%, -25%);
     }
     50% {
-      transform: translate(-48%, -25%);
+      transform: translate(-40%, -25%);
     }
   }
 
   .Meet-Us:hover {
     animation-play-state: paused;
-    font-size: clamp(1.2rem, 3.2vw, 3.2rem);;
+    font-size: clamp(1.7rem, 3.2vw, 3.2rem);;
   }
 
-
-  .carousel-container {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    overflow-x: scroll;
-    perspective: 1000px;
-    scroll-snap-type: x mandatory;
-  }
-  
-  .carousel-track {
-    display: flex;
-    gap: 20px;
-    padding: 40px 0;
-  }
-  
-  .carousel-item {
-    flex: 0 0 calc(100% / 3); /* Muestra 3 a la vez */
-    height: 200px;
-    background-color: #00c2ff;
-    border-radius: 12px;
-    scroll-snap-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    transform-style: preserve-3d;
+  @media(max-width: 430px){
+    .Meet-Us{
+      width: 50%;
+    }
   }
