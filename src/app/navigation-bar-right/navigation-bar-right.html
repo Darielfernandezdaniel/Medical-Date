@@ -1,6 +1,6 @@
 <div class="rightPart">
    <!-- Mostrar Login y Join SOLO cuando NO esté autenticado -->
-   @if (!(isAuthenticated$ | async)) {
+   @if (!isAuthenticated) {
      <a routerLink="/register/login"
         class="LoginButton RegisterButton"
         tabindex="0">
@@ -14,15 +14,13 @@
      </a>
    }
    
- 
-   @if (isAuthenticated$ | async) {
+   @if (isAuthenticated) {
      <a class="JoinButton RegisterButton"
         tabindex="0"
         (click)="logOut()">
          Logout
      </a>
    } 
-
      <a routerLink="patient">
          <img src="assets/LogIcon.avif" alt="Profile-Image">
      </a>

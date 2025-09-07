@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-medical-insurance',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './medical-insurance.html',
   styleUrls: ['./medical-insurance.css']
 })
@@ -25,7 +26,7 @@ export class MedicalInsuranceComponent implements OnInit, OnDestroy {
 
   thumbnailIcons = ['', '', '', ''];
 
-  constructor(private cdr: ChangeDetectorRef) {}   // 👈 inyectas ChangeDetectorRef
+  constructor(private cdr: ChangeDetectorRef, private router: Router) {}   
 
   ngOnInit() {
     this.startAutoSlide();

@@ -1,27 +1,30 @@
 // auth.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { selectIsAuthenticated } from '../auth/store/selectors/auth.selectors';
-
+import { BrowserStorageServices } from '../Services/browser-storage-services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store, private router: Router) {}
+  
+  constructor(private router: Router, private storage: BrowserStorageServices) {}
 
   canActivate(): Observable<boolean> {
-    return this.store.select(selectIsAuthenticated).pipe(
-      map(isAuth => {
-        if (!isAuth) {
-          this.router.navigate(['/register/login']);
-          return false;
+    return of(this.checkAuth()).pipe(
+      map(isAuthenticated => {
+        if (!isAuthenticated) {
+          this.router.navigate(['/register/login'], { replaceUrl: true });
         }
-        return true;
+        return isAuthenticated;
       })
     );
+  }
+
+  private checkAuth(): boolean {
+    const email = this.storage.getLocalItem('email') || this.storage.getSessionItem('email');
+    return !!email;
   }
 }

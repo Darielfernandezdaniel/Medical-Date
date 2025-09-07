@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as AuthActions from '../auth/store/actions/auth.actions';
-import { CommonModule } from '@angular/common';
-import { selectIsAuthenticated } from '../auth/store/selectors/auth.selectors';
-import { Observable } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { BrowserStorageServices } from '../Services/browser-storage-services';
+import { AuthStatus } from '../Services/auth-status';
 
 @Component({
   selector: 'app-navigation-bar-right',
@@ -12,23 +10,31 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navigation-bar-right.html',
   styleUrl: './navigation-bar-right.css',
 })
-export class NavigationBarRight {
-  isAuthenticated$: Observable<boolean>;
+export class NavigationBarRight implements OnInit {
+  isAuthenticated:boolean = false ;
+  email: string | null = null;
 
-  constructor(private store: Store) {
-    this.isAuthenticated$ = this.store.select(selectIsAuthenticated);
-  }
+  constructor(private storage: BrowserStorageServices, private authStatus: AuthStatus, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
-    this.store.dispatch(AuthActions.checkAuth());
-
-    this.isAuthenticated$.subscribe(value => {
-      console.log('¿Está autenticado?', value);
-    });
-
+    // Solo ejecutar en navegador
+    if (isPlatformBrowser(this.platformId)) {
+      const authData = this.storage.getLocalItem('email') || this.storage.getSessionItem('email');
+      if (authData) {
+        this.isAuthenticated = true;
+        this.email = authData;
+      } else {
+        this.isAuthenticated = false;
+        this.email = null;
+      }
+    }
   }
 
-  logOut() {
-    this.store.dispatch(AuthActions.logout());
+
+  async logOut() {
+    await this.authStatus.logOut();
+    this.isAuthenticated = false;
+    this.email = null;
+    this.router.navigate(['/']);
   }
 }

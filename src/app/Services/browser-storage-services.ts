@@ -87,7 +87,7 @@ export class BrowserStorageServices {
   // Verificar si hay datos de autenticación válidos
   getValidAuthData(): { email: string; isValid: boolean } | null {
     // Verificar localStorage primero (rememberMe)
-    const authDataLocal = this.getLocalItem('auth');
+    const authDataLocal = this.getLocalItem('auth') || this.getSessionItem('auth');
     if (authDataLocal) {
       try {
         const parsed = JSON.parse(authDataLocal);
@@ -96,34 +96,14 @@ export class BrowserStorageServices {
         } else {
           // Limpiar datos expirados
           this.removeLocalItem('auth');
+          this.removeSessionItem('auth');
+          
         }
       } catch (e) {
         this.removeLocalItem('auth');
-      }
-    }
-
-    // Verificar sessionStorage
-    const authDataSession = this.getSessionItem('auth');
-    if (authDataSession) {
-      try {
-        const parsed = JSON.parse(authDataSession);
-        if (parsed.expiresAt && Date.now() < parsed.expiresAt && parsed.email) {
-          return { email: parsed.email, isValid: true };
-        } else {
-          // Limpiar datos expirados
-          this.removeSessionItem('auth');
-        }
-      } catch (e) {
         this.removeSessionItem('auth');
       }
     }
-
-    // Fallback: verificar el viejo sistema
-    const email = this.getLocalItem('authEmail');
-    if (email) {
-      return { email, isValid: true };
-    }
-
     return null;
   }
 }

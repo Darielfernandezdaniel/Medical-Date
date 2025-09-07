@@ -5,7 +5,6 @@ import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent,},
-    {path: "register/:params", component: RegisterForm},
     {path: 'ticket/:params',
         loadComponent: () =>
           import('./ticket/ticket').then(m => m.Ticket)
@@ -17,5 +16,11 @@ export const routes: Routes = [
       {path: 'patient',
         loadComponent: () =>
           import('./patient-area/patient-area').then(m => m.PatientArea), canActivate: [AuthGuard]
+      },
+      {path: "register/:params", component: RegisterForm},
+      {
+        path: 'insurance/:index',
+        loadComponent: () =>
+          import('./section-info/section-info').then(m => m.SectionInfo)
       }
 ];

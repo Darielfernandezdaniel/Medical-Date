@@ -3,7 +3,7 @@
  
   <div class="carousel-wrapper">
     <div #carousel class="carousel">
-      <div 
+      <a [routerLink]="['/insurance', i]"
         *ngFor="let slide of slides; let i = index" 
         class="slide"
         [class.active]="i === currentSlide"
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
    
     <button class="nav-btn left" (click)="onPrevClick()">‹</button>

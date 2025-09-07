@@ -1,5 +1,13 @@
 <img class="Insurance-Cover" src="assets/Insurance-Coverage.avif" alt="">
-<div class="InsuranceContainer">
+<div class="scroll-navigation">
+  <button class="scroll-btn scroll-left" (click)="scrollLeft()" title="Scroll hacia la izquierda">
+    ←
+  </button>
+  <button class="scroll-btn scroll-right" (click)="scrollRight()" title="Scroll hacia la derecha">
+    →
+  </button>
+</div>
+<div class="InsuranceContainer"  #scrollContainer>
   @for (seguroName of segurosOrdenados; track seguroName) {
     <section class="InsuranceCover">
       <div>

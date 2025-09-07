@@ -9,6 +9,7 @@ import {
 } from 'aws-amplify/auth';
 import { AuthData, AuthResponse } from '../Interfaces/Insurances';
 import { BrowserStorageServices } from './browser-storage-services';
+import { WriteEmailInRDS } from './write-email-in-rds';
 
 
 @Injectable({
@@ -16,12 +17,11 @@ import { BrowserStorageServices } from './browser-storage-services';
 })
 export class AuthStatus {
   
-  constructor(private storageService: BrowserStorageServices) {}
+  constructor(private storageService: BrowserStorageServices, private writeEmail: WriteEmailInRDS) {}
 
   async logOut(): Promise<void> {
     try {
       await signOut();
-      // Limpiar datos de storage
       this.storageService.clearAuthData();
     } catch (error) {
       console.log('error during sign out:', error);
@@ -37,7 +37,7 @@ export class AuthStatus {
       });
 
       if (response.isSignedIn) {
-        // Guardar datos de sesión
+        
         this.saveAuthData(data.email, data.rememberMe || false);
         
         return {
@@ -91,6 +91,10 @@ export class AuthStatus {
       });
 
       if (response.isSignUpComplete) {
+        this.writeEmail.writeEmailInRDS(username).subscribe({
+          next: () => console.log('Email guardado en RDS'),
+          error: err => console.error('Error al guardar email:', err)
+        });
         return {
           success: true,
           message: 'Cuenta confirmada exitosamente'
@@ -160,9 +164,11 @@ export class AuthStatus {
     };
   
     if (rememberMe) {
-      this.storageService.setLocalItem("auth", JSON.stringify(sessionData));
+      localStorage.setItem('email', email);
+      localStorage.setItem('expiresAt', String(Date.now() + 30 * 60 * 1000)); // 30 minutos
     } else {
-      this.storageService.setSessionItem("auth", JSON.stringify(sessionData));
+      sessionStorage.setItem('email', email);
+      sessionStorage.setItem('expiresAt', String(Date.now() + 30 * 60 * 1000));
     }
   }
 

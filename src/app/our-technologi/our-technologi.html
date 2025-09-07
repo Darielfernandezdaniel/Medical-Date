@@ -1,6 +1,9 @@
-<div class="blackVeil" [ngClass]="fadeClass">
-  <app-register-form ></app-register-form>
+@if(patientDataExist){
+  <div class="blackVeil" 
+     [ngClass]="{ 'fade-in': patientDataExist, 'fade-out': !patientDataExist }">
+  <app-register-form></app-register-form>
 </div>
+}
 
 <div class="inputSearchContainer">
   <app-navigation-bar-left></app-navigation-bar-left>

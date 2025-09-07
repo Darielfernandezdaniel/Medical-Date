@@ -1,226 +1,226 @@
-<div>
-  <h1 class="titulo-formulario">Bienvenido</h1>
+  <div>
+    <h1 class="titulo-formulario">Bienvenido</h1>
 
-  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
 
-    <!-- NOMBRE -->
-    <div class="grupo-input" >
-      <label for="name" class="etiqueta-input">Nombre</label>
-      <input 
-        type="text" 
-        id="name" 
-        class="campo-input" 
-        [class.input-error]="dataForm.get('name')?.invalid && dataForm.get('name')?.touched"
-        formControlName="name"
-        placeholder="Nombre" 
-        required
-      >
-      @if (dataForm.get('name'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['required']) {
-              <span>El nombre es obligatorio.</span>
-            }
-            @if (control.errors?.['onlyLetters']) {
-              <span>No se permiten números ni caracteres especiales.</span>
-            }
-          </div>
-        }
-      }
-    </div>
-
-    <!-- APELLIDO -->
-    <div class="grupo-input">
-      <label for="Apellido" class="etiqueta-input">Apellido</label>
-      <input 
-        type="text" 
-        id="Apellido" 
-        class="campo-input" 
-        [class.input-error]="dataForm.get('Apellido')?.invalid && dataForm.get('Apellido')?.touched"
-        formControlName="Apellido"
-        placeholder="Apellido" 
-        required
-      >
-      @if (dataForm.get('Apellido'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['required']) {
-              <span>El apellido es obligatorio.</span>
-            }
-            @if (control.errors?.['onlyLetters']) {
-              <span>No se permiten números ni caracteres especiales.</span>
-            }
-          </div>
-        }
-      }
-    </div>
-
-    <!-- EDAD -->
-    <div class="grupo-input">
-      <label for="edad" class="etiqueta-input">Edad</label>
-      <input 
-        type="text" 
-        id="edad" 
-        class="campo-input"
-        [class.input-error]="dataForm.get('edad')?.invalid && dataForm.get('edad')?.touched"
-        formControlName="edad"
-        placeholder="Edad" 
-        required
-        maxlength="3"
-        (input)="onInputMaxLength($event, 3)"
-      >
-      @if (dataForm.get('edad'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['required']) {
-              <span>La edad es obligatoria.</span>
-            }
-            @if (control.errors?.['onlyNumbers']) {
-              <span>Solo se permiten números, no letras ni caracteres especiales.</span>
-            }
-          </div>
-        }
-      }
-    </div>
-
-    <!-- SEXO -->
-    <div class="grupo-input">
-      <label class="etiqueta-input">Sexo</label>
-      <div class="sexo-options">
-        <label>
-          <input 
-            type="radio" 
-            name="sexo" 
-            value="femenino" 
-            formControlName="sexo"
-            required
-          >
-          Femenino
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            name="sexo" 
-            value="masculino" 
-            formControlName="sexo"
-            required
-          >
-          Masculino
-        </label>
-      </div>
-      @if (dataForm.get('sexo'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['required']) {
-              <span>Debe seleccionar un sexo.</span>
-            }
-          </div>
-        }
-      }
-    </div>
-
-    <span class="aclarativeText">Los elementos de los siguientes campos deben ser separados por comas</span>
-
-    <!-- ENFERMEDAD -->
-    <div class="grupo-input tag-input">
-      <label for="illness" class="etiqueta-input">Enfermedad</label>
-      <div class="tags">
-        @for (tag of illnessList; track $index) {
-          <span class="tag">
-            {{ tag }}
-            <button type="button" (click)="removeIllness($index)">x</button>
-          </span>
+      <!-- NOMBRE -->
+      <div class="grupo-input">
+        <label for="name" class="etiqueta-input">Nombre</label>
+        <input 
+          type="text" 
+          id="name" 
+          class="campo-input" 
+          [class.input-error]="dataForm.get('name')?.invalid && dataForm.get('name')?.touched"
+          formControlName="name"
+          placeholder="Nombre" 
+          required
+        >
+        @if (dataForm.get('name'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['required']) {
+                <span>El nombre es obligatorio.</span>
+              }
+              @if (control.errors?.['onlyLetters']) {
+                <span>No se permiten números ni caracteres especiales.</span>
+              }
+            </div>
+          }
         }
       </div>
-      <input 
-        (keyup)="onIllnessKeyUp($event)"
-        type="text" 
-        id="illness" 
-        class="campo-input" 
-        [class.input-error]="dataForm.get('illness')?.invalid && dataForm.get('illness')?.touched"
-        formControlName="illness"
-        placeholder="¿Padece alguna enfermedad?" 
-      >
-      @if (dataForm.get('illness'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['pattern']) {
-              <span>No se permiten caracteres especiales.</span>
-            }
-          </div>
-        }
-      }
-    </div>
 
-    <!-- ANTECEDENTES FAMILIARES -->
-    <div class="grupo-input tag-input">
-      <label for="familyIllness" class="etiqueta-input">Antecedentes Familiares</label>
-      <div class="tags">
-        @for (tag of familyIllnessList; track $index) {
-          <span class="tag">
-            {{ tag }}
-            <button type="button" (click)="removeFamilyIllness($index)">x</button>
-          </span>
+      <!-- APELLIDO -->
+      <div class="grupo-input">
+        <label for="Apellido" class="etiqueta-input">Apellido</label>
+        <input 
+          type="text" 
+          id="Apellido" 
+          class="campo-input" 
+          [class.input-error]="dataForm.get('Apellido')?.invalid && dataForm.get('Apellido')?.touched"
+          formControlName="Apellido"
+          placeholder="Apellido" 
+          required
+        >
+        @if (dataForm.get('Apellido'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['required']) {
+                <span>El apellido es obligatorio.</span>
+              }
+              @if (control.errors?.['onlyLetters']) {
+                <span>No se permiten números ni caracteres especiales.</span>
+              }
+            </div>
+          }
         }
       </div>
-      <input 
-        (keyup)="onFamilyIllnessKeyUp($event)"
-        type="text" 
-        id="familyIllness" 
-        class="campo-input" 
-        [class.input-error]="dataForm.get('familyIllness')?.invalid && dataForm.get('familyIllness')?.touched"
-        formControlName="familyIllness" 
-        placeholder="Historial de enfermedad familiar" 
-      >
-      @if (dataForm.get('familyIllness'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['pattern']) {
-              <span>No se permiten caracteres especiales.</span>
-            }
-          </div>
-        }
-      }
-    </div>
 
-    <!-- MEDICACIÓN PERMANENTE -->
-    <div class="grupo-input tag-input">
-      <label for="PermanentMedication" class="etiqueta-input">Medicación Permanente</label>
-      <div class="tags">
-        @for (tag of medicationList; track $index) {
-          <span class="tag">
-            {{ tag }}
-            <button type="button" (click)="removeMedication($index)">x</button>
-          </span>
+      <!-- EDAD -->
+      <div class="grupo-input">
+        <label for="edad" class="etiqueta-input">Edad</label>
+        <input 
+          type="text" 
+          id="edad" 
+          class="campo-input"
+          [class.input-error]="dataForm.get('edad')?.invalid && dataForm.get('edad')?.touched"
+          formControlName="edad"
+          placeholder="Edad" 
+          required
+          maxlength="3"
+          (input)="onInputMaxLength($event, 3)"
+        >
+        @if (dataForm.get('edad'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['required']) {
+                <span>La edad es obligatoria.</span>
+              }
+              @if (control.errors?.['onlyNumbers']) {
+                <span>Solo se permiten números, no letras ni caracteres especiales.</span>
+              }
+            </div>
+          }
         }
       </div>
-      <input 
-        (keyup)="onMedicationKeyUp($event)"
-        type="text" 
-        id="PermanentMedication" 
-        class="campo-input" 
-        [class.input-error]="dataForm.get('PermanentMedication')?.invalid && dataForm.get('PermanentMedication')?.touched"
-        formControlName="PermanentMedication" 
-        placeholder="Medicamentos de uso permanente" 
-      >
-      @if (dataForm.get('PermanentMedication'); as control) {
-        @if (control.touched && control.invalid) {
-          <div class="mensaje-error">
-            @if (control.errors?.['pattern']) {
-              <span>No se permiten caracteres especiales.</span>
-            }
-          </div>
+
+      <!-- SEXO -->
+      <div class="grupo-input">
+        <label class="etiqueta-input">Sexo</label>
+        <div class="sexo-options">
+          <label>
+            <input 
+              type="radio" 
+              name="sexo" 
+              value="F" 
+              formControlName="sexo"
+              required
+            >
+            Femenino
+          </label>
+          <label>
+            <input 
+              type="radio" 
+              name="sexo" 
+              value="M" 
+              formControlName="sexo"
+              required
+            >
+            Masculino
+          </label>
+        </div>
+        @if (dataForm.get('sexo'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['required']) {
+                <span>Debe seleccionar un sexo.</span>
+              }
+            </div>
+          }
         }
-      }
-    </div>
+      </div>
 
-    <button 
-      type="submit" 
-      class="boton-enviar" 
-      [disabled]="dataForm.invalid || isLoading"
-    >
-      {{ isLoading ? 'Enviando...' : 'Enviar' }}
-    </button>
+      <span class="aclarativeText">Los elementos de los siguientes campos deben ser separados por comas</span>
 
-  </form>
-</div>
+      <!-- ENFERMEDAD -->
+      <div class="grupo-input tag-input">
+        <label for="illness" class="etiqueta-input">Enfermedad</label>
+        <div class="tags">
+          @for (tag of illnessList; track $index) {
+            <span class="tag">
+              {{ tag }}
+              <button type="button" (click)="removeIllness($index)">x</button>
+            </span>
+          }
+        </div>
+        <input 
+          (keyup)="onIllnessKeyUp($event)"
+          type="text" 
+          id="illness" 
+          class="campo-input" 
+          [class.input-error]="dataForm.get('illness')?.invalid && dataForm.get('illness')?.touched"
+          formControlName="illness"
+          placeholder="¿Padece alguna enfermedad?" 
+        >
+        @if (dataForm.get('illness'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['pattern']) {
+                <span>No se permiten caracteres especiales.</span>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <!-- ANTECEDENTES FAMILIARES -->
+      <div class="grupo-input tag-input">
+        <label for="familyIllness" class="etiqueta-input">Antecedentes Familiares</label>
+        <div class="tags">
+          @for (tag of familyIllnessList; track $index) {
+            <span class="tag">
+              {{ tag }}
+              <button type="button" (click)="removeFamilyIllness($index)">x</button>
+            </span>
+          }
+        </div>
+        <input 
+          (keyup)="onFamilyIllnessKeyUp($event)"
+          type="text" 
+          id="familyIllness" 
+          class="campo-input" 
+          [class.input-error]="dataForm.get('familyIllness')?.invalid && dataForm.get('familyIllness')?.touched"
+          formControlName="familyIllness" 
+          placeholder="Historial de enfermedad familiar" 
+        >
+        @if (dataForm.get('familyIllness'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['pattern']) {
+                <span>No se permiten caracteres especiales.</span>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <!-- MEDICACIÓN PERMANENTE -->
+      <div class="grupo-input tag-input">
+        <label for="PermanentMedication" class="etiqueta-input">Medicación Permanente</label>
+        <div class="tags">
+          @for (tag of medicationList; track $index) {
+            <span class="tag">
+              {{ tag }}
+              <button type="button" (click)="removeMedication($index)">x</button>
+            </span>
+          }
+        </div>
+        <input 
+          (keyup)="onMedicationKeyUp($event)"
+          type="text" 
+          id="PermanentMedication" 
+          class="campo-input" 
+          [class.input-error]="dataForm.get('PermanentMedication')?.invalid && dataForm.get('PermanentMedication')?.touched"
+          formControlName="PermanentMedication" 
+          placeholder="Medicamentos de uso permanente" 
+        >
+        @if (dataForm.get('PermanentMedication'); as control) {
+          @if (control.touched && control.invalid) {
+            <div class="mensaje-error">
+              @if (control.errors?.['pattern']) {
+                <span>No se permiten caracteres especiales.</span>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <button 
+        type="submit" 
+        class="boton-enviar" 
+        [disabled]="dataForm.invalid || isLoading"
+      >
+        {{ isLoading ? 'Enviando...' : 'Enviar'}}
+      </button>
+
+    </form>
+  </div>

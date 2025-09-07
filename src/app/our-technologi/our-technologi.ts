@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TestInfo } from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { NavigationBarLeft } from "../navigation-bar-left/navigation-bar-left";
 import { NavigationBarRight } from "../navigation-bar-right/navigation-bar-right";
 import { RegisterForm } from "../register-form/register-form";
+import { CheckingDataPatient } from '../Services/checking-data-patient';
+import { Subject, take, takeUntil } from 'rxjs';
+import { BrowserStorageServices } from '../Services/browser-storage-services';
 
 @Component({
   selector: 'app-our-technologi',
@@ -13,7 +16,7 @@ import { RegisterForm } from "../register-form/register-form";
   templateUrl: './our-technologi.html',
   styleUrls: ['./our-technologi.css']
 })
-export class OurTechnologi implements AfterViewInit {
+export class OurTechnologi{
   selectedInfo: TestInfo | null = null;
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
   opcionesTexto!: string;
@@ -23,12 +26,47 @@ export class OurTechnologi implements AfterViewInit {
   private rechazarSeleccion!: (razon?: any) => void;
   unicVar: boolean = false;
   fadeClass = 'fade-in';
+  patientDataExist:Boolean = false;
 
-  constructor(private mediTest: TestInfoService, private cdr: ChangeDetectorRef) {}
+  constructor(private storage: BrowserStorageServices, private testInfoService: TestInfoService, private cdr: ChangeDetectorRef, private checkData: CheckingDataPatient) {}
 
-  ngAfterViewInit() {
+  private destroy$ = new Subject<void>();
+
+  ngOnInit() {
+    const email = this.storage.getLocalItem('email') || this.storage.getSessionItem('email');
+    if (email) {
+      this.checkData.confirmateDataPatient(email).pipe(take(1)).subscribe({
+        next: (response) => {
+          console.log(response);
+          if (response.exists) {
+            this.patientDataExist = false;
+          } else {
+            this.patientDataExist = true;
+            this.cdr.markForCheck() 
+            this.subscribeToPatientDataResult();
+          }
+        }
+      });
+    }
   }
-      
+  
+  private subscribeToPatientDataResult() {
+    this.testInfoService.getPatientDataResult$()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => {      
+      if (result && result.message === "Datos insertados correctamente") {
+        console.log('Cambiando patientDataExist a false'); // ← Debug
+        this.patientDataExist = false;
+        this.cdr.markForCheck()
+      }
+    });
+  }
+  
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   cancelarSeleccion() {
     this.openModal = false;
     this.NgModelVariable = '';
@@ -37,17 +75,16 @@ export class OurTechnologi implements AfterViewInit {
     }
   }
 
-  // Método común para procesar la información
   private procesarImagenInfo(altText: string): void {
     // CLAVE: Primero poner null y esperar un tick completo
     this.selectedInfo = null;
     
-    setTimeout(() => {
-      this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
-        this.selectedInfo = info ?? null;
-        this.cdr.detectChanges()
-      });
-    }, 5);
+    // setTimeout(() => {
+    //   this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
+    //     this.selectedInfo = info ?? null;
+    //     this.cdr.detectChanges()
+    //   });
+    // }, 5);
   }
 
   selectedInfoFromModal(opcion:string){

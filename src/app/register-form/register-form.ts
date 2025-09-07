@@ -9,7 +9,6 @@ import { ResetPassword } from "../All-the-Forms/Reset-password/reset-password/re
 import { AuthStatus } from '../Services/auth-status';
 import { AuthData } from '../Interfaces/Insurances';
 import { Store } from '@ngrx/store';
-import * as AuthActions from '../auth/store/actions/auth.actions';
 import { DataForm } from "../All-the-Forms/data-form/data-form";
 
 @Component({
@@ -46,7 +45,6 @@ export class RegisterForm {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private authService: AuthStatus,
-    private store: Store
   ) {}
 
   ngOnInit() {
@@ -107,8 +105,6 @@ export class RegisterForm {
       
       if (response.success && response.isSignedIn) {
         this.successMessage = response.message!;
-
-        this.store.dispatch(AuthActions.loginSuccess({ email: data.email }))
         this.fadeClass = 'fade-out';
         this.cdr.detectChanges();
         
@@ -118,7 +114,6 @@ export class RegisterForm {
         }, 1500);
       } else if (!response.success) {
         this.errorMessage = response.error!;
-        this.store.dispatch(AuthActions.loginFailure({ error: response.error }));
       } else {
         // Manejar next steps
         if (response.nextStep?.signInStep === 'CONFIRM_SIGN_UP') {

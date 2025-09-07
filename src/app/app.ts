@@ -1,7 +1,7 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as AuthActions from './auth/store/actions/auth.actions';
 import { RouterOutlet } from '@angular/router';
+import { AuthStatus } from './Services/auth-status';
+import { BrowserStorageServices } from './Services/browser-storage-services';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App  {
   protected readonly title = signal('Medical_Date');
 
-  constructor(private store: Store) {}
+  constructor(private authStatus: AuthStatus, private storageService: BrowserStorageServices) {}
 
-  ngOnInit() {
-    this.store.dispatch(AuthActions.checkAuth());
-  }
+ 
 }

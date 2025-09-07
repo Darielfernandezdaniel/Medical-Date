@@ -25,6 +25,7 @@ export interface AuthResponse {
   challengeUser?: any;
   message?: string;
   error?: string;
+  sub?:string;
 }
 
 export interface PersonalData {
