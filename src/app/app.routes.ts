@@ -22,5 +22,9 @@ export const routes: Routes = [
         path: 'insurance/:index',
         loadComponent: () =>
           import('./section-info/section-info').then(m => m.SectionInfo)
+      },
+      {path: 'stripe/:test',
+        loadComponent: () =>
+          import('./stripe-interfaces/stripe-interfaces').then(m => m.StripeInterfaces)
       }
 ];

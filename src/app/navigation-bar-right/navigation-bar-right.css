@@ -1,5 +1,5 @@
 .rightPart{
-    width: 60%;
+    width: 100%;
     justify-content: end;
     gap: 15px;
     margin-right: 20px;
@@ -25,7 +25,7 @@
   
   .RegisterButton {
     position: relative;
-    width: 65px;
+    width: 75px;
     min-width: 45px;
     height: 90%;
     font-weight: bold;

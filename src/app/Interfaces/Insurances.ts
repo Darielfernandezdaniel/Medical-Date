@@ -3,11 +3,6 @@ export interface Seguro {
     coberturas: string[];
   }
 
-export interface TestInfo{
-  titulo: string; 
-  descripcion: string; 
-  precio: string 
-}
   
 export interface AuthData {
   email: string;
@@ -36,4 +31,11 @@ export interface PersonalData {
   medications?: string[];     
   familyIllnesses?: string[];  
   illnesses?: string[];       
+}
+
+export interface MedicalTestInfo {
+  id: string;
+  titulo: string;
+  descripcion:string;
+  precio: string;
 }

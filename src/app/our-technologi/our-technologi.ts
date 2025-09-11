@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TestInfo } from '../Interfaces/Insurances';
+import { MedicalTestInfo} from '../Interfaces/Insurances';
 import { TestInfoService } from '../Services/test-info';
 import { FormsModule } from '@angular/forms';
 import { NavigationBarLeft } from "../navigation-bar-left/navigation-bar-left";
@@ -9,209 +9,190 @@ import { RegisterForm } from "../register-form/register-form";
 import { CheckingDataPatient } from '../Services/checking-data-patient';
 import { Subject, take, takeUntil } from 'rxjs';
 import { BrowserStorageServices } from '../Services/browser-storage-services';
+import { ImgFromS3 } from '../Services/img-from-s3';
+import { GetMedicatlTestIngo } from '../Services/get-medicatl-test-ingo';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-our-technologi',
-  imports: [CommonModule, FormsModule, NavigationBarLeft, NavigationBarRight, RegisterForm],
+  imports: [CommonModule, FormsModule, NavigationBarLeft, NavigationBarRight, RegisterForm, RouterLink],
   templateUrl: './our-technologi.html',
-  styleUrls: ['./our-technologi.css']
+  styleUrls: ['./our-technologi.css'],
 })
 export class OurTechnologi{
-  selectedInfo: TestInfo | null = null;
+  selectedInfo!: MedicalTestInfo // Cambio: ahora es un solo objeto, no array
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-  opcionesTexto!: string;
+  opcionesDisponibles: MedicalTestInfo[] = []; // Nuevo: array para las opciones del modal
+  opcionesTexto!: string; // Mantener esta variable para compatibilidad
   NgModelVariable: string = '';
   openModal: boolean = false;
   private resolverSeleccion!: (valor: string) => void;
   private rechazarSeleccion!: (razon?: any) => void;
   unicVar: boolean = false;
   fadeClass = 'fade-in';
-  patientDataExist:Boolean = false;
+  patientDataExist: Boolean = false;
+  images: { url: string; id: string }[] = [];
+  page = 1;
+  limit = 7;
+  total = 0;
+  loading = false;
 
-  constructor(private storage: BrowserStorageServices, private testInfoService: TestInfoService, private cdr: ChangeDetectorRef, private checkData: CheckingDataPatient) {}
+  constructor(
+    private storage: BrowserStorageServices, 
+    private imagesService: ImgFromS3, 
+    private testInfoService: TestInfoService, 
+    private cdr: ChangeDetectorRef, 
+    private checkData: CheckingDataPatient,
+    private getMedicalInfo: GetMedicatlTestIngo
+  ) {}
 
   private destroy$ = new Subject<void>();
 
   ngOnInit() {
-    const email = this.storage.getLocalItem('email') || this.storage.getSessionItem('email');
-    if (email) {
-      this.checkData.confirmateDataPatient(email).pipe(take(1)).subscribe({
-        next: (response) => {
-          console.log(response);
-          if (response.exists) {
-            this.patientDataExist = false;
-          } else {
-            this.patientDataExist = true;
-            this.cdr.markForCheck() 
-            this.subscribeToPatientDataResult();
-          }
-        }
-      });
+    this.loadImages();
+    this.loadPatientData();
+  }
+
+  loadImages() {
+    if (this.loading) return;
+    this.loading = true;
+
+    this.imagesService.getImages(this.page, this.limit).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.images = [...this.images, ...res.images];
+        this.total = res.total;
+        this.loading = false;
+        this.page++;
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.loading = false;
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  onScroll(event: any) {
+    const container = event.target;
+    const scrollTop = container.scrollTop;
+    const scrollHeight = container.scrollHeight;
+    const clientHeight = container.clientHeight;
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    const threshold = 1000;
+
+    const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+    const nearRight = scrollLeft + clientWidth >= scrollWidth - threshold;
+
+    if ((nearBottom || nearRight) && this.images.length < this.total) {
+      this.loadImages();
+      this.cdr.markForCheck();
     }
   }
-  
-  private subscribeToPatientDataResult() {
+
+  trackByFn(index: number, item: { url: string; id: string }) {
+    return item.id;
+  }
+
+  private loadPatientData() {
+    const email = this.storage.getLocalItem('email') || this.storage.getSessionItem('email');
+    if (!email) return;
+
+    this.checkData.confirmateDataPatient(email).pipe(take(1)).subscribe({
+      next: (response) => {
+        console.log(response);
+        if (response.exists) {
+          this.patientDataExist = false;
+        } else {
+          this.patientDataExist = true;
+          this.cdr.markForCheck();
+          this.subscribeToPatientDataResult();
+        }
+      }
+    });
+  }
+
+  subscribeToPatientDataResult() {
     this.testInfoService.getPatientDataResult$()
     .pipe(takeUntil(this.destroy$))
     .subscribe(result => {      
       if (result && result.message === "Datos insertados correctamente") {
-        console.log('Cambiando patientDataExist a false'); // ← Debug
+
         this.patientDataExist = false;
         this.cdr.markForCheck()
       }
     });
   }
-  
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
   cancelarSeleccion() {
     this.openModal = false;
+    this.opcionesDisponibles = [];
     this.NgModelVariable = '';
     if (this.rechazarSeleccion) {
       this.rechazarSeleccion('cancelado');
     }
   }
 
-  private procesarImagenInfo(altText: string): void {
-    // CLAVE: Primero poner null y esperar un tick completo
-    this.selectedInfo = null;
-    
-    // setTimeout(() => {
-    //   this.mediTest.getInfoByAlt(altText).subscribe((info: TestInfo | undefined) => {
-    //     this.selectedInfo = info ?? null;
-    //     this.cdr.detectChanges()
-    //   });
-    // }, 5);
-  }
-
-  selectedInfoFromModal(opcion:string){
-    this.openModal = false;
-    this.unicVar = true
-    this.procesarImagenInfo(opcion);
-  }
-
-  sendImageId(event: Event): void {
-    this.openModal = false;
-    this.unicVar = true
-    const target = event.target as HTMLImageElement;
-    const altText = target.alt;
-    this.procesarImagenInfo(altText);
-  }
-
-  async buscarPrueba(valor: string) {
-    const busqueda = valor.toLowerCase().trim();
-    
-    
-    if (!this.scrollContainer) {
-      return;
-    }
-    
-    const imagenes = this.scrollContainer.nativeElement.querySelectorAll('img');
-    const coincidencias: {img: HTMLImageElement, puntuacion: number, tipo: string}[] = [];
-    
-    for (const img of imagenes) {
-      const alt = img.alt?.toLowerCase().trim();
-      if (!alt) continue;
-      
-      let puntuacion = 0;
-      let tipo = '';
-      
-      // 1. Coincidencia exacta (mayor puntuación)
-      if (alt === busqueda) {
-        puntuacion = 100;
-        tipo = 'exacta';
-        
-      }
-      // 2. Coincidencia parcial (contiene la búsqueda)
-      else if (alt.includes(busqueda)) {
-        puntuacion = 80;
-        tipo = 'contiene';
-      }
-      // 3. Búsqueda contiene parte del alt
-      else if (busqueda.includes(alt)) {
-        puntuacion = 70;
-        tipo = 'contenida';
-      }
-      // 4. Palabras individuales coinciden
-      else {
-        const palabrasBusqueda = busqueda.split(' ');
-        const palabrasAlt = alt.split(' ');
-        let palabrasCoinciden = 0;
-        palabrasBusqueda.forEach(palabra => {
-          if (palabrasAlt.some((altPalabra: string) => altPalabra.includes(palabra) || palabra.includes(altPalabra))) {
-            palabrasCoinciden++;
+  // Método corregido: ahora maneja el array de opciones de la Lambda
+  procesarImagenInfo(ID: string) {
+    this.getMedicalInfo.getInfoById(ID).pipe().subscribe({
+      next: (opciones: MedicalTestInfo []) => {
+        console.log(opciones)
+        if (opciones && opciones.length > 0) {
+          if (opciones.length === 1) {
+            this.selectedInfo = opciones[0];
+            this.unicVar = true;
+          } else {
+            // Si hay múltiples opciones, mostrar el modal
+            this.opcionesDisponibles = opciones;
+            this.openModal = true;
           }
-        });
-        if (palabrasCoinciden > 0) {
-          puntuacion = (palabrasCoinciden / palabrasBusqueda.length) * 60;
-          tipo = 'palabras';
+          this.cdr.markForCheck();
         }
+      },
+      error: (error) => {
+        console.error('Error al obtener información:', error);
       }
-      
-      // 5. Similitud por caracteres (para typos)
-      if (puntuacion === 0) {
-        const similitud = this.calcularSimilitud(busqueda, alt);
-        if (similitud > 0.6) { // 60% de similitud mínima
-          puntuacion = similitud * 50;
-          tipo = 'similar';
-        }
-      }
-      
-      if (puntuacion > 0) {
-        coincidencias.push({img, puntuacion, tipo});
-      }
-    }
-    
-    if (coincidencias.length > 0) {
-      coincidencias.sort((a, b) => b.puntuacion - a.puntuacion);
-      const mejor = coincidencias[0];
-    
-      if (mejor.puntuacion === 100) {
-        // Caso 1: Coincidencia perfecta
-        this.procesarImagenInfo(mejor.img.alt);
-      } else {
-        // Caso 2 y 3: Una o varias coincidencias no perfectas → mostrar modal
-        const opcionesArray = coincidencias.slice(0, 4).map(c => c.img.alt);
-        this.opcionesTexto = opcionesArray.join('\n- ');
-        this.NgModelVariable = '';
-        this.selectedInfo = null;
-        this.openModal = true;
-      }
-
-    }else{
-      alert("Intente con un término más especifico")
-    }
+    });
   }
-      private calcularSimilitud(str1: string, str2: string): number {
-        const matriz: number[][] = [];
-        const len1 = str1.length;
-        const len2 = str2.length;
-    // Inicializar matriz
-    for (let i = 0; i <= len1; i++) {
-      matriz[i] = [i];
-    }
-    for (let j = 0; j <= len2; j++) {
-      matriz[0][j] = j;
-    }
 
-    for (let i = 1; i <= len1; i++) {
-      for (let j = 1; j <= len2; j++) {
-        const costo = str1[i - 1] === str2[j - 1] ? 0 : 1;
-        matriz[i][j] = Math.min(
-          matriz[i - 1][j] + 1,      // eliminación
-          matriz[i][j - 1] + 1,      // inserción
-          matriz[i - 1][j - 1] + costo // sustitución
-        );
+  // Método corregido: ahora recibe un objeto TestInfo completo
+  selectedInfoFromModal(opcionSeleccionada: MedicalTestInfo) {
+    this.openModal = false;
+    this.selectedInfo = opcionSeleccionada;
+    this.opcionesDisponibles = [];
+    this.unicVar = true;
+    this.cdr.markForCheck();
+  }
+
+  // Nuevo método para búsqueda por texto
+  buscarPrueba(query: string) {
+    if (!query.trim()) return;
+    
+    this.getMedicalInfo.getInfoById(query).pipe().subscribe({
+      next: (opciones: MedicalTestInfo[]) => {
+        if (opciones && opciones.length > 0) {
+          if (opciones.length === 1) {
+            this.selectedInfo = opciones[0];
+            this.unicVar = true;
+          } else {
+            this.opcionesDisponibles = opciones; 
+            this.openModal = true;
+          }
+          this.cdr.markForCheck();
+        }
+      },
+      error: (error) => {
+        console.error('Error en búsqueda:', error);
       }
-    }
-    
-    const distancia = matriz[len1][len2];
-    const longitudMaxima = Math.max(len1, len2);
-    
-    // Convertir distancia a similitud (0-1)
-    return 1 - (distancia / longitudMaxima);
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

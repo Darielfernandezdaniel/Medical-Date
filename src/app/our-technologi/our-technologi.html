@@ -11,24 +11,11 @@
 </div>
 <div class="allContainer">
   <nav>
-      <div class="scrollOfTechArea" #scrollContainer>
-          <img #imgRef src="assets/MGI.avif" id="MGI" alt="Medicina General Integral" (click)="sendImageId($event)" loading="eager">
-          <img #imgRef src="assets/Consulta-Externa.avif" id="Consulta-Externa" alt="Consulta Externa" (click)="sendImageId($event)" loading="eager">
-          <img #imgRef src="assets/Hemograma.avif" id="Hemograma" alt="Analisis de Sangre" (click)="sendImageId($event)" loading="eager">
-          <img #imgRef src="assets/Orina.avif" id="Orina" alt="Orina" (click)="sendImageId($event)" loading="eager">
-          <img #imgRef src="assets/Rayos-x.avif" id="Rayos-x" alt="Rayos x" (click)="sendImageId($event)" loading="eager">
-          <img #imgRef src="assets/Urgencias.avif" id="" alt="Urgencias" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Muela.avif" id="" alt="Odontología" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Atencion-Telefonica.avif" id="" alt="Atencion Telefonica" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Hospitalizacion.avif" id="" alt="Hospitalización" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Cirugias.avif" id="" alt="Cirugias" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Fisioterapia.avif" id="" alt="Fisioterapia" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Psicologia.avif" id="" alt="Psicologia" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Medicina-Preventiva.avif" id="" alt="Medicina Preventiva" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Telemedicina.avif" id="" alt="Telemedicina" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Cobertura-Internacional.avif" id="" alt="Cobertura Internacional" (click)="sendImageId($event)">
-          <img #imgRef src="assets/Calendario.avif" id="" alt="Calendario" (click)="sendImageId($event)">
-      </div>
+    <div class="scrollOfTechArea" #scrollContainer (scroll)="onScroll($event)">
+      @for (img of images; track trackByFn($index, img)) {
+        <img [src]="img.url" [alt]="img.id" (click)="procesarImagenInfo(img.id)">
+      }
+    </div>
   </nav>
   <div class="cuadro">
       <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
@@ -38,9 +25,9 @@
       @if (openModal) {
         <div class="openModal">
           <h3>Seleccione alguna de las siguientes opciones</h3>
-          @for (opcion of opcionesTexto.split('\n- '); track $index) {
+          @for (opcion of opcionesDisponibles; track $index) {
             <div class="optionsForDate">
-              <span (click)="selectedInfoFromModal(opcion)">- {{ opcion }}</span>
+              <span (click)="selectedInfoFromModal(opcion)">{{ opcion.titulo }}</span>
             </div>
           }
           <div class="buttonContainer">
@@ -53,8 +40,8 @@
           <h3>{{ selectedInfo.titulo }}</h3>
           <p>{{ selectedInfo.descripcion }}</p>
           <div class="buttonContainer">
-            <button>{{ selectedInfo.precio}} (Precio sin Seguro)</button>
-            <button>¿Lo Tienes Cubierto?</button>
+            <button [routerLink]="['/stripe', selectedInfo.titulo]">{{ selectedInfo.precio}} (Precio sin Seguro)</button>
+            <button [routerLink]="['/stripe', selectedInfo.titulo]">¿Lo Tienes Cubierto?</button>
           </div>
         </div>
       }
