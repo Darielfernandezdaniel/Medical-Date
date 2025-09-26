@@ -1,0 +1,62 @@
+<div class="pagina-login" [ngClass]="fadeClass">
+    <div class="wood">
+      <div class="bar-container"></div>
+      <div 
+        class="contenedor-formulario" 
+        [class.animate-out]="animating" 
+        [class.animate-in]="!animating">
+        
+        @if (params === 'login') {
+          <app-login-form 
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onLoginSubmit($event)"
+            (switchToJoin)="paramsChanger('join')"
+            (switchToPassword)="paramsChanger('new-password')">
+          </app-login-form>
+        }
+  
+        @if (params === 'join') {
+          <app-join-form
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onJoinSubmit($event)"
+            (switchToLogin)="paramsChanger('login')"
+            (switchToPassword)="paramsChanger('new-password')">
+          </app-join-form>
+        }
+  
+        @if (params === 'confirmation') {
+          <app-confirmation-form
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            [pendingUsername]="pendingUsername"
+            (submitForm)="onConfirmationSubmit($event)"
+            (resendCode)="onResendCode()">
+          </app-confirmation-form>
+        }
+        
+        @if (params === 'new-password') {
+          <app-reset-password
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage"
+            (submitForm)="onNewPasswordSubmit($event)"
+            (returnLogin)="paramsChanger('login')"
+            >
+          </app-reset-password>
+        }
+
+        @if (params === 'dataProfile') {
+          <app-data-form>
+            [isLoading]="isLoading"
+            [errorMessage]="errorMessage"
+            [successMessage]="successMessage">
+          </app-data-form>
+        }
+      </div>      
+    </div>
+  </div>

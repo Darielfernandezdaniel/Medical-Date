@@ -1,0 +1,54 @@
+<div>
+  <h1 class="titulo-formulario">Confirmar Cuenta</h1>
+  
+  <form [formGroup]="confirmationForm" (ngSubmit)="onSubmit()">
+    <div class="grupo-input confirmationInput">
+      <p class="confirmationEmail">Hemos enviado un código de confirmación a 
+          <span><strong>{{ pendingUsername }}</strong></span>
+      </p>
+      <input 
+        formControlName="confirmationCode" 
+        type="text" 
+        placeholder="Ingresa el código de 6 dígitos" 
+        class="campo-input"
+        maxlength="6"
+        [class.input-error]="confirmationForm.get('confirmationCode')?.invalid && confirmationForm.get('confirmationCode')?.touched"/>
+      
+      <!-- Se ha simplificado la lógica de los mensajes de error anidados -->
+      @if (confirmationForm.get('confirmationCode')?.invalid && confirmationForm.get('confirmationCode')?.touched) {
+        <div class="error-mensaje">
+          @if (confirmationForm.get('confirmationCode')?.errors?.['required']) {
+            <div class="mensaje-error">
+              El código de confirmación es obligatorio.
+            </div>
+          }
+          @if (confirmationForm.get('confirmationCode')?.errors?.['minlength'] || confirmationForm.get('confirmationCode')?.errors?.['maxlength']) {
+            <div class="mensaje-error">
+              El código debe tener exactamente 6 dígitos.
+            </div>
+          }
+        </div>
+      }
+    
+      @if (errorMessage) {
+        <div class="mensaje-error">{{ errorMessage }}</div>
+      }
+      
+      <button 
+        type="submit" 
+        [disabled]="isLoading || confirmationForm.invalid" 
+        class="boton-enviar">
+        {{ isLoading ? 'Confirmando...' : 'Confirmar cuenta' }}
+      </button>
+    
+      <button 
+        type="button" 
+        class="boton-enviar" 
+        (click)="resendCode.emit()" 
+        [disabled]="isLoading"
+        style="margin-top: 10px; background: #6c757d;">
+        {{ isLoading ? 'Enviando...' : 'Reenviar código' }}
+      </button>
+    </div>
+  </form>
+</div>

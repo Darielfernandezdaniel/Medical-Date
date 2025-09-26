@@ -1,0 +1,17 @@
+{
+  "name": "jsondownloadformedicalinfo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.884.0",
+    "fuse.js": "^7.1.0"
+  }
+}

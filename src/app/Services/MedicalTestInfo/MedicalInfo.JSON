@@ -1,0 +1,82 @@
+{
+  "Medicina General Integral": {
+    "titulo": "Medicina General Integral",
+    "descripcion": "Consulta médica completa enfocada en la evaluación general del paciente. Incluye chequeo de signos vitales, historial clínico detallado, diagnóstico inicial y orientación sobre estudios complementarios si son necesarios. Este servicio es ideal para el abordaje temprano de cualquier síntoma o malestar que presente el paciente, permitiendo una atención preventiva y un seguimiento personalizado para mantener un buen estado de salud a largo plazo. El médico general es el primer punto de contacto y puede derivar a especialistas en caso de requerir una atención más específica.",
+    "precio": "$25 USD"
+  },
+  "Consulta Externa": {
+    "titulo": "Consulta Externa",
+    "descripcion": "Atención médica especializada que se realiza fuera del área de hospitalización, pensada para pacientes que requieren diagnóstico, seguimiento y control de enfermedades crónicas o agudas. El paciente puede acudir a consultas programadas donde se realiza una evaluación minuciosa, ajustes en tratamientos y asesoría médica especializada. Además, este servicio incluye la posibilidad de derivación a otros especialistas si es necesario, asegurando un manejo integral de la salud sin necesidad de hospitalización prolongada.",
+    "precio": "$30 USD"
+  },
+  "Análisis de Sangre": {
+    "titulo": "Análisis de Sangre (Hemograma)",
+    "descripcion": "Estudio clínico fundamental que permite evaluar los distintos componentes de la sangre, tales como glóbulos rojos, glóbulos blancos y plaquetas. Es útil para detectar una amplia gama de condiciones, incluyendo infecciones, anemia, enfermedades autoinmunes, y otras alteraciones hematológicas. Este análisis es una herramienta clave para el diagnóstico médico y el monitoreo de tratamientos, proporcionando información precisa y confiable sobre el estado general de salud del paciente.",
+    "precio": "$18 USD"
+  },
+  "Examen de Orina": {
+    "titulo": "Examen de Orina",
+    "descripcion": "Prueba no invasiva que analiza componentes químicos, físicos y microscópicos de la orina. Esta prueba es fundamental para el diagnóstico de infecciones urinarias, problemas renales, enfermedades metabólicas y para el seguimiento de condiciones crónicas. Además, el examen de orina ayuda a detectar anomalías que pueden pasar desapercibidas en la consulta médica, siendo una herramienta de apoyo indispensable para el manejo integral del paciente.",
+    "precio": "$12 USD"
+  },
+  "Rayos-x": {
+    "titulo": "Rayos-X",
+    "descripcion": "Procedimiento de imagenología diagnóstica mediante radiación que permite visualizar estructuras internas del cuerpo, tales como huesos, pulmones, órganos y tejidos. Es una herramienta fundamental para detectar fracturas, neumonías, cálculos, y otras patologías. El servicio garantiza imágenes de alta calidad con entrega rápida, facilitando un diagnóstico oportuno y preciso por parte del médico especialista.",
+    "precio": "$35 USD"
+  },
+  "Urgencias": {
+    "titulo": "Urgencias",
+    "descripcion": "Servicio de atención médica inmediata diseñado para situaciones de riesgo vital o emergencias agudas. Incluye evaluación rápida, estabilización del paciente y manejo integral para evitar complicaciones graves. En caso necesario, se realiza la derivación a unidades especializadas o quirúrgicas para una atención continua y adecuada. Este servicio está disponible las 24 horas, garantizando respuesta profesional y eficiente en momentos críticos.",
+    "precio": "$50 USD"
+  },
+  "Odontología": {
+    "titulo": "Odontología",
+    "descripcion": "Servicio integral de evaluación y tratamiento de la salud bucodental. Incluye procedimientos preventivos como limpieza dental, tratamientos restaurativos como empastes, extracciones y orientación sobre higiene oral para evitar enfermedades bucales. El equipo dental está capacitado para brindar atención personalizada y cuidadosa, asegurando resultados visibles y duraderos que contribuyen a una sonrisa sana y estética.",
+    "precio": "$28 USD"
+  },
+  "Atención Telefónica": {
+    "titulo": "Atención Telefónica",
+    "descripcion": "Servicio de orientación médica a través de llamadas telefónicas que facilita consultas generales, seguimiento de tratamientos y recomendaciones médicas sin la necesidad de traslado físico. Ideal para pacientes que requieren asesoría rápida o que presentan dificultades para asistir presencialmente. Este servicio permite resolver dudas, ajustar tratamientos y orientar al paciente de manera oportuna y eficiente, manteniendo la continuidad del cuidado médico.",
+    "precio": "$10 USD"
+  },
+  "Hospitalización": {
+    "titulo": "Hospitalización",
+    "descripcion": "Servicio de internamiento del paciente para observación, tratamiento o cirugía que requiere atención médica continua y personalizada. Durante la estancia, el paciente tiene acceso a estudios complementarios, medicación y cuidados especializados. Además, se brinda confort y seguridad para facilitar la recuperación, con un equipo multidisciplinario dedicado a atender todas las necesidades del paciente durante su permanencia en el centro de salud.",
+    "precio": "$120 USD por día"
+  },
+  "Cirugías": {
+    "titulo": "Cirugías",
+    "descripcion": "Intervenciones quirúrgicas programadas o de urgencia realizadas por personal altamente especializado en quirófanos equipados con tecnología avanzada. El servicio incluye atención preoperatoria, realización del procedimiento quirúrgico y seguimiento en la recuperación inicial para garantizar la seguridad y el bienestar del paciente. Se ofrece atención integral que abarca desde la preparación hasta la recuperación, con enfoque en minimizar riesgos y optimizar resultados.",
+    "precio": "Desde $500 USD"
+  },
+  "Fisioterapia": {
+    "titulo": "Fisioterapia",
+    "descripcion": "Tratamiento físico diseñado para mejorar la movilidad, reducir el dolor y acelerar la recuperación después de lesiones, cirugías o problemas musculoesqueléticos. Se realiza mediante ejercicios guiados y el uso de aparatos especializados que ayudan a restaurar la funcionalidad del cuerpo. La fisioterapia es un componente clave en la rehabilitación integral que contribuye a mejorar la calidad de vida del paciente mediante técnicas personalizadas y seguimiento constante.",
+    "precio": "$22 USD por sesión"
+  },
+  "Psicología": {
+    "titulo": "Psicología",
+    "descripcion": "Atención profesional dedicada al bienestar emocional y mental del paciente. Se ofrece terapia individual, de pareja o familiar, abordando temas como ansiedad, estrés, depresión y otros desafíos emocionales. El espacio es seguro, confidencial y está orientado a proporcionar herramientas para mejorar la calidad de vida, fortalecer la resiliencia y promover un equilibrio emocional saludable a través de un acompañamiento especializado y empático.",
+    "precio": "$35 USD por sesión"
+  },
+  "Medicina Preventiva": {
+    "titulo": "Medicina Preventiva",
+    "descripcion": "Evaluación médica orientada a la prevención de enfermedades antes de que se manifiesten síntomas. Incluye chequeos regulares, vacunación, análisis de riesgo personalizados y recomendaciones de salud adaptadas a cada paciente. Este enfoque permite mantener un estado óptimo de bienestar mediante la detección temprana y el manejo adecuado de factores de riesgo, promoviendo hábitos saludables y un seguimiento constante para evitar complicaciones futuras.",
+    "precio": "$30 USD"
+  },
+  "Telemedicina": {
+    "titulo": "Telemedicina",
+    "descripcion": "Consulta médica en línea realizada a través de videollamada, facilitando el diagnóstico básico, seguimiento de tratamientos y orientación médica sin necesidad de salir de casa. Este servicio es especialmente beneficioso para personas que viven en zonas alejadas o que presentan dificultades para acudir presencialmente a un centro de salud. Ofrece comodidad, rapidez y acceso a atención profesional desde cualquier lugar con conexión a internet.",
+    "precio": "$20 USD"
+  },
+  "Cobertura Internacional": {
+    "titulo": "Cobertura Internacional",
+    "descripcion": "Servicio que asegura la atención médica necesaria durante viajes al extranjero. Incluye consultas médicas, atención de emergencias, hospitalización y otros servicios según el plan contratado. Proporciona tranquilidad y respaldo para viajeros, garantizando acceso a servicios de salud confiables y de calidad fuera del país de origen, con atención oportuna y soporte en distintos idiomas.",
+    "precio": "Desde $60 USD mensuales"
+  },
+  "Citas Inmediatas": {
+    "titulo": "Citas Inmediatas",
+    "descripcion": "Servicio exclusivo para asegurados que permite agendar y gestionar citas médicas sin tiempos de espera. Facilita la programación rápida y eficiente de consultas médicas, garantizando atención prioritaria para los usuarios del seguro. Esta plataforma optimiza la experiencia del paciente al reducir esperas, mejorar la organización y asegurar un acceso ágil a los servicios médicos asociados al seguro.",
+    "precio": "300 según itinerario"
+  }
+}

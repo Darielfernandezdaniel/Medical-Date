@@ -1,0 +1,54 @@
+@if(patientDataExist){
+  <div class="blackVeil" 
+     [ngClass]="{ 'fade-in': patientDataExist, 'fade-out': !patientDataExist }">
+  <app-register-form></app-register-form>
+</div>
+}
+
+<div class="inputSearchContainer">
+  <app-navigation-bar-left></app-navigation-bar-left>
+  <app-navigation-bar-right></app-navigation-bar-right>
+</div>
+<div class="allContainer">
+  <nav>
+    <div class="scrollOfTechArea" #scrollContainer (scroll)="onScroll($event)">
+      @for (img of images; track trackByFn($index, img)) {
+        <img [src]="img.url" [alt]="img.id" (click)="procesarImagenInfo(img.id)">
+      }
+    </div>
+  </nav>
+  <div class="cuadro">
+      <input type="text" #busquedaInput class="searchingTest" placeholder="Busque su Cita Aquí" (keyup.enter)="buscarPrueba(busquedaInput.value)"/>
+      @if (!selectedInfo && !unicVar) {
+        <span class="ClickImg" 
+          [class.fade-in]="!selectedInfo && !unicVar">
+           Select an image
+        </span>
+      }
+       <app-spin></app-spin>
+      @if (openModal) {
+        <div class="openModal">
+          <h3>Seleccione alguna de las siguientes opciones</h3>
+          @for (opcion of opcionesDisponibles; track $index) {
+            <div class="optionsForDate">
+              <span (click)="selectedInfoFromModal(opcion)">{{ opcion.titulo }}</span>
+            </div>
+          }
+          <div class="buttonContainer">
+            <button (click)="cancelarSeleccion()">Cancelar</button>
+          </div>
+        </div>
+      }
+      @if (selectedInfo) {
+        <div class="info">
+          <h3>{{ selectedInfo.titulo }}</h3>
+          <p>{{ selectedInfo.descripcion }}</p>
+          <div class="buttonContainer">
+            <button class="buttonOfPay" (click)="StripePay()">{{ selectedInfo.precio}} (Precio sin Seguro)</button>
+            <button class="buttonOfPay" (click)="StripePay()">Lo Tienes Cubierto?</button>
+            <button class="buttonOfPay" routerLink="/insurance">Watch Our Insurance</button>
+          </div>
+        </div>
+      }
+  </div>
+</div>

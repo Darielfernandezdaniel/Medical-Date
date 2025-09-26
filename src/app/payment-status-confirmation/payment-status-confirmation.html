@@ -1,0 +1,7 @@
+<img src="assets/Cuarto.avif" alt="" loading="eager">
+
+<div class="stautsPaymentPanel">
+    <div class="clinicName"><p>Over</p><img src="assets/Cruz-Azul.jpg" alt="" class="statusIcon"><p>Healthy</p></div>
+    <div class="StatusOfPay">{{statusOfPayment}} @if(caseImg !== ""){<img [src]="caseImg" alt="" loading="eager" class="statusIcon">} <app-spin></app-spin></div>
+    <div class="footer">{{footer}}<a class="RegisterButton" routerLink="/patient">Return</a></div>
+</div>

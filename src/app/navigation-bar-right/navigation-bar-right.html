@@ -1,0 +1,35 @@
+<div class="rightPart">
+   <!-- Mostrar Login y Join SOLO cuando NO esté autenticado -->
+   @if (!isAuth) {
+     <a routerLink="/register/login"
+        class="LoginButton RegisterButton"
+        tabindex="0">
+         Login
+     </a>
+     
+     <a routerLink="/register/join"
+        class="JoinButton RegisterButton"
+        tabindex="0">
+         Join
+     </a>
+   }
+   
+   @if (isAuth) {
+     <a class="JoinButton RegisterButton"
+        tabindex="0"
+        (click)="logOut()">
+         Logout
+     </a>
+   } 
+   @if (iconToShow === 'patient') {
+    <a routerLink="patient">
+      <img src="assets/LogIcon.avif" alt="Profile-Image">
+    </a>
+  }
+     @if (iconToShow === 'home') {
+       <a routerLink="/">
+        <img src="assets/Home.avif" alt="Profile-Image">
+       </a>
+     }
+  
+</div>

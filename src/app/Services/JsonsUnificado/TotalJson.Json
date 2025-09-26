@@ -1,0 +1,18 @@
+[
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Atencion-Telefonica.avif", "id": "Atención Telefónica"},
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Calendario.avif", "id": "Citas Inmediatas"},
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Cirugias.avif", "id": "Cirugías" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Cobertura-Internacional.avif", "id": "Cobertura Internacional" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Consulta-Externa.avif", "id": "Consulta Externa" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Fisioterapia.avif", "id": "Fisioterapia" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Hemograma.avif", "id": "Análisis de Sangre" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Hospitalizacion.avif", "id": "Hospitalización" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Medicina-Preventiva.avif", "id": "Medicina Preventiva" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/MGI.avif", "id": "Medicina General Integral" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Muela.avif", "id": "Odontología" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Orina.avif", "id": "Orina" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Psicologia.avif", "id": "Psicologia" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Rayos-x.avif", "id": "Rayos-x" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Telemedicina.avif", "id": "Telemedicina" },
+  { "url": "https://d6jbln8ycikfq.cloudfront.net/Urgencias.avif", "id": "Urgencias" }
+]

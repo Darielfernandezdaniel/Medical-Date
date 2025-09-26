@@ -1,0 +1,54 @@
+  .presentationLayer{
+    background-image: url(/assets/fondo-clínica1.jpg);
+    width: 100%;
+    height: 100%;
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+  }
+
+  .Meet-Us {
+    width: 45%;
+    height: 10%;
+    font-size: clamp(1.8rem, 3vw, 4rem);
+    font-weight: bolder;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    position: absolute;
+    padding: 40px 70px;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -25%);
+    background-color:white;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: sideShift 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: font-size 0.8s;
+    text-decoration: none;
+    color:#00e1ff;
+  }
+
+  @keyframes sideShift {
+    0%, 100% {
+      transform: translate(-50%, -25%);
+    }
+    50% {
+      transform: translate(-40%, -25%);
+    }
+  }
+
+  .Meet-Us:hover {
+    animation-play-state: paused;
+    font-size: clamp(1.9rem, 3.2vw, 4.2rem);
+  }
+
+  @media(max-width: 430px){
+    .Meet-Us{
+      width: 60%;
+    }
+  }

@@ -1,0 +1,43 @@
+<app-spin></app-spin>
+<img class="Insurance-Cover" src="assets/Insurance-Coverage.avif" alt="">
+<div class="scroll-navigation">
+  <button class="scroll-btn scroll-left" (click)="scrollLeft()" title="Scroll hacia la izquierda">
+    ←
+  </button>
+  <button class="scroll-btn scroll-right" (click)="scrollRight()" title="Scroll hacia la derecha">
+    →
+  </button>
+</div>
+<div class="InsuranceContainer"  #scrollContainer>
+  @for (seguroName of segurosOrdenados; track seguroName) {
+    <section class="InsuranceCover">
+      <div>
+        <img [src]="Seguros[seguroName].imagen" alt="Imagen de {{ seguroName }}" class="Insurance-Logo" />
+        <h1>{{ seguroName }}</h1>
+
+        <!-- Coberturas principales (todo menos los últimos 3 elementos) -->
+        <ul>
+          @for (cobertura of (Seguros[seguroName].coberturas || []).slice(0, Seguros[seguroName].coberturas.length - 3); track $index) {
+            <li>
+              {{ cobertura }}
+            </li>
+          }
+        </ul>
+
+        <!-- Extras opcionales (penúltimos 2 elementos) -->
+        <h3>Extras opcionales:</h3>
+        @for (extra of (Seguros[seguroName].coberturas || []).slice(-3, -1); track $index) {
+          <p>
+            - {{ extra }}
+          </p>
+        }
+
+        <!-- Precio (último elemento de la lista) -->
+        <button class="priceContainer" (click)="buyInsurance(seguroName)">
+          {{ (Seguros[seguroName].coberturas || []).slice(-1)[0] }}
+        </button>
+      </div>
+    </section>
+  }
+  <app-show-button></app-show-button>
+</div>

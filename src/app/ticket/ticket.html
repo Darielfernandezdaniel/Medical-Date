@@ -1,0 +1,151 @@
+<div class="pagina-Ticket">
+  <app-spin></app-spin>
+  <div class="wood">
+    <div class="bar-container"></div>
+
+    <div 
+      class="contenedor-formulario" 
+      [class.animate-out]="animating" 
+      [class.animate-in]="!animating"
+    >
+      @if (params === 'telephone') {
+          <h1 class="titulo-formulario">Recibir llamada</h1>
+      }
+      @if (params === 'email') {
+          <h1 class="titulo-formulario">Recibir Email</h1>
+      }
+
+      <form [formGroup]="TicketForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Campo Email -->
+          <div class="grupo-input">
+            <label for="email" class="etiqueta-input">Correo Electrónico</label>
+            <input type="email" formControlName="email" id="email" class="campo-input"
+                   placeholder="usuario@clinica.com" required
+                   [class.input-error]="TicketForm.get('email')?.touched && TicketForm.get('email')?.invalid">
+            @if (TicketForm.get('email')?.touched && TicketForm.get('email')?.invalid) {
+              <div class="error-mensaje">
+                @if (TicketForm.get('email')?.errors?.['required']) {
+                  <div class="mensaje-error">
+                    El correo electrónico es obligatorio.
+                  </div>
+                }
+                @if (TicketForm.get('email')?.errors?.['email']) {
+                  <div class="mensaje-error">
+                    El formato del correo no es válido.
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+        <!-- Campo Teléfono -->
+        @if (params === 'telephone') {
+          <div class="grupo-input">
+            <label for="telephone" class="etiqueta-input">Teléfono</label>
+
+            <div class="telephoneContainer">
+              <!-- Código País -->
+              <span class="campo-inputIden" 
+                     [class.input-error]="TicketForm.get('telephoneIden')?.touched && TicketForm.get('telephoneIden')?.invalid">
+                +
+                <input type="text" formControlName="telephoneIden" id="telephoneIden" inputmode="numeric"
+                       maxlength="3" required>
+              </span>
+
+              <!-- Número -->
+              <input type="text" formControlName="telephone" id="telephone" class="campo-input"
+                     inputmode="numeric" placeholder="Ingresa tu Teléfono" required
+                     [class.input-error]="TicketForm.get('telephone')?.touched && TicketForm.get('telephone')?.invalid">
+            </div>
+
+            <!-- Mensajes de error -->
+            @if (TicketForm.get('telephoneIden')?.touched && TicketForm.get('telephoneIden')?.invalid) {
+              <div class="error-mensaje">
+                @if (TicketForm.get('telephoneIden')?.errors?.['required']) {
+                  <div class="mensaje-error">
+                    El código de país es obligatorio.
+                  </div>
+                }
+                @if (TicketForm.get('telephoneIden')?.errors?.['pattern']) {
+                  <div class="mensaje-error">
+                    Solo se permiten números.
+                  </div>
+                }
+              </div>
+            }
+
+            @if (TicketForm.get('telephone')?.touched && TicketForm.get('telephone')?.invalid) {
+              <div class="error-mensaje">
+                @if (TicketForm.get('telephone')?.errors?.['required']) {
+                  <div class="mensaje-error">
+                    El número de teléfono es obligatorio.
+                  </div>
+                }
+                @if (TicketForm.get('telephone')?.errors?.['pattern']) {
+                  <div class="mensaje-error">
+                    Solo se permiten números.
+                  </div>
+                }
+                @if (TicketForm.get('telephone')?.errors?.['maxlength']) {
+                  <div class="mensaje-error">
+                    Máximo 15 dígitos permitidos.
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+
+        <!-- Campo Nombre -->
+        <div class="grupo-input">
+          <label for="name" class="etiqueta-input">Nombre</label>
+          <input type="name" formControlName="name" id="name" class="campo-input"
+                 placeholder="Dinos tu Nombre" required
+                 [class.input-error]="TicketForm.get('name')?.touched && TicketForm.get('name')?.invalid">
+          
+          @if (TicketForm.get('name')?.touched && TicketForm.get('name')?.invalid) {
+            <div class="error-mensaje">
+              @if (TicketForm.get('name')?.errors?.['required']) {
+                <div class="mensaje-error">
+                  El nombre es obligatorio.
+                </div>
+              }
+              @if (TicketForm.get('name')?.errors?.['maxlength']) {
+                <div class="mensaje-error">
+                  El nombre no debe superar los 50 caracteres.
+                </div>
+              }
+              @if (TicketForm.get('name')?.errors?.['pattern']) {
+                <div class="mensaje-error">
+                  Solo se permiten letras y espacios.
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="Note">Los Usuarios Registrados reciben atención prioritaria</div>
+
+        @if (params === 'email') {
+          <button type="submit" class="boton-enviar">Solicitar Email</button>
+        }
+        @if (params === 'telephone') {
+          <button type="submit" class="boton-enviar">Solicitar Llamada</button>
+        }
+      </form>
+
+      @if (params === 'telephone') {
+        <div class="pie-formulario" (click)="Changer('email')">
+          ¿Prefieres un email? <span class="enlace-registro">Recibir email</span>
+        </div>
+      }
+
+      @if (params === 'email') {
+        <div class="pie-formulario" (click)="Changer('telephone')">
+          ¿Prefieres una llamada? <span class="enlace-registro">Recibir llamada</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

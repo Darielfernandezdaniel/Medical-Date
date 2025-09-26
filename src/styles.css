@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-navigation-bar-left{
+    width: 50%;
+  }
+  
+  app-navigation-bar-right{
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: end;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  
+  /* Clases reciclables */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+  
+  * {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.779) transparent; /* Firefox */
+  }
+  
+  /* Chrome, Edge y Safari */
+  *::-webkit-scrollbar {
+    width: 8px;  /* ancho de scroll vertical */
+    height: 8px; /* alto de scroll horizontal */
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.6);
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }

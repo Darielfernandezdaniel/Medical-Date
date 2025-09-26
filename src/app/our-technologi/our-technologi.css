@@ -1,0 +1,589 @@
+.blackVeil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.47);
+  z-index: 1000;
+}
+
+.blackVeil.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.blackVeil.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+.inputSearchContainer{
+  width: 100vw;
+  height: 60px;
+  background-color: rgb(0, 225, 255);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.inputSearchContainer div {
+  width: calc(100% - 180px);
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.allContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(0, 225, 255);
+  height: 100%;
+}
+
+.searchingTest{
+  height: 100%;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.322);
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 70%;
+  height: 60px;
+  top: 10px;
+  border: 3px solid black;
+}
+
+.searchingTest::placeholder {
+  color: black;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 520;
+  font-family: Arial, Helvetica, sans-serif;  
+}
+
+input {
+  color: black;
+  font-size: 20px;
+  outline: none;
+}
+
+.cuadro img{
+  width: 100%;
+  height: 100%;
+}
+
+input:focus {
+  border: 2px solid black;
+}
+
+nav {
+  width: 180px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(0, 225, 255);
+  position: absolute;
+  z-index: 10;
+  flex-wrap: nowrap;
+}
+
+.scrollOfTechArea {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 20px;
+}
+
+.scrollOfTechArea img {
+  width: clamp(80px, 12vw, 140px);
+  height: clamp(80px, 12vw, 140px);
+  border-radius: 50%;
+  border: 2px solid rgb(0, 0, 0);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.scrollOfTechArea img:hover {
+  transform: scale(1.1);
+}
+
+.scrollOfTechArea img:active {
+  transform: scale(0.95);
+}
+
+.cuadro {
+  width: calc(100% - 180px);
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(18px, 3vw, 28px);
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  background: url(/assets/Patient-Area.avif) no-repeat center center;
+  background-size: cover;
+  border-radius: 10px;
+  margin-left: auto;
+}
+
+.ClickImg{
+  background-color: rgba(0, 0, 0, 0.763);
+  width: 45%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.info {
+  width: clamp(300px, 85%, 900px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: clamp(15px, 3vh, 35px);
+  overflow-y: auto;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 0.2s;
+  padding: clamp(10px, 2vw, 20px);
+}
+
+.info:focus-within {
+  opacity: 1;
+}
+
+.info p {
+  border: 4px solid black;
+  padding: clamp(15px, 3vw, 25px);
+  border-radius: 10px;
+  font-size: clamp(14px, 2.2vw, 18px);
+  line-height: 1.5;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.838);
+  color: rgb(255, 255, 255);
+}
+
+.info h3 {
+  font-size: clamp(24px, 6vw, 56px);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: clamp(15px, 3vw, 25px);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.2;
+  word-wrap: break-word; 
+  background-color: rgba(0, 0, 0, 0.838);
+  color: rgb(255, 255, 255);
+  border: 4px solid black;
+}
+
+.buttonContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(15px, 3vw, 30px);
+  flex-wrap: wrap;
+}
+
+.buttonOfPay {
+  flex: 1;
+  min-width: 200px;
+  height: clamp(80px, 8vh, 190px);
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: rgb(0, 225, 255);
+  font-size: 18px;
+  font-weight: bolder;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.buttonOfPay:hover {
+  background-color: rgb(0, 185, 255);
+  transform: translateY(-2px);
+}
+
+.buttonOfPay:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.openModal{
+  width: 90%;
+  max-width: 900px;
+  height: 50vh;
+  background-color: white;
+  border: 2px solid black;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  border: 4px solid rgb(0, 255, 255);
+  animation: fadeIn 0.5s ease forwards;
+  z-index: 10;
+}
+
+.optionsForDate{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  background-color: #dededef5;
+  height: 12%;
+  padding-left: 10px;
+  border-left: 3px solid rgb(0, 255, 255);
+  border-radius: 10px;
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.optionsForDate:hover{
+  height: 15%;
+  font-size: 19px;
+}
+
+.optionsForDate:active{
+  height: 15%;
+  font-size: 19px;
+}
+
+.openModal h3{
+  font-size: 25px;
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  background-color: rgb(0, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.openModal div span{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.openModal div span p{
+  font-size: 45px;
+  border-radius: 50%;
+}
+
+.openModal .buttonContainer{
+  width: 90%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: white;
+}
+
+.openModal button{
+  width: 30%;
+  height: 50%;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MEDIA QUERIES */
+
+/* MOBILE/TABLET - cualquier pantalla pequeña */
+@media (max-width: 759px) {
+  .allContainer {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .info h3{
+    font-size: 20px;
+  }
+
+  .searchingTest{
+   margin-top: 130px;
+  }
+
+  .inputSearchContainer div{
+    width: 100%;
+  }
+  
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    max-height: 120px;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 1px;
+  }
+  
+  .scrollOfTechArea {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 40px;
+    height: 100%;
+    padding-bottom: 8px;
+  }
+
+  
+  .buttonContainer{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+  }
+
+  .buttonContainer button{
+    font-size: 12px;
+    width: 100%;
+    height: 30px;
+  }
+  
+  .cuadro {
+    padding-top: 150px;
+    height: 100%;
+    border-top: none;
+    width: 100%;
+  }
+
+  .info{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+
+  }
+}
+
+@media (max-width: 480px) {
+  .searchingTest {
+    height: 55px;
+    padding-left: 12px;
+  }
+  
+  nav {
+    width: 100%;
+    height: 20%;
+    max-height: 30vh;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 50px;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 1px;
+  }
+
+  .cuadro{
+    height: 100%;
+    gap: 10px;
+  }
+
+  .searchingTest{
+    margin-top: 10px;
+  }
+  
+  .searchingTest::placeholder{
+    font-size: 20px;
+  }
+
+  .scrollOfTechArea {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px; 
+    gap: 30px;
+  }
+  
+  .scrollOfTechArea img {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+  }
+  
+  .info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .info h3 {
+    font-size: 25px;
+  }
+  
+  .info p {
+    font-size: 14px;
+    padding: 12px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+    gap: 10px;
+    font-size: 14px;
+  }
+  
+  .buttonContainer button {
+    width: 100%;
+    min-width: auto;
+    height: 125px;
+    font-size: 15px;
+    min-height: 25px;
+  }
+
+  .buttonContainer button:hover{
+    height: 55px;
+  }
+}
+
+
+/* DESKTOP - pantallas grandes */
+@media (min-width: 760px) {
+  nav {
+    width: 180px;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row;
+  }
+
+  .searchingTest{
+    height: 50px;
+  }
+  
+  .scrollOfTechArea {
+    overflow-x: auto;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 25px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .scrollOfTechArea img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .info {
+    height: 80vh;
+    position: absolute;
+    bottom: 20px;
+  }
+
+  .info p{
+    height: 80%;
+    min-height: 300px;
+  }
+  
+  .info h3 {
+    font-size: clamp(25px, 6vw, 38px);
+  }
+
+  .buttonContainer{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+  }
+
+  .buttonContainer button {
+    width: 100%;
+    min-width: auto;
+    height: 80px;
+    font-size: 14px;
+  }
+
+  .openModal h3{
+    font-size: 12px;
+  }
+}
+
+/* Pantallas muy grandes (4K, etc.) */
+@media (min-width: 800px) {
+nav{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+  .cuadro {
+    font-size: 32px;
+  }
+  
+  .info {
+    height: 80vh;
+  }
+
+  .info p{
+    width: 100%;
+    max-height: 20%;
+  }
+
+  .buttonContainer{
+    height: 30%;
+  }
+
+  .buttonContainer button{
+    height: 20px;
+    font-size: 18px;
+  }
+}
+

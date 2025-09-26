@@ -1,0 +1,347 @@
+* {
+    scrollbar-width: none;      /* Oculta scroll vertical en Firefox */
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    min-height: 100vh;
+    padding: 0 10px;
+}
+
+/* Título principal */
+h1 {
+    font-size: clamp(2rem, 6vw, 3.75rem);
+    font-weight: 700;
+    color: hsl(203, 35%, 25%);
+    padding-top: clamp(20px, 5vw, 50px);
+    margin-bottom: clamp(16px, 3vw, 24px);
+    text-align: center;
+}
+
+/* Texto de info */
+.infoText {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: hsl(203, 20%, 50%);
+    margin-bottom: clamp(20px, 4vw, 32px);
+    text-align: center;
+    width: clamp(80%, 90%, 50%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* Barra pequeña degradada */
+.smallGradientBarContainer {
+    width: clamp(50%, 80%, 100%);
+    height: 4px;
+    margin: 0 auto clamp(24px, 5vw, 48px);
+}
+
+.smallGradientBar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, hsl(195, 100%, 55%), hsl(196, 100%, 96%))
+}
+
+/* Contenedor general para secciones */
+.sectionContainer {
+    margin: 0 auto clamp(32px, 6vw, 64px);
+    display: flex;  
+    gap: clamp(20px, 4vw, 40px);
+    padding: 0 clamp(10px, 2vw, 20px);
+    margin-bottom: clamp(70px, 8vw, 80px);
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    min-height: 100vh;
+    padding-bottom: clamp(40px, 6vw, 60px);
+    justify-items: center;
+    flex-direction: row;
+}
+
+
+
+/* Breakpoints para grid responsive */
+@media (max-width: 576px) {
+    .sectionContainer {
+        padding: 0 clamp(15px, 3vw, 30px);
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 994px) {
+    .sectionContainer {
+        grid-template-columns: repeat(3, 1fr);
+        height: auto;
+        min-height: 770px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sectionContainer {
+        padding: 0 20px;
+    }
+}
+
+.sectionContainer section {
+    background: white;
+    border-radius: clamp(6px, 1vw, 8px);
+    box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
+    overflow: hidden;
+    padding: clamp(20px, 4vw, 32px);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: auto;
+    min-height: clamp(300px, 50vw, 350px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sectionContainer section:hover {
+    box-shadow: 0 8px 30px hsla(195, 100%, 70%, 0.12);
+    transform: translateY(-8px);
+}
+
+/* Imágenes dentro de las secciones */
+.sectionContainer section img {
+    height: clamp(50px, 8vw, 70px);
+    width: clamp(50px, 8vw, 70px);
+    margin-bottom: clamp(8px, 2vw, 15px);
+    align-self: center;
+}
+
+/* Títulos h2 en secciones */
+.sectionContainer section h2 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 700;
+    color: hsl(203, 35%, 25%);
+    margin-bottom: clamp(12px, 2vw, 16px);
+    position: relative;
+}
+
+/* Preguntas dentro de secciones */
+.SectionQuestion {
+    color: hsl(195, 100%, 70%);
+    font-size: clamp(1rem, 2.2vw, 1.125rem);
+    font-weight: 500;
+    margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+/* Párrafos descriptivos */
+.sectionContainer section p:not(.SectionQuestion) {
+    color: hsl(203, 20%, 50%);
+    line-height: 1.6;
+    margin-bottom: clamp(40px, 8vw, 60px);
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    flex-grow: 1;
+}
+
+/* Botón Saber más */
+.knowMoreButton {
+    position: absolute;
+    bottom: clamp(10px, 2vw, 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
+    background: transparent;
+    border: 1px solid hsl(195, 100%, 70%);
+    color: hsl(195, 100%, 70%);
+    border-radius: 6px;
+    font-size: clamp(12px, 2vw, 14px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.sectionContainer section:hover .knowMoreButton {
+    background: hsl(195, 100%, 70%);
+    color: white;
+}
+
+.knowMoreButton::after {
+    content: '→';
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.sectionContainer section:hover .knowMoreButton::after {
+    transform: translateX(4px);
+}
+
+/* Soluciones */
+.Solutions {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+    gap: clamp(15px, 3vw, 21px);
+    padding: 0 clamp(10px, 2vw, 20px);
+}
+
+@media (min-width: 576px) {
+    .Solutions {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}
+
+@media (min-width: 768px) {
+    .Solutions {
+        justify-content: space-between;
+        gap: clamp(20px, 3vw, 30px);
+    }
+}
+
+.rightBlock, .leftBlock {
+    background: white;
+    border-radius: clamp(6px, 1vw, 8px);
+    box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.15);
+    width: 100%;
+    text-align: center;
+    height: auto;
+    min-height: clamp(200px, 25vw, 300px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: clamp(15px, 3vw, 25px);
+    margin: 0;
+}
+
+@media (min-width: 576px) {
+    .rightBlock, .leftBlock {
+        width: calc(50% - 10px);
+    }
+}
+
+.rightBlock h3, .leftBlock h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 600;
+    color: hsl(203, 35%, 25%);
+    margin-bottom: clamp(12px, 2vw, 16px);
+    text-align: center;
+}
+
+.rightBlock p, .leftBlock p {
+    color: hsl(203, 20%, 50%);
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    text-align: center;
+    margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.lastButton {
+    width: 100%;
+    max-width: 600px;
+    padding: clamp(12px, 3vw, 20px) clamp(20px, 4vw, 32px);
+    background: linear-gradient(135deg, hsl(195, 100%, 70%), hsl(195, 100%, 85%));
+    color: white;
+    border-radius: 6px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+}
+
+.lastButton:hover {
+    box-shadow: 0 4px 20px hsla(195, 100%, 70%, 0.15);
+    transform: scale(1.02);
+}
+
+.secondBody {
+    margin-top: clamp(20px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(15px, 3vw, 25px);
+    min-height: 40vh;
+    padding: clamp(40px, 4vw, 40px) clamp(10px, 2vw, 20px);
+}
+
+.sectionInfoVeil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sectionInfoVeil.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Breakpoints adicionales para dispositivos muy pequeños */
+@media (max-width: 320px) {
+    .sectionContainer {
+        padding: 0 5px;
+        gap: 15px;
+    }
+    
+    .sectionContainer section {
+        padding: 15px;
+        min-height: 250px;
+    }
+    
+    .Solutions {
+        gap: 10px;
+    }
+    
+    .rightBlock, .leftBlock {
+        padding: 12px;
+        min-height: 150px;
+    }
+}
+
+/* Breakpoints para tablets en landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .sectionContainer {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .sectionContainer section {
+        min-height: 320px;
+    }
+}
+
+/* Optimización para pantallas muy grandes */
+@media (min-width: 1400px) {
+    .body {
+        padding: 0 clamp(20px, 5vw, 100px);
+    }
+    
+    .sectionContainer {
+        max-width: 1400px;
+    }
+}

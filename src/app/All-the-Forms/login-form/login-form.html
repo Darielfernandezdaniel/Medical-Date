@@ -1,0 +1,91 @@
+<div>
+  <h1 class="titulo-formulario">Login</h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="grupo-input">
+      <label for="email" class="etiqueta-input">Correo Electrónico</label>
+      <input 
+        type="email" 
+        id="email" 
+        class="campo-input" 
+        formControlName="email"
+        [class.input-error]="(loginForm.get('email')?.touched && loginForm.get('email')?.invalid) || errorMessage"
+        placeholder="usuario@clinica.com" 
+        required>
+      
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+        <div class="error-mensaje">
+          @if (loginForm.get('email')?.errors?.['required']) {
+            <div class="mensaje-error">
+              El correo electrónico es obligatorio.
+            </div>
+          }
+          @if (loginForm.get('email')?.errors?.['email']) {
+            <div class="mensaje-error">
+              El formato del correo no es válido.
+            </div>
+          }
+        </div>
+      }
+    </div>
+    
+    <div class="grupo-input">
+      <label for="password" class="etiqueta-input">Contraseña</label>
+      <input 
+        type="password" 
+        id="password" 
+        class="campo-input" 
+        formControlName="password"
+        [class.input-error]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid || errorMessage"
+        placeholder="Ingresa tu contraseña" 
+        required>
+      
+      @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+        <div class="error-mensaje">
+          @if (loginForm.get('password')?.errors?.['required']) {
+            <div class="mensaje-error">
+              La contraseña es obligatoria.
+            </div>
+          }
+        </div>
+      }
+      @if (errorMessage) {
+        <div class="mensaje-error">{{ errorMessage }}</div>
+      }
+      @if (successMessage) {
+        <div class="mensaje-exito">{{ successMessage }}</div>
+      }
+    </div>
+    
+    <div class="opciones-formulario">
+      <div>
+        <input type="checkbox" id="remember" formControlName="rememberMe">
+        <label for="remember">Recordar sesión</label>
+      </div>
+      <div class="enlace-opcion" (click)="switchToPassword.emit()">¿Olvidaste tu contraseña?</div>
+    </div>
+
+    <button 
+      type="submit" 
+      class="boton-enviar" 
+      [disabled]="loginForm.invalid || isLoading">
+      {{ isLoading ? 'Iniciando...' : 'Iniciar Sesión' }}
+    </button>
+    
+    <div class="separador">
+      <div class="linea-separador"></div>
+      <span class="texto-separador">o accede con</span>
+      <div class="linea-separador"></div>
+    </div>
+    
+    <div class="contenedor-redes">
+      <button type="button" class="boton-red-social">
+        <img src="assets/google.png" alt="google" class="OAuthProvider">
+      </button>
+    </div>
+  </form>
+  
+  <div class="pie-formulario" (click)="switchToJoin.emit()">
+    ¿No tienes una cuenta? <span class="enlace-registro">Regístrate</span>
+  </div>
+</div>
