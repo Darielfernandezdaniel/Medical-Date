@@ -8,6 +8,15 @@
   z-index: 1000;
 }
 
+.info {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+}
+
+.info::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 .blackVeil.fade-in {
   animation: fadeIn 0.5s ease forwards;
 }
@@ -332,7 +341,37 @@ nav {
   }
 }
 
+
 /* MEDIA QUERIES */
+
+@media(max-height:460px){
+  .buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .buttonContainer button{
+    font-size: 12px;
+    max-width: 150px;
+    max-height: 100px;
+  }
+
+  .info{
+    padding-top: 20px;
+    max-height: 80vh;
+  }
+
+  .info h3{
+    font-size: 20px;
+  }
+
+  .info p{
+    font-size: 16px;
+  }
+}
 
 /* MOBILE/TABLET - cualquier pantalla pequeña */
 @media (max-width: 759px) {
@@ -348,6 +387,8 @@ nav {
 
   .searchingTest{
    margin-top: 130px;
+   position: absolute;
+   z-index: 100;
   }
 
   .inputSearchContainer div{
@@ -399,10 +440,10 @@ nav {
   }
 
   .info{
-    height: 80vh;
+    height: 60vh;
     display: flex;
     justify-content: center;
-
+    padding-top: 60px;
   }
 }
 
@@ -414,12 +455,11 @@ nav {
   
   nav {
     width: 100%;
-    height: 20%;
-    max-height: 30vh;
+    height: 100%;
+    max-height: 10vh;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 50px;
     align-items: center;
     padding-left: 10px;
     padding-right: 1px;
@@ -431,7 +471,7 @@ nav {
   }
 
   .searchingTest{
-    margin-top: 10px;
+    margin-top: 120px;
   }
   
   .searchingTest::placeholder{
@@ -442,10 +482,11 @@ nav {
     display: flex;
     flex-direction: row;
     width: auto;
-    padding-bottom: 0;
+    padding-bottom: 20px;
     padding-left: 15px;
     padding-right: 15px; 
     gap: 30px;
+    height: 100%;
   }
   
   .scrollOfTechArea img {
@@ -456,19 +497,19 @@ nav {
   
   .info {
     display: flex;
-    justify-content: center;
     gap: 20px;
     width: 100%;
-    height: 100%;
+    height: 65vh;
+    padding-top: 120px;
   }
   
   .info h3 {
-    font-size: 25px;
+    font-size: 20px;
   }
   
   .info p {
     font-size: 14px;
-    padding: 12px;
+    padding: 15px;
   }
   
   .buttonContainer {
@@ -477,7 +518,7 @@ nav {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 30%;
+    height: 50%;
     gap: 10px;
     font-size: 14px;
   }
@@ -487,7 +528,7 @@ nav {
     min-width: auto;
     height: 125px;
     font-size: 15px;
-    min-height: 25px;
+    min-height: 20px;
   }
 
   .buttonContainer button:hover{
@@ -525,9 +566,9 @@ nav {
   }
   
   .info {
-    height: 80vh;
+    height: 40vh;
     position: absolute;
-    bottom: 20px;
+    bottom: 1px;
   }
 
   .info p{
@@ -535,10 +576,6 @@ nav {
     min-height: 300px;
   }
   
-  .info h3 {
-    font-size: clamp(25px, 6vw, 38px);
-  }
-
   .buttonContainer{
     display: flex;
     flex-direction: column;
@@ -565,24 +602,24 @@ nav{
 }
 
   .cuadro {
-    font-size: 32px;
+    font-size: 26px;
   }
   
   .info {
-    height: 80vh;
+    height: 90vh;
   }
 
   .info p{
     width: 100%;
-    max-height: 20%;
+    min-height: 200px;
   }
 
   .buttonContainer{
-    height: 30%;
+    height: 50%;
   }
 
   .buttonContainer button{
-    height: 20px;
+    min-height: 50px;
     font-size: 18px;
   }
 }

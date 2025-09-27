@@ -71,18 +71,6 @@
       [disabled]="loginForm.invalid || isLoading">
       {{ isLoading ? 'Iniciando...' : 'Iniciar Sesión' }}
     </button>
-    
-    <div class="separador">
-      <div class="linea-separador"></div>
-      <span class="texto-separador">o accede con</span>
-      <div class="linea-separador"></div>
-    </div>
-    
-    <div class="contenedor-redes">
-      <button type="button" class="boton-red-social">
-        <img src="assets/google.png" alt="google" class="OAuthProvider">
-      </button>
-    </div>
   </form>
   
   <div class="pie-formulario" (click)="switchToJoin.emit()">
